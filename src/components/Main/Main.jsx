@@ -5,6 +5,7 @@ import './Main.scss'
 import SidebarChannel from '../SidebarChannel/SidebarChannel';
 import BadgeAvatars from '../Avatar/BadgeAvatar';
 import Sidebarvoice from '../Sidebarvoice/Sidebarvoice';
+import ChatHeader from '../ChatHeader/ChatHeader';
 function Main() {
     return (
         <div>
@@ -31,8 +32,10 @@ function Main() {
                             <BadgeAvatars/>
                     </div>
                 </div>
-            <div className="main__details">
-
+            <div className="chat">
+                <div className="chat__header">
+                    <ChatHeader/>
+                </div>
             </div>
         </div>
     </div>

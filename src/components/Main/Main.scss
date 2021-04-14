@@ -14,7 +14,7 @@
         &-header{
             display: flex;
             align-items: center;
-            padding: 1rem 1.5rem;
+            padding: 1.55rem 1.5rem;
             border-bottom: 1px solid #23272a;
         }
         &-currentchannel{
@@ -44,8 +44,12 @@
         margin-top: auto;
         border-bottom:1px solid #35383d;
     }
-    &__details{
-        flex:0 0 80%;
-        background-color: #35383d;
+    
+}
+.chat{
+    flex: 1;
+    background-color: #35383d;
+    &__header{
+        
     }
 }

@@ -1,0 +1,26 @@
+.chatheader{
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    background-color: #363940;
+    border-bottom: 1px solid #23272a;
+    &__topic{
+        display: flex;
+        margin-right: auto;
+        font-size: 1.6rem;
+        align-items: center;
+        &-content{
+            margin-left: 1.2rem;
+        }
+        &-hash{
+            color:gray;
+            margin-left: 1.5rem;
+            font-size: 2.85rem;
+        }
+    }
+    &__items{
+        display: flex;
+        align-items: center;
+    }
+}
