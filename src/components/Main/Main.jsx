@@ -6,20 +6,42 @@ import SidebarChannel from '../SidebarChannel/SidebarChannel';
 import BadgeAvatars from '../Avatar/BadgeAvatar';
 import Sidebarvoice from '../Sidebarvoice/Sidebarvoice';
 import ChatHeader from '../ChatHeader/ChatHeader';
+import { IconButton,makeStyles } from '@material-ui/core';
+const useStyles=makeStyles((theme)=>{
+    return{
+        button:{
+            padding:theme.spacing(1),
+            color:'#fff'
+        }
+    }
+})
 function Main() {
+    const classes=useStyles();
     return (
         <div>
             <div className='main'>
                 <div className='main__sidebar'>
                     <div className="main__sidebar-header">
-                        <p className='main__sidebar-currentchannel'>Coders</p>
-                        <div className="main__sidebar-expandicon"><ExpandMoreIcon/></div>
+                        <p className='main__sidebar-currentchannel'>Coding</p>
+                        <div className="main__sidebar-expandicon">
+                            <IconButton className={classes.button} aria-label="settings">
+                                <ExpandMoreIcon fontSize='large'/>
+                            </IconButton>
+                        </div>
                     </div>
                     <div className='main__channels'>
                         <div className="main__channels-header">
-                            <div className="main__channels-expandicon"><ExpandMoreIcon/></div>
+                            <div className="main__channels-expandicon">
+                            <IconButton className={classes.button} aria-label="settings">
+                                <ExpandMoreIcon/>
+                            </IconButton>
+                                </div>
                             <p>Text Channels</p>
-                            <div className="main__channels-addicon"><AddIcon /></div>
+                            <div className="main__channels-addicon">
+                                <IconButton className={classes.button}  aria-label="settings">
+                                    <AddIcon />
+                                 </IconButton>
+                            </div>
                         </div>
                         <div className="main__channels-list">
                             <SidebarChannel/>

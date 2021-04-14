@@ -14,10 +14,12 @@
         &-header{
             display: flex;
             align-items: center;
-            padding: 1.55rem 1.5rem;
+            padding: .58rem 1.5rem .58rem 2.25rem;
+            font-size: 1.7rem;
             border-bottom: 1px solid #23272a;
         }
         &-currentchannel{
+            letter-spacing: .75px;
             margin-right: auto;
         }
         &-expandicon{
@@ -31,9 +33,6 @@
             display: flex;
             align-items: center;
             padding: 1.2rem 1.2rem .9rem 1.2rem;
-        }
-        &-expandicon{
-            margin-right: 1rem;
         }
         &-addicon{
             margin-left: auto;
