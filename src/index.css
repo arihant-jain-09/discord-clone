@@ -1,0 +1,12 @@
+html {
+    height: 100%;
+    font-size: 10px;
+  }
+  body {
+    min-height: 100%;
+  }
+  *{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+  }

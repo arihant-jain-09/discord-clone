@@ -1,0 +1,51 @@
+@import url('http://fonts.cdnfonts.com/css/whitney-2');
+.main{
+    display: flex;
+    height: 100vh;
+    font-size: 1.5rem;
+    font-family: 'Whitney Semibold', sans-serif;
+    &__sidebar{
+        flex:0 0 18%;
+        background-color: #2C2F33;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        // justify-content: space-between;
+        &-header{
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #23272a;
+        }
+        &-currentchannel{
+            margin-right: auto;
+        }
+        &-expandicon{
+            cursor: pointer;
+        }
+       
+    }
+    &__channels{
+        color:gray;
+        &-header{
+            display: flex;
+            align-items: center;
+            padding: 1.2rem 1.2rem .9rem 1.2rem;
+        }
+        &-expandicon{
+            margin-right: 1rem;
+        }
+        &-addicon{
+            margin-left: auto;
+            cursor: pointer;
+        }
+    }
+    &__voice{
+        margin-top: auto;
+        border-bottom:1px solid #35383d;
+    }
+    &__details{
+        flex:0 0 80%;
+        background-color: #35383d;
+    }
+}

@@ -1,0 +1,16 @@
+.profile{
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #2a2b2f; 
+     &__avatar{
+        margin-right: auto;
+        display: flex;
+        align-items: center;
+    }
+    &__name{
+        margin-left: 1rem;
+        color:#fbfcfc
+
+    }
+}

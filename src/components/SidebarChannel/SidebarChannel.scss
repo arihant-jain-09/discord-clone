@@ -1,0 +1,20 @@
+.sidebarchannel{
+    padding: 0 2rem;
+    font-size: 1.75rem;
+    cursor: pointer;
+    &__hash{
+        display: inline-block;
+        padding: 0 1rem;
+        font-size: 2.1rem;
+    }
+    &__content{
+        margin-bottom: .2rem;
+        padding-bottom: .2rem;
+        &:hover{
+            background-color: #40454b;
+            border-radius: .5rem;
+            color:#e6e8e8;
+
+        }
+    }
+}
