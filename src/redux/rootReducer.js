@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux';
-import userReducer from './user/userReducer';
+import documentReducer from './document/documentReducer';
 export default combineReducers({
-  user:userReducer,
+  doc:documentReducer
 })

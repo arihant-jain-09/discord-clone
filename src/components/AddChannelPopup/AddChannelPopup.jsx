@@ -5,9 +5,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import { IconButton, makeStyles, Typography } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
-import {firestore} from '../../firebase/firebase'
+import {auth, firestore} from '../../firebase/firebase'
 import firebase from 'firebase/app'
-import './AddChannelPopup.scss'
+import './AddChannelPopup.scss' 
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -37,7 +37,6 @@ export default function AddChannelPopup() {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -45,8 +44,17 @@ export default function AddChannelPopup() {
     e.preventDefault();
     await channelRef.add({
         channel:formValue,
-        createdAt:firebase.firestore.FieldValue.serverTimestamp()
+        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+        name:auth.currentUser.displayName,
+        email:auth.currentUser.email,
+        uid:auth.currentUser.uid,
     })
+    .then(
+      ()=>{
+        console.log("Document Added")
+      })
+    .catch((error)=>{console.log(error)})
+
     setformValue('');
   }
   const channelRef=firestore.collection('channels');
@@ -60,11 +68,11 @@ export default function AddChannelPopup() {
           <DialogContentText>
             <Typography variant='h5' className={classes.typo}>Channel name</Typography>
           </DialogContentText>
-          <input type="text" required className='input' placeholder='Type channel name' onChange={(e)=>setformValue(e.target.value)} value={formValue}/>
+          <input type="text" required className='input' autoFocus placeholder='Type channel name' onChange={(e)=>setformValue(e.target.value)} value={formValue}/>
         </DialogContent>
         <DialogActions className={classes.dialogaction}>
             <form onSubmit={handleSubmit} className='form'>
-             <button type='submit' onClick={handleClose} className='form__button'>Add</button>
+              <button type='submit' onClick={handleClose} className='form__button'>Add</button>
             </form>
         </DialogActions>
       </Dialog>
