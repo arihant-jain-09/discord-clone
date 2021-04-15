@@ -1,6 +1,6 @@
 import React from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AddIcon from '@material-ui/icons/Add';
+
 import './Main.scss'
 import SidebarChannel from '../SidebarChannel/SidebarChannel';
 import BadgeAvatars from '../Avatar/BadgeAvatar';
@@ -8,6 +8,8 @@ import Sidebarvoice from '../Sidebarvoice/Sidebarvoice';
 import ChatHeader from '../ChatHeader/ChatHeader';
 import { IconButton,makeStyles } from '@material-ui/core';
 import ChatSearchBar from '../ChatSearchBar/ChatSearchBar';
+
+import AddChannelPopup from '../AddChannelPopup/AddChannelPopup'
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -18,6 +20,7 @@ const useStyles=makeStyles((theme)=>{
 })
 function Main() {
     const classes=useStyles();
+
     return (
         <div>
             <div className='main'>
@@ -39,9 +42,7 @@ function Main() {
                                 </div>
                             <p>Text Channels</p>
                             <div className="main__channels-addicon">
-                                <IconButton className={classes.button}  aria-label="settings">
-                                    <AddIcon />
-                                 </IconButton>
+                                <AddChannelPopup/>
                             </div>
                         </div>
                         <div className="main__channels-list">

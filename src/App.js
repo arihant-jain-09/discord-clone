@@ -5,6 +5,7 @@ import Homepage from './components/homepage/homepage.jsx'
 import Main from './components/Main/Main.jsx'
 import {auth} from './firebase/firebase'
 import {useAuthState} from 'react-firebase-hooks/auth'
+
 function App() {
   const [user]=useAuthState(auth);
   return (
@@ -16,7 +17,7 @@ function App() {
         <Switch>
           <Route exact path='/' render={()=>user?(<Redirect to='/channels'/>):<Homepage/>} />
           <Route exact path='/channels' render={(user) => ( <Main user={user} isAuthed={true} />
-  )}/>
+            )}/>
         </Switch>
       </main>
     </div>
