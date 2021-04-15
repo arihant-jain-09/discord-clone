@@ -1,0 +1,35 @@
+.chatsearchbar{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2vh;
+    overflow: hidden;
+    padding: 1rem 2rem;
+    &__addicon{
+        background-color: #40454b;
+        border-radius: .7rem 0 0 .7rem;
+    }
+    &__input{
+        flex:1;        
+        margin-right: -14%;
+        &-text{
+            display:inline-block;
+            color:#fff;
+            border:0;
+            width: 100%;
+            padding: 1.2rem 1rem;
+            line-height: 1rem;
+            background-color: #40454b;
+            border-radius: 0 .7rem .7rem 0;
+            caret-color: #babdc2;
+           &::-webkit-input-placeholder{
+               color:#72777d;
+               font-size: 1.5rem;
+           }
+           &:focus{
+               outline: none;
+           }
+        }
+    }
+
+
+}

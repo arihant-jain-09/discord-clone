@@ -46,9 +46,17 @@
     
 }
 .chat{
-    flex: 1;
+    flex: 0 0 67%;
     background-color: #35383d;
-    &__header{
-        
+    display: flex;
+    flex-direction: column;
+    &__searchbar{
+        margin-top: auto;
     }
+}
+
+
+.online{
+    flex:1;
+    background-color: #303136;
 }

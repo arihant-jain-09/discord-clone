@@ -7,6 +7,7 @@ import BadgeAvatars from '../Avatar/BadgeAvatar';
 import Sidebarvoice from '../Sidebarvoice/Sidebarvoice';
 import ChatHeader from '../ChatHeader/ChatHeader';
 import { IconButton,makeStyles } from '@material-ui/core';
+import ChatSearchBar from '../ChatSearchBar/ChatSearchBar';
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -58,6 +59,12 @@ function Main() {
                 <div className="chat__header">
                     <ChatHeader/>
                 </div>
+                <div className="chat__searchbar">
+                    <ChatSearchBar/>
+                </div>
+            </div>
+            <div className="online">
+                
             </div>
         </div>
     </div>
