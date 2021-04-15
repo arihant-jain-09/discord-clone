@@ -10,6 +10,7 @@ import { IconButton,makeStyles } from '@material-ui/core';
 import ChatSearchBar from '../ChatSearchBar/ChatSearchBar';
 
 import AddChannelPopup from '../AddChannelPopup/AddChannelPopup'
+import ChatMessage from '../ChatMessage/ChatMessage';
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -59,6 +60,9 @@ function Main() {
             <div className="chat">
                 <div className="chat__header">
                     <ChatHeader/>
+                </div>
+                <div className='chat__message'>
+                    <ChatMessage/>
                 </div>
                 <div className="chat__searchbar">
                     <ChatSearchBar/>

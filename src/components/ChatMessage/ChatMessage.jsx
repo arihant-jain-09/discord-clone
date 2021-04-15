@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
-// import { db } from '../../firebase/firebase'
+import React from 'react'
+import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { useSelector } from 'react-redux';
+import { firestore } from '../../firebase/firebase';
 
-// const docRef=firestore.docment()
-function ChatMessage() {
-//     const [userDetails, setUserDetails] = useState('')
-// db.collection('channels').doc(id).get()
-//         .then(snapshot => setUserDetails(snapshot.data()))
-
-// console.log(userDetails);
-
-
+const ChatMessage= ()=> {
+     const id= useSelector((state)=>state.doc.id)
+    const channelRef= firestore.collection('channels').doc(id).collection('messages');
+    // const query=channelRef.orderBy('createdAt').limit(10);
+    const [messages]=useCollectionData(channelRef,{idField:'id'});
+    console.log(messages);
     return (
         <div>
             

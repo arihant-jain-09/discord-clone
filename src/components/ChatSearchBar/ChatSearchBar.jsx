@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './ChatSearchBar.scss'
+import firebase from 'firebase/app'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
 import GifIcon from '@material-ui/icons/Gif';
 import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { IconButton,makeStyles } from '@material-ui/core';
+import { useSelector } from 'react-redux';
+import { auth, firestore } from '../../firebase/firebase';
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -23,6 +26,20 @@ const useStyles=makeStyles((theme)=>{
 })
 function ChatSearchBar() {
     const classes=useStyles();
+    const [formValue,setformValue]=useState('');
+    const id= useSelector((state)=>state.doc.id)
+    const channelRef= firestore.collection('channels').doc(id).collection('messages');
+    const handleSubmit=(e)=>{
+        e.preventDefault();
+        channelRef.add({
+            message:formValue,
+            sendername:auth.currentUser.displayName,
+            senderemail:auth.currentUser.email,
+            senderuid:auth.currentUser.uid,
+            createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        setformValue('');
+    }
     return (
         <div>
             <div className="chatsearchbar">
@@ -32,7 +49,9 @@ function ChatSearchBar() {
                     </IconButton>
                 </div>
                 <div className="chatsearchbar__input">
-                    <input className='chatsearchbar__input-text' placeholder='Message #code-runner' type="text"/>
+                    <form onSubmit={handleSubmit}>
+                     <input value={formValue} required onChange={(e)=>{setformValue(e.target.value)}} className='chatsearchbar__input-text' placeholder='Message #code-runner' type="text"/>
+                    </form>
                 </div>
                 <div className="chatsearchbar__gifticon">
                     <IconButton className={classes.button} aria-label="settings">
