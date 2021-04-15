@@ -7,6 +7,7 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import HelpIcon from '@material-ui/icons/Help';
 import SearchIcon from '@material-ui/icons/Search';
 import { fade, IconButton,InputBase,makeStyles } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -64,7 +65,7 @@ function ChatHeader() {
             <div className="chatheader">
                 <div className="chatheader__topic">
                     <p className='chatheader__topic-hash'>#</p>
-                    <p className="chatheader__topic-content">code-runner</p>
+                    <p className="chatheader__topic-content">{useSelector((state)=>state.doc.name)}</p>
                 </div>
                 <div className="chatheader__items">
                     <div className='chatheader__items-left'>

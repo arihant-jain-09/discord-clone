@@ -1,12 +1,14 @@
 const initialState={
-    doc:null
+    id:'',
+    name:''
   }
    const documentReducer=(state=initialState,action)=>{
     switch(action.type){
       case 'Current_Document':
       return {
         ...state,
-        doc:action.payload
+        id:action.payload.id,
+        name:action.payload.name
       }
       default: return state
     }
