@@ -1,0 +1,23 @@
+.discord__homepage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-svg{
+        width: 40%;
+    }
+    &-btn{
+        width: 15%;
+    }
+}
+html {
+    height: 100%;
+    font-size: 10px;
+  }
+  body {
+    min-height: 100%;
+  }
+  *{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+  }
