@@ -1,0 +1,66 @@
+.chatmessage__main:hover {
+  background-color: #32353b;
+}
+
+.chatmessage__header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.chatmessage__header-photo {
+  padding: 1.2rem;
+}
+
+.chatmessage__content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 100%;
+}
+
+.chatmessage__content-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 1rem;
+  width: 100%;
+  position: relative;
+}
+
+.chatmessage__content-name {
+  color: #d9dde0;
+  margin-right: 1rem;
+  font-size: 1.6rem;
+}
+
+.chatmessage__content-date {
+  color: #717479;
+  font-size: 1.25rem;
+  margin-right: auto;
+}
+
+.chatmessage__message {
+  color: #dce0e3;
+  font-family: 'Whitney Light', sans-serif;
+  letter-spacing: .02rem;
+  word-spacing: .02rem;
+  padding-top: .5rem;
+  padding-right: 1rem;
+  white-space: pre-wrap;
+}
+
+.chatmessgae__content-menu {
+  margin-right: 3%;
+  position: absolute;
+  left: 90%;
+  top: 0%;
+}
+/*# sourceMappingURL=ChatMessage.css.map */

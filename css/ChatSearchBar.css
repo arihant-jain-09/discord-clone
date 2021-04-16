@@ -1,0 +1,45 @@
+.chatsearchbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 2%;
+  overflow: hidden;
+  padding: 1rem 2rem;
+}
+
+.chatsearchbar__addicon {
+  background-color: #40454b;
+  border-radius: .7rem 0 0 .7rem;
+}
+
+.chatsearchbar__input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: -14%;
+}
+
+.chatsearchbar__input-text {
+  display: inline-block;
+  color: #fff;
+  border: 0;
+  width: 100%;
+  padding: 1.2rem 1rem;
+  line-height: 1rem;
+  background-color: #40454b;
+  border-radius: 0 .7rem .7rem 0;
+  caret-color: #babdc2;
+}
+
+.chatsearchbar__input-text::-webkit-input-placeholder {
+  color: #72777d;
+  font-size: 1.5rem;
+}
+
+.chatsearchbar__input-text:focus {
+  outline: none;
+}
+/*# sourceMappingURL=ChatSearchBar.css.map */

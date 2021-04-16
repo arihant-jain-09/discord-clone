@@ -1,5 +1,5 @@
 const initialState={
-    id:'9t5p4PAKGT1mcpEAvWYf',
+    id:'Ctdr2ATEt3NtBpUkzYlb',
     name:'React JS'
   }
    const documentReducer=(state=initialState,action)=>{

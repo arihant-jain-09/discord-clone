@@ -1,0 +1,28 @@
+.sidebarchannel {
+  padding: 0 2rem;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+.sidebarchannel__hash {
+  display: inline-block;
+  padding: 0 1rem;
+  font-size: 2.1rem;
+}
+
+.sidebarchannel__content {
+  margin-bottom: .2rem;
+  padding-bottom: .4rem;
+}
+
+.sidebarchannel__content:hover {
+  background-color: #40454b;
+  border-radius: .5rem;
+  color: #e6e8e8;
+}
+
+.clicked {
+  background-color: #40454b;
+  color: #e6e8e8;
+}
+/*# sourceMappingURL=SidebarChannel.css.map */

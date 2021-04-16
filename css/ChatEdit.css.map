@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,SAAS,CAAA;EACL,gBAAgB,EAAE,OAAQ;EAC1B,MAAM,EAAC,CAAC;EACR,OAAO,EAAE,IAAI;EACb,KAAK,EAAC,OAAO;EACb,SAAS,EAAE,MAAM;CAEpB;;AACD,AAAA,KAAK,CAAA;EACD,KAAK,EAAE,OAAO;CACjB",
+    "sources": [
+        "../src/components/ChatEdit/ChatEdit.scss"
+    ],
+    "names": [],
+    "file": "ChatEdit.css"
+}

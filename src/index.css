@@ -10,3 +10,12 @@ html {
     margin:0;
     box-sizing: border-box;
   }
+  @font-face {
+    font-family: 'Whitney-semibold';
+    src: local('Whitney-semibold'), url(./fonts/whitneysemibold.otf);
+  }
+  @font-face {
+    font-family: 'Whitney-light';
+    src: local('Whitney-light'), url(./fonts/whitneylight.otf);
+  }
+  

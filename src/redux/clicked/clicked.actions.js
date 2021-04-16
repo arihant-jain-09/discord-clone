@@ -1,7 +1,6 @@
-const setclicked=(doc)=>{
+const setclicked=()=>{
     return{
     type:'Clicked',
-    payload:doc
   }
   }
   export default setclicked;

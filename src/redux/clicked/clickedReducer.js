@@ -6,7 +6,7 @@ const initialState={
       case 'Clicked':
       return {
         ...state,
-        clicked:action.payload.clicked,
+        clicked:!state.clicked,
       }
       default: return state
     }

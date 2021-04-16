@@ -31,7 +31,7 @@ function ChatEdit() {
         docRef.update({
             message:formValue
         })
-        dispatch(setclicked({clicked:false}))
+        dispatch(setclicked())
     }
     return (
         <div>
