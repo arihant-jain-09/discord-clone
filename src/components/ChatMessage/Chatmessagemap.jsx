@@ -37,8 +37,10 @@ const useStyles=makeStyles((theme)=>{
                             </div>
                         </div>
                         <div className="chatmessage__message">
-                         {useSelector((state)=>state.click.clicked) && msg.id===id && <ChatEdit/>}
-                        {`${msg && msg.message}`}
+                         {
+                         useSelector((state)=>state.click.clicked) && msg.id===id ? <ChatEdit/>:msg.message
+                         }
+                        {/* {`${msg && msg.message}`} */}
                         </div>
                     </div>
                 </div>
