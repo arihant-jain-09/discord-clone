@@ -36,7 +36,7 @@ function ChatEdit() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <TextareaAutosize required value={formValue} onChange={(e)=>{setformValue(e.target.value)}} style={{width:'100%'}} className="textarea"/>
+                <TextareaAutosize spellcheck="false" required value={formValue} onChange={(e)=>{setformValue(e.target.value)}} style={{width:'100%'}} className="textarea"/>
                     <IconButton type='submit' className={classes.icon}>
                         <SaveIcon/>
                     </IconButton>

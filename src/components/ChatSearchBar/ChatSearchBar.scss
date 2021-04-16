@@ -8,6 +8,9 @@
         background-color: #40454b;
         border-radius: .7rem 0 0 .7rem;
     }
+    &__emojiicon-picker{
+        // width: 5rem;
+    }
     &__input{
         flex:1;        
         margin-right: -14%;
@@ -32,4 +35,9 @@
     }
 
 
+}
+.emojipicker{
+    position: absolute;
+    bottom:90%;
+    right:2.1%;
 }

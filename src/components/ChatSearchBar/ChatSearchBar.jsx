@@ -8,6 +8,8 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { IconButton,makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import { auth, firestore } from '../../firebase/firebase';
+import { Picker } from 'emoji-mart'
+import 'emoji-mart/css/emoji-mart.css'
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -26,9 +28,12 @@ const useStyles=makeStyles((theme)=>{
 })
 function ChatSearchBar() {
     const classes=useStyles();
+    const [emoji,setemoji]=useState('');
+    const [openpicker,setopenpicker]=useState(false);
     const [formValue,setformValue]=useState('');
     const id= useSelector((state)=>state.doc.id)
     const channelRef= firestore.collection('channels').doc(id).collection('messages');
+    console.log(emoji.native);
     const handleSubmit=async(e)=>{
         e.preventDefault();
         await channelRef.add({
@@ -41,9 +46,19 @@ function ChatSearchBar() {
         })
         setformValue('');
     }
+    const handleselect=(emoj)=>{
+        setemoji(emoj);
+        setformValue(()=>{
+           return formValue+emoj.native
+        })
+        
+    }
+    const handlePicker=()=>{
+        setopenpicker(!openpicker)
+    }
     
     return (
-        <div>
+        <div style={{position:'relative'}}>
             <div className="chatsearchbar">
                 <div className="chatsearchbar__addicon">
                     <IconButton className={classes.addbutton} aria-label="settings">
@@ -65,12 +80,14 @@ function ChatSearchBar() {
                         <GifIcon style={{ fontSize: 30 }}/>
                     </IconButton>
                 </div>
+                
                 <div className="chatsearchbar__emojiicon">
                     <IconButton className={classes.button} aria-label="settings">
-                        <InsertEmoticonIcon style={{ fontSize: 30 }}/>
+                        <InsertEmoticonIcon onClick={handlePicker} style={{ fontSize: 30 }}/>
                     </IconButton>
                 </div>
             </div>
+        {openpicker&& <div className='emojipicker'><Picker  onSelect={handleselect} /></div>}
         </div>
     )
 }
