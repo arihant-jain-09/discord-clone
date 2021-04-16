@@ -29,13 +29,14 @@ function ChatSearchBar() {
     const [formValue,setformValue]=useState('');
     const id= useSelector((state)=>state.doc.id)
     const channelRef= firestore.collection('channels').doc(id).collection('messages');
-    const handleSubmit=(e)=>{
+    const handleSubmit=async(e)=>{
         e.preventDefault();
-        channelRef.add({
+        await channelRef.add({
             message:formValue,
             sendername:auth.currentUser.displayName,
             senderemail:auth.currentUser.email,
             senderuid:auth.currentUser.uid,
+            senderphoto:auth.currentUser.photoURL,
             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
         })
         setformValue('');

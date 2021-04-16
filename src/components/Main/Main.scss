@@ -1,4 +1,4 @@
-@import url('http://fonts.cdnfonts.com/css/whitney-2');
+@import url('http://fonts.cdnfonts.com/css/whitney-2?styles=68522,68523,68521,68520,68524,68526,68519,68525,68527');
 .main{
     display: flex;
     height: 100vh;
@@ -50,6 +50,8 @@
     background-color: #35383d;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
+    
     &__searchbar{
         margin-top: auto;
     }
