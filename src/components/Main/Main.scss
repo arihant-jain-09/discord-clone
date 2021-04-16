@@ -52,6 +52,9 @@
     flex-direction: column;
     overflow-y: auto;
     
+    &__message{
+        
+    }
     &__searchbar{
         margin-top: auto;
     }
@@ -62,3 +65,4 @@
     flex:1;
     background-color: #303136;
 }
+

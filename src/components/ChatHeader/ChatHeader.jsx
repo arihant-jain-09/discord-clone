@@ -61,7 +61,7 @@ const useStyles=makeStyles((theme)=>{
 function ChatHeader() {
     const classes=useStyles();
     return (
-        <div>
+        <div className="chat__main">
             <div className="chatheader">
                 <div className="chatheader__topic">
                     <p className='chatheader__topic-hash'>#</p>

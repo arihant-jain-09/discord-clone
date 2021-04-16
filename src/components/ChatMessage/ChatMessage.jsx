@@ -11,7 +11,7 @@ const ChatMessage= ()=> {
     console.log(messages);
     
     return (
-        <div>
+        <div >
             {messages && messages.map((msg)=>{
                 return <Chatmessagemap key={msg.id} msg={msg}/>
             })}

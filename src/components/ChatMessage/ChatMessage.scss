@@ -1,5 +1,9 @@
 .chatmessage{
-
+    &__main{
+        &:hover{
+            background-color: #32353b;
+        }
+    }
     &__header{
         display: flex;
         &-photo{
@@ -9,10 +13,13 @@
     &__content{
         display: flex;
         flex-direction: column;
+        width: 100%;
         &-header{
             display: flex;
             align-items: center;
             padding-top: 1rem;
+            width: 100%;
+            position: relative;
         }
         &-name{
             color:#d9dde0;
@@ -22,6 +29,11 @@
         &-date{
             color:#717479;
             font-size: 1.25rem;
+            margin-right: auto;
+            
+        }
+        &-menu{
+            // align-self: center;
         }
     }
     &__message{
@@ -32,4 +44,10 @@
         padding-top: .5rem;
         padding-right: 1rem;
     }
+}
+.chatmessgae__content-menu{
+    margin-right: 3%;
+    position: absolute;
+    left: 90%;
+    top:0%;
 }

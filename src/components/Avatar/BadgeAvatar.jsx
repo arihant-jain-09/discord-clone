@@ -8,6 +8,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
 import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
+import { useHistory } from "react-router-dom";
 import './BadgeAvatar.scss'
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -54,6 +55,11 @@ export default function BadgeAvatars() {
   const [user]=useAuthState(auth);
   const [mic,setmic]=useState(false);
   const classes=useStyles();
+  let history=useHistory();
+  const handleClick=async ()=>{
+    history.push('/');
+    auth.signOut();
+  }
     return (
     <div>
       <div className="profile">
@@ -70,7 +76,7 @@ export default function BadgeAvatars() {
             <IconButton className={classes.icon} aria-label="settings">
             <HeadsetMicIcon fontSize='large'/>
             </IconButton>
-            <IconButton className={classes.icon} aria-label="settings">
+            <IconButton className={classes.icon} aria-label="settings" onClick={handleClick}>
               <SettingsIcon fontSize='large' />
             </IconButton>
         </div>
