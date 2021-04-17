@@ -1,9 +1,9 @@
 const initialState={
     clicked:false,
   }
-   const replyopenReducer=(state=initialState,action)=>{
+   const replytoggleReducer=(state=initialState,action)=>{
     switch(action.type){
-      case 'Clicked':
+      case 'Reply_toggle':
       return {
         ...state,
         clicked:!state.clicked,
@@ -11,5 +11,5 @@ const initialState={
       default: return state
     }
   }
-  export default replyopenReducer
+  export default replytoggleReducer
   

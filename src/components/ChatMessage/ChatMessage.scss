@@ -3,17 +3,28 @@
         &:hover{
             background-color: #32353b;
         }
+        &--replied{
+            padding-top: .7rem;
+            padding-bottom: 2rem;
+        }
     }
     &__header{
         display: flex;
         &-photo{
             padding: 1.2rem;
+            &--replied{
+                padding: 2.5rem 1.2rem 1.2rem 1.2rem;
+            }
         }
     }
     &__content{
         display: flex;
         flex-direction: column;
         width: 100%;
+        &-reply{
+            color:#aaafae;
+            font-family: 'Whitney-light' , sans-serif;
+        }
         &-header{
             display: flex;
             align-items: center;

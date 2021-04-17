@@ -4,6 +4,7 @@ import {makeStyles} from '@material-ui/core'
 import ChatMenu from '../ChatMenu/ChatMenu'
 import ChatEdit from '../ChatEdit/ChatEdit'
 import { useSelector } from 'react-redux'
+import ChatReply from '../ChatReply/ChatReply'
 const useStyles=makeStyles((theme)=>{
     return{
       
@@ -11,17 +12,21 @@ const useStyles=makeStyles((theme)=>{
 })
  const Chatmessagemap=({msg})=> {
     // const [inHover, setHover] = useState(false);
+    // console.log(useSelector((state)=>state.reply));
     const classes=useStyles();
-    const id=useSelector((state)=>state.msg.id);
+    const id=useSelector((state)=>state.msg.id);    
      return (
-        <div className="chatmessage__main">
+        <div className={`${msg.reply && 'chatmessage__main--replied'} chatmessage__main`}>
             {/* <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="chatmessage"> */}
             <div className="chatmessage">
                 <div className="chatmessage__header">
-                    <div className="chatmessage__header-photo">
+                    <div className={`${msg.reply&& 'chatmessage__header-photo--replied'} chatmessage__header-photo`}>
                         <Avatar className={classes.avatar} src={`${msg && msg.senderphoto}`}/>
                     </div>
                     <div className="chatmessage__content">
+                        <div className="chatmessage__content-reply">
+                            { msg.reply && <ChatReply msg={msg}/>}
+                        </div>
                         <div className="chatmessage__content-header">
                             <div className="chatmessage__content-name">
                                 {`${msg && msg.sendername}`}

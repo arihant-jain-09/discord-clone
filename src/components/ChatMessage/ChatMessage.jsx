@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useSelector } from 'react-redux';
-import { db, firestore } from '../../firebase/firebase';
+import {firestore } from '../../firebase/firebase';
+// import {db} from '../../firebase/firebase'
 import './ChatMessage.scss'
 import Chatmessagemap from './Chatmessagemap';
 const ChatMessage= ()=> {
@@ -9,6 +10,7 @@ const ChatMessage= ()=> {
     const channelRef= firestore.collection('channels').doc(id).collection('messages');
     const query=channelRef.orderBy('createdAt');
     const [messages]=useCollectionData(query,{idField:'id'});
+    
     // const currentkey=useSelector((state)=>state.key.key);
     // useEffect(() => {
     //     const uploadRef= db.ref(`uploads/${currentkey}`);

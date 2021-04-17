@@ -1,0 +1,7 @@
+.chatreply{
+    display: flex;
+    align-items: center;
+    &__sender{
+        margin-right: .7%;
+    }
+}
