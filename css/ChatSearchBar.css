@@ -42,4 +42,16 @@
 .chatsearchbar__input-text:focus {
   outline: none;
 }
+
+.emojipicker {
+  position: absolute;
+  bottom: 90%;
+  right: 2.1%;
+}
+
+.upload {
+  position: absolute;
+  bottom: 90%;
+  left: 2%;
+}
 /*# sourceMappingURL=ChatSearchBar.css.map */

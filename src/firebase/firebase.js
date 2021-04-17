@@ -1,6 +1,8 @@
 import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
+import 'firebase/storage'
+import 'firebase/database'
 var firebaseConfig = {
     apiKey: "AIzaSyC_flKosPn-LPJF8JsKT3-IhlI3RDMOjqk",
     authDomain: "discord-clone-12045.firebaseapp.com",
@@ -11,6 +13,7 @@ var firebaseConfig = {
   };
   // Initialize Firebase
   const firebaseApp=firebase.initializeApp(firebaseConfig);
-  export const db=firebaseApp.firestore();
+  export const db=firebase.database();
   export const firestore=firebase.firestore();
   export const auth=firebase.auth();
+  export const storage=firebase.storage();

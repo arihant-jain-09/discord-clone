@@ -40,7 +40,7 @@ const useStyles=makeStyles((theme)=>{
                          {
                          useSelector((state)=>state.click.clicked) && msg.id===id ? <ChatEdit/>:msg.message
                          }
-                        {/* {`${msg && msg.message}`} */}
+                            {msg.base64 &&<img src={msg.base64} alt="cannot decode"/>}
                         </div>
                     </div>
                 </div>

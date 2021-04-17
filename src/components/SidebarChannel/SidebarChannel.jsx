@@ -6,7 +6,6 @@ import Channelmap from './Channelmap';
 export default function SidebarChannel() {
     const channelRef=firestore.collection('channels');
       const query=channelRef.orderBy('createdAt').limit(10);
-      console.log(query);
       const [channels]=useCollectionData(query,{idField:'id'});
 
     return (

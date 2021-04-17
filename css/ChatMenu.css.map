@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,AAAA,SAAS,CAAA;EACL,OAAO,EAAE,IAAI;CAChB",
     "sources": [
         "../src/components/ChatMenu/ChatMenu.scss"
     ],

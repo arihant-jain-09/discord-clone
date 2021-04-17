@@ -1,11 +1,10 @@
-@import url("http://fonts.cdnfonts.com/css/whitney-2?styles=68522,68523,68521,68520,68524,68526,68519,68525,68527");
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   height: 100vh;
   font-size: 1.5rem;
-  font-family: 'Whitney Semibold', sans-serif;
+  font-family: 'Whitney-semibold', sans-serif;
 }
 
 .main__sidebar {
