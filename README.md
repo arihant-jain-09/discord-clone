@@ -1,5 +1,7 @@
 Deployed=> https://discord-clone-12045.web.app/
 
+<a href="https://discord-clone-12045.web.app/"><img src="https://i.ibb.co/Y3Gxc0d/2021-04-17-13-46-52.png" alt="2021-04-17-13-46-52" border="0"></a>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
