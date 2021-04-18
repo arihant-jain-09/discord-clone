@@ -94,7 +94,7 @@ function ChatSearchBar() {
                 </div>
                 <div className="chatsearchbar__input">
                     <form onSubmit={handleSubmit}>
-                     <input value={formValue} required onChange={(e)=>{setformValue(e.target.value)}} className='chatsearchbar__input-text' placeholder={`Message #${useSelector((state)=>state.doc.name)}`} type="text"/>
+                     <input autofocus value={formValue} required onChange={(e)=>{setformValue(e.target.value)}} className='chatsearchbar__input-text' placeholder={`Message #${useSelector((state)=>state.doc.name)}`} type="text"/>
                     </form>
                 </div>
                 <div className="chatsearchbar__gifticon">

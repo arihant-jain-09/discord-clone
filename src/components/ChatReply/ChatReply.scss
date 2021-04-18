@@ -2,9 +2,10 @@
     display: flex;
     align-items: center;
     &__sender{
-        margin-right: .7%;
+        
     }
     &__message{
+        margin-left: .8rem;
         &-photo{
             width: 2rem;
         }

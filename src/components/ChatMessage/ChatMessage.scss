@@ -9,12 +9,30 @@
             padding-bottom: 2rem;
         }
     }
+    &__replycontent{
+        display: flex;
+        padding-left: 2.3rem;
+        &--replyimage{
+            // padding: .45rem .2rem 1.2rem 1.2rem;
+            width:5rem;
+            padding-top: .5rem;
+            margin-right: .2rem;
+        }
+        &--content{
+            color:#aaafae;
+            font-family: 'Whitney-light' , sans-serif;
+        }
+    }
     &__header{
         display: flex;
         &-photo{
             padding: 1.2rem;
             &--replied{
-                padding: 2.5rem 1.2rem 1.2rem 1.2rem;
+                padding: .8rem 1.2rem 1.2rem 1.2rem;
+            }
+            &--replyimage{
+                padding-left: .9rem;
+                width:5rem;
             }
         }
     }

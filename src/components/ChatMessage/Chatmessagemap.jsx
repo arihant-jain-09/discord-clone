@@ -35,13 +35,20 @@ const useStyles=makeStyles((theme)=>{
         <div className={`${msg.reply && 'chatmessage__main--replied'} chatmessage__main`}>
             {/* <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="chatmessage"> */}
             <div className="chatmessage">
+                <div className="chatmessage__replycontent">
+                    {msg.reply && <img className='chatmessage__replycontent--replyimage' src="/discord-reply.png" alt="reply"/>}
+                    <div className="chatmessage__replycontent--content">
+                            { msg.reply && <ChatReply msg={msg}/>}
+                        </div>
+                </div>
                 <div className="chatmessage__header">
                     <div className={`${msg.reply&& 'chatmessage__header-photo--replied'} chatmessage__header-photo`}>
+                        
                         <Avatar className={classes.avatar} src={`${msg && msg.senderphoto}`}/>
                     </div>
                     <div className="chatmessage__content">
                         <div className="chatmessage__content-reply">
-                            { msg.reply && <ChatReply msg={msg}/>}
+                            {/* { msg.reply && <ChatReply msg={msg}/>} */}
                         </div>
                         <div className="chatmessage__content-header">
                             <div className="chatmessage__content-name">
