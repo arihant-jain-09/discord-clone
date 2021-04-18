@@ -1,6 +1,6 @@
 Deployed=> https://discord-clone-12045.web.app/
 
-<a href="https://discord-clone-12045.web.app/"><img src="https://i.ibb.co/Y3Gxc0d/2021-04-17-13-46-52.png" alt="2021-04-17-13-46-52" border="0"></a>
+
 <a href="https://discord-clone-12045.web.app/"><img src="https://i.ibb.co/VQwGHDD/discord-metatag.png" alt="2021-04-18-00-22-12" border="0"></a>
 
             
