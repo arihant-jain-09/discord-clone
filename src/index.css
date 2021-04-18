@@ -5,6 +5,9 @@ html {
   body {
     min-height: 100%;
   }
+  body > #root > div {
+    height: 100vh;
+  }
   *{
     padding:0;
     margin:0;

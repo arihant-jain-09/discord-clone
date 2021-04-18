@@ -7,7 +7,10 @@ import { useSelector } from 'react-redux'
 import ChatReply from '../ChatReply/ChatReply'
 const useStyles=makeStyles((theme)=>{
     return{
-      
+      avatar:{
+          width:theme.spacing(4.5),
+          height:theme.spacing(4.5)
+      }
     }
 })
  const Chatmessagemap=({msg})=> {
@@ -16,6 +19,7 @@ const useStyles=makeStyles((theme)=>{
     const classes=useStyles();
     const id=useSelector((state)=>state.msg.id);    
      return (
+         <>
         <div className={`${msg.reply && 'chatmessage__main--replied'} chatmessage__main`}>
             {/* <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="chatmessage"> */}
             <div className="chatmessage">
@@ -51,6 +55,7 @@ const useStyles=makeStyles((theme)=>{
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

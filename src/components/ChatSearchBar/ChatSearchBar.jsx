@@ -13,7 +13,7 @@ import 'emoji-mart/css/emoji-mart.css'
 import FileUpload from '../FileUpload/FileUpload'
 import openupload from '../../redux/openupload/message.actions'
 import OutsideClick from '../OutsideClick/OutsideClick'
-import newmessage from '../../redux/newmessage/newmessage.actions'
+import replytoggle from '../../redux/replytoggle/replytoggle.actions'
 import ChatSearchReply from './ChatSearchReply'
 const useStyles=makeStyles((theme)=>{
     return{
@@ -43,17 +43,31 @@ function ChatSearchBar() {
     const id= useSelector((state)=>state.doc.id)
     const channelRef= firestore.collection('channels').doc(id).collection('messages');
     const replymsg= useSelector((state)=>state.reply);
+    const togglereply=useSelector((state)=>state.replytoggle.clicked);
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        await channelRef.add({
-            message:formValue,
-            sendername:auth.currentUser.displayName,
-            senderemail:auth.currentUser.email,
-            senderuid:auth.currentUser.uid,
-            senderphoto:auth.currentUser.photoURL,
-            createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-            reply:replymsg
-        }).then((val)=>{dispatch(newmessage({id:val.id}))})
+        if(!togglereply){
+            await channelRef.add({
+                message:formValue,
+                sendername:auth.currentUser.displayName,
+                senderemail:auth.currentUser.email,
+                senderuid:auth.currentUser.uid,
+                senderphoto:auth.currentUser.photoURL,
+                createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+            })
+        }
+        else{
+            await channelRef.add({
+                message:formValue,
+                sendername:auth.currentUser.displayName,
+                senderemail:auth.currentUser.email,
+                senderuid:auth.currentUser.uid,
+                senderphoto:auth.currentUser.photoURL,
+                createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                reply:replymsg
+            })
+            dispatch(replytoggle());
+        }
         setformValue('');
     }
     const handleselect=(emoj)=>{

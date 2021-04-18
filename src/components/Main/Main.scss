@@ -53,7 +53,10 @@
     overflow-y: auto;
     
     &__message{
-        
+        flex-direction: column-reverse;
+        overflow: auto;
+        display: flex;
+        padding-bottom: 1rem;
     }
     &__searchbar{
         margin-top: auto;

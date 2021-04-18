@@ -5,6 +5,7 @@ import clickedReducer from './clicked/clickedReducer'
 import openReducer from './openupload/messageReducer'
 import ReplyclickedReducer from './replyclicked/replyclickedReducer'
 import replytoggleReducer from './replytoggle/replytoggleReducer'
+import dateChangedReducer from './isdatechnaged/isdatechangedReducer'
 export default combineReducers({
   doc:documentReducer,
   msg:messageReducer,
@@ -12,4 +13,5 @@ export default combineReducers({
   open:openReducer,
   reply:ReplyclickedReducer,
   replytoggle:replytoggleReducer,
+  datechanged:dateChangedReducer
 })
