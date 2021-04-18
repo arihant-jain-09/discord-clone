@@ -4,4 +4,9 @@
     &__sender{
         margin-right: .7%;
     }
+    &__message{
+        &-photo{
+            width: 2rem;
+        }
+    }
 }

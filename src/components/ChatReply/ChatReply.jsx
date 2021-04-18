@@ -15,6 +15,7 @@ function ChatReply({msg}) {
     const classes=useStyles();
     return (
         <div className='chatreply'>
+            {console.log(msg)}
             <div className="chatreply__photo">
                 <Avatar className={classes.small} src={msg.reply.photo}/>
             </div>
@@ -22,7 +23,9 @@ function ChatReply({msg}) {
                 @{msg.reply.sender}
             </div>
             <div className="chatreply__message">
-                {msg.reply.msg ? msg.reply.msg.slice(0,100)+"..." : <ImageIcon/>}
+                {msg.reply.msg ? msg.reply.msg.slice(0,100)+"..." :  <ImageIcon/> }
+                {/* <ImageIcon/>  */}
+                {/* <img className='chatreply__message-photo' src={msg.reply.base64} alt="repied message"/> */}
             </div>
         </div>
     )

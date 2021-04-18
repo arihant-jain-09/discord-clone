@@ -38,6 +38,7 @@ function ChatMenu({msg}) {
   const handleReply=()=>{
     console.log(msg.sendername);
     dispatch(replymessage({id:msg.id,sender:msg.sendername,msg:msg.message,photo:msg.senderphoto}));
+    // ,base64:msg.base64
     dispatch(replytoggle())
     
   }
