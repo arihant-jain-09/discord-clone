@@ -1,0 +1,19 @@
+.availableserver{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.availableserver__map{
+    padding-left: 14%;
+    margin-bottom: .5rem;
+    &-image{
+        width: 82%;
+        height: 82%;
+        border-radius: 50%;
+    }
+    &-clicked{
+        // background-color: #40454b;
+        // color:#e6e8e8;
+    }
+}

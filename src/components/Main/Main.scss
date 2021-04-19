@@ -1,3 +1,13 @@
+.mainpage{
+    display: flex;
+    &__servers{
+        flex:0 0 4.62%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+         background-color: #202225;
+    }
+}
 .main{
     height: 100vh;
     font-size: 1.5rem;
@@ -90,8 +100,6 @@
         margin-top: auto;
     }
 }
-
-
 .online{
     flex:1;
     background-color: #303136;

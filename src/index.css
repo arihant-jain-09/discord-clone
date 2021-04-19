@@ -21,4 +21,11 @@ html {
     font-family: 'Whitney-light';
     src: local('Whitney-light'), url(./fonts/whitneylight.otf);
   }
-  
+  @font-face {
+    font-family: 'Whitney-bold';
+    src: local('Whitney-bold'), url(./fonts/whitneybold.otf);
+  }
+  @font-face {
+    font-family: 'Whitney-medium';
+    src: local('Whitney-medium'), url(./fonts/whitneymedium.otf);
+  }

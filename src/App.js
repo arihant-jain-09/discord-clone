@@ -36,7 +36,6 @@ const classes=useStyles();
   return (
     <div className="App">
       <header className="App-header">
-        {console.log(user)}
       </header>
       <main>
          {
