@@ -22,57 +22,113 @@ function Main() {
     const classes=useStyles();
 
     return (
-        <div>
+        <>
             <div className='main'>
-                <div className='main__sidebar'>
-                    <div className="main__sidebar-header">
-                        <p className='main__sidebar-currentchannel'>Coding</p>
-                        <div className="main__sidebar-expandicon">
-                            <IconButton className={classes.button} aria-label="settings">
-                                <ExpandMoreIcon fontSize='large'/>
-                            </IconButton>
+                <div className="main__header">
+                    <div className="main__header-sidebar">
+                            <p className='main__header-currentchannel'>Coding</p>
+                            <div className="main__header-expandicon">
+                                <IconButton className={classes.button} aria-label="settings">
+                                    <ExpandMoreIcon fontSize='large'/>
+                                </IconButton>
+                            </div>
+                    </div>
+                    <div className="main__header-chatbar">
+                        <div className="main__header--chat">
+                            <ChatHeader/>
                         </div>
                     </div>
-                    <div className='main__channels'>
-                        <div className="main__channels-header">
-                            <div className="main__channels-expandicon">
-                            <IconButton className={classes.button} aria-label="settings">
-                                <ExpandMoreIcon/>
-                            </IconButton>
+                </div>
+                <div className="main__content">
+                    <div className='main__sidebar'>
+                        <div className='main__channels'>
+                            <div className="main__channels-header">
+                                <div className="main__channels-expandicon">
+                                <IconButton className={classes.button} aria-label="settings">
+                                    <ExpandMoreIcon/>
+                                </IconButton>
+                                    </div>
+                                <p>Text Channels</p>
+                                <div className="main__channels-addicon">
+                                    <AddChannelPopup/>
                                 </div>
-                            <p>Text Channels</p>
-                            <div className="main__channels-addicon">
-                                <AddChannelPopup/>
+                            </div>
+                            <div className="main__channels-list">
+                                <SidebarChannel/>
                             </div>
                         </div>
-                        <div className="main__channels-list">
-                            <SidebarChannel/>
+                        <div className="main__voice">
+                            <Sidebarvoice/>
+                        </div>
+                        <div className="main__avatar">
+                                <BadgeAvatars/>
                         </div>
                     </div>
-                    <div className="main__voice">
-                        <Sidebarvoice/>
+                    <div className="chat">
+                        <div className='chat__message'>
+                            <ChatMessage/>
+                        </div>
+                        <div className="chat__searchbar">
+                            <ChatSearchBar/>
+                        </div>
                     </div>
-                    <div className="main__avatar">
-                            <BadgeAvatars/>
-                    </div>
+                    <div className="online">
+              </div>
                 </div>
-            <div className="chat">
-                <div className="chat__header">
-                    <ChatHeader/>
-                </div>
-                <div className='chat__message'>
-                    <ChatMessage/>
-                </div>
-                <div className="chat__searchbar">
-                    <ChatSearchBar/>
-                </div>
-            </div>
-            <div className="online">
+                
             
-            </div>
         </div>
-    </div>
+    </>
     )
 }
 
 export default Main
+
+{/* <div className='main'>
+<div className='main__sidebar'>
+    <div className="main__sidebar-header">
+        <p className='main__sidebar-currentchannel'>Coding</p>
+        <div className="main__sidebar-expandicon">
+            <IconButton className={classes.button} aria-label="settings">
+                <ExpandMoreIcon fontSize='large'/>
+            </IconButton>
+        </div>
+    </div>
+    <div className='main__channels'>
+        <div className="main__channels-header">
+            <div className="main__channels-expandicon">
+            <IconButton className={classes.button} aria-label="settings">
+                <ExpandMoreIcon/>
+            </IconButton>
+                </div>
+            <p>Text Channels</p>
+            <div className="main__channels-addicon">
+                <AddChannelPopup/>
+            </div>
+        </div>
+        <div className="main__channels-list">
+            <SidebarChannel/>
+        </div>
+    </div>
+    <div className="main__voice">
+        <Sidebarvoice/>
+    </div>
+    <div className="main__avatar">
+            <BadgeAvatars/>
+    </div>
+</div>
+<div className="chat">
+<div className="chat__header">
+    <ChatHeader/>
+</div>
+<div className='chat__message'>
+    <ChatMessage/>
+</div>
+<div className="chat__searchbar">
+    <ChatSearchBar/>
+</div>
+</div>
+<div className="online">
+
+</div>
+</div> */}

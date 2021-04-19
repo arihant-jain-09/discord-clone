@@ -1,18 +1,15 @@
 .main{
-    display: flex;
     height: 100vh;
     font-size: 1.5rem;
-    // font-family: 'Whitney Semibold', sans-serif;
+    overflow: hidden;
     font-family: 'Whitney-semibold', sans-serif;
-    &__sidebar{
-        flex:0 0 18%;
-        background-color: #2C2F33;
-        color: #fff;
+    &__header{
         display: flex;
-        flex-direction: column;
-        // justify-content: space-between;
-        &-header{
+        &-sidebar{
             display: flex;
+            flex:0 0 18%;
+            background-color: #2C2F33;
+            color: #fff;
             align-items: center;
             padding: .58rem 1.5rem .58rem 2.25rem;
             font-size: 1.7rem;
@@ -21,10 +18,41 @@
         &-currentchannel{
             letter-spacing: .75px;
             margin-right: auto;
+            font-family: "Whitney-semibold",sans-serif;
         }
         &-expandicon{
             cursor: pointer;
         }
+        &-chatbar{
+            flex:1;
+        }
+        
+    }
+    &__content{
+        display: flex;
+        height: 93vh;
+    }
+    &__sidebar{
+        
+        flex:0 0 18%;
+        background-color: #2C2F33;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        &-header{
+            display: flex;
+            align-items: center;
+            padding: .58rem 1.5rem .58rem 2.25rem;
+            font-size: 1.7rem;
+            border-bottom: 1px solid #23272a;
+        }
+        // &-currentchannel{
+        //     letter-spacing: .75px;
+        //     margin-right: auto;
+        // }
+        // &-expandicon{
+        //     cursor: pointer;
+        // }
        
     }
     &__channels{
