@@ -27,12 +27,13 @@ function ChatMenu({msg}) {
     const classes=useStyles();
     const dispatch = useDispatch();
     const currentid=useSelector((state)=>state.doc.id);
+    const currentserverid=useSelector((state)=>state.currentserver.id);
     const handleClick = () => {
         dispatch(currentmessage({id:msg.id, msg:msg.message}))
         dispatch(setclicked());
   };
   const handleDelete=()=>{
-    const docRef=firestore.collection('channels').doc(currentid).collection('messages').doc(msg.id);
+    const docRef=firestore.collection('servers').doc(currentserverid).collection('channels').doc(currentid).collection('messages').doc(msg.id);
     docRef.delete();
   }
   const handleReply=()=>{

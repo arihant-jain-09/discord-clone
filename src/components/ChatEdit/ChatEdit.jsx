@@ -23,10 +23,11 @@ function ChatEdit() {
     const currentid=useSelector((state)=>state.doc.id);
     const msg=useSelector((state)=>state.msg.msg);
     const [formValue,setformValue]=useState(msg);
+    const currentserverid=useSelector((state)=>state.currentserver.id);
     const  dispatch = useDispatch();
     const handleSubmit=(e)=>{
         e.preventDefault();
-        const docRef=firestore.collection('channels').doc(currentid).collection('messages').doc(id);
+        const docRef=firestore.collection('servers').doc(currentserverid).collection('channels').doc(currentid).collection('messages').doc(id);
         console.log(docRef);
         docRef.update({
             message:formValue

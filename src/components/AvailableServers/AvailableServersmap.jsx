@@ -11,7 +11,7 @@ function AvailableServersmap({server}) {
                  dispatch(currentserver({id:server.id,name:server.servername}))
                 }}
                 className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}
-                src={server.serverimage} alt="availableserver image"
+                src={server.serverimage} alt="availableserver"
                 >
                 </img>
                 

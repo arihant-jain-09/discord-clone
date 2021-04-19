@@ -1,6 +1,6 @@
 const initialState={
-    id:'Ctdr2ATEt3NtBpUkzYlb',
-    name:'React JS'
+    id:'ofIRBMmGukI3EXPAYmgn',
+    name:'Discordy'
   }
    const documentReducer=(state=initialState,action)=>{
     switch(action.type){

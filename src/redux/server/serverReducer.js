@@ -1,6 +1,6 @@
 const initialState={
-    id:'Ctdr2ATEt3NtBpUkzYlb',
-    name:'React JS'
+    id:'LNhwXEYI7pTlOgTN9Chm',
+    name:'Welcome to Discord'
   }
    const currentserverReducer=(state=initialState,action)=>{
     switch(action.type){

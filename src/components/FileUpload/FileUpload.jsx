@@ -20,7 +20,8 @@ const useStyles=makeStyles({
 
 
 function FileUpload() {
-    const id= useSelector((state)=>state.doc.id)
+    const id= useSelector((state)=>state.doc.id);
+    const currentserverid=useSelector((state)=>state.currentserver.id);
     const classes=useStyles();
     const dispatch = useDispatch();
         const resizeFile = (file) =>
@@ -45,8 +46,8 @@ function FileUpload() {
         try{
             dispatch(openupload());
             const resizedfile=await resizeFile(image);
-            const channelRef= firestore.collection('channels').doc(id).collection('messages');
-            channelRef.add({
+            const channelRef= firestore.collection('servers').doc(currentserverid).collection('channels').doc(id).collection('messages');
+            await channelRef.add({
                 message:'',
                 base64:resizedfile,
                 sendername:auth.currentUser.displayName,
@@ -59,7 +60,7 @@ function FileUpload() {
         catch(err){
             console.log(err);
         }
-
+    }
         /////////////////////Realtime Datasbase
         // try{
         //     const resizedfile=await resizeFile(image);
@@ -85,7 +86,7 @@ function FileUpload() {
         //     })
 
         
-    }
+    
     return (
         <div>
             <DropzoneArea

@@ -6,8 +6,9 @@ import {firestore } from '../../firebase/firebase';
 import './ChatMessage.scss'
 import Chatmessagemap from './Chatmessagemap';
 const ChatMessage= ()=> {
-     const id= useSelector((state)=>state.doc.id)
-    const channelRef= firestore.collection('channels').doc(id).collection('messages');
+     const id= useSelector((state)=>state.doc.id);
+     const currentserverid=useSelector((state)=>state.currentserver.id);
+     const channelRef=firestore.collection('servers').doc(currentserverid).collection('channels').doc(id).collection('messages');
     const query=channelRef.orderBy('createdAt');
     const [messages]=useCollectionData(query,{idField:'id'});
     

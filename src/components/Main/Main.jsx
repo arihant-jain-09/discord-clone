@@ -11,6 +11,7 @@ import AddChannelPopup from '../AddChannelPopup/AddChannelPopup'
 import ChatMessage from '../ChatMessage/ChatMessage';
 import Addserver from '../AddServer/Addserver';
 import AvailableServers from '../AvailableServers/AvailableServers';
+import { useSelector } from 'react-redux';
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -21,7 +22,6 @@ const useStyles=makeStyles((theme)=>{
 })
 function Main() {
     const classes=useStyles();
-
     return (
         <>
         <div className="mainpage">
@@ -36,7 +36,7 @@ function Main() {
             <div className='main'>
                 <div className="main__header">
                     <div className="main__header-sidebar">
-                            <p className='main__header-currentchannel'>Coding</p>
+                            <p className='main__header-currentchannel'>{useSelector((state)=>state.currentserver.name)}</p>
                             <div className="main__header-expandicon">
                                 <IconButton className={classes.button} aria-label="settings">
                                     <ExpandMoreIcon fontSize='large'/>

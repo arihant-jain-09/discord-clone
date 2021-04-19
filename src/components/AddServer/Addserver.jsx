@@ -7,6 +7,9 @@ import Resizer from "react-image-file-resizer";
 import './Addserver.scss'
 import { auth, firestore } from '../../firebase/firebase';
 import firebase from 'firebase/app'
+import { useDispatch } from 'react-redux';
+import currentdoc from '../../redux/document/document.actions';
+import currentserver from '../../redux/server/server.actions';
 const useStyles=makeStyles({
     addicon:{
         width:'4.8rem',
@@ -53,6 +56,7 @@ function Addserver() {
     const [uploadfile,setuploadfile]=useState()
     const [formValue,setformValue]=useState('');
     const serverRef=firestore.collection('servers');
+    const dispatch = useDispatch();
     const handleClickOpen = () => {
         setOpen(true);
       };
@@ -71,7 +75,7 @@ function Addserver() {
                 (uri) => {
                     resolve(uri);
                 },
-                "base64"
+                "base64",
                 );
             });
         
@@ -80,11 +84,25 @@ function Addserver() {
         if(formValue){
             if(uploadfile){
                 await serverRef.add({
-                     server:formValue,
+                     servername:formValue,
                      createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
                      serverimage:uploadfile
+                 }).then(async (value)=>{
+                    dispatch(currentserver({
+                        id:value.id,
+                        name:formValue
+                    }))
+                    const channelRef=firestore.collection('servers').doc(value.id).collection('channels')
+                    await channelRef.add({
+                        channel:'general',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        email:auth.currentUser.email,
+                    }).then((value)=>dispatch((currentdoc({
+                        id:value.id,
+                        name:'general'
+                    }))))
                  })
              }
              else{
@@ -94,10 +112,25 @@ function Addserver() {
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
                      serverimage:'./discord_server.png'
+                 }).then(async (value)=>{
+                     dispatch(currentserver({
+                         id:value.id,
+                         name:formValue
+                     }))
+                    const channelRef=firestore.collection('servers').doc(value.id).collection('channels')
+                    await channelRef.add({
+                        channel:'general',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        email:auth.currentUser.email,
+                    }).then((value)=>dispatch((currentdoc({
+                        id:value.id,
+                        name:'general'
+                    }))))
                  })
              }
         }
         setformValue('');
+
       }
       const handleImageUpload=async(e)=>{
         const encodedimage=await resizeFile(e.target.files[0]);

@@ -5,15 +5,16 @@
     justify-content: center;
 }
 .availableserver__map{
-    padding-left: 14%;
     margin-bottom: .5rem;
     &-image{
-        width: 82%;
-        height: 82%;
+        object-fit:cover;
+        width: 5rem;
+        height: 5rem;
         border-radius: 50%;
     }
     &-clicked{
         // background-color: #40454b;
         // color:#e6e8e8;
+
     }
 }

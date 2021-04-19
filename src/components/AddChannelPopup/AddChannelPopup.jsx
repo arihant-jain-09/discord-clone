@@ -8,6 +8,7 @@ import AddIcon from '@material-ui/icons/Add';
 import {auth, firestore} from '../../firebase/firebase'
 import firebase from 'firebase/app'
 import './AddChannelPopup.scss' 
+import { useSelector } from 'react-redux';
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -45,9 +46,9 @@ export default function AddChannelPopup() {
     await channelRef.add({
         channel:formValue,
         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-        name:auth.currentUser.displayName,
+        // name:auth.currentUser.displayName,
         email:auth.currentUser.email,
-        uid:auth.currentUser.uid,
+        // uid:auth.currentUser.uid,
     })
     .then(
       ()=>{
@@ -57,7 +58,8 @@ export default function AddChannelPopup() {
 
     setformValue('');
   }
-  const channelRef=firestore.collection('channels');
+  const currentserverid=useSelector((state)=>state.currentserver.id)
+  const channelRef=firestore.collection('servers').doc(currentserverid).collection('channels')
   return (
     <div>
         <IconButton onClick={handleClickOpen} className={classes.button} aria-label="settings">

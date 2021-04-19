@@ -40,8 +40,9 @@ function ChatSearchBar() {
     const classes=useStyles();
     const [openpicker,setopenpicker]=useState(false);
     const [formValue,setformValue]=useState('');
+    const currentserverid=useSelector((state)=>state.currentserver.id)
     const id= useSelector((state)=>state.doc.id)
-    const channelRef= firestore.collection('channels').doc(id).collection('messages');
+    const channelRef=firestore.collection('servers').doc(currentserverid).collection('channels').doc(id).collection('messages');
     const replymsg= useSelector((state)=>state.reply);
     const togglereply=useSelector((state)=>state.replytoggle.clicked);
     const handleSubmit=async(e)=>{
