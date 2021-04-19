@@ -1,13 +1,39 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { auth } from '../../firebase/firebase';
+import { auth, firestore } from '../../firebase/firebase';
 import currentserver from '../../redux/server/server.actions';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
 import './AvailableServers.scss'
+import { Dialog, makeStyles, withStyles } from '@material-ui/core';
+import ChangeServername from './Changeservername'
+const useStyles=makeStyles({
+    paper: { 
+        minWidth: '25%',
+    },
+})
 function AvailableServersmap({server}) {
+    const classes=useStyles();
+    const initialState = {
+        mouseX: null,
+        mouseY: null,
+      };
+      const [state, setState] = useState(initialState);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    setState({
+      mouseX: event.clientX - 2,
+      mouseY: event.clientY - 4,
+    });
+  };
+
+  const handleClose = () => {
+    setState(initialState);
+  };      
     const dispatch = useDispatch();
     const id=useSelector((state)=>state.currentserver.id)
     const myserver=server;
-    console.log(myserver);
     useEffect(() => {
         if(myserver.email===auth.currentUser.email){
             dispatch(currentserver({id:myserver.id,name:myserver.servername}));
@@ -15,15 +41,95 @@ function AvailableServersmap({server}) {
         return () => {   
         }
     }, [myserver,dispatch])
+
+
+    const handleDelete=async(server)=>{
+        setState(initialState);
+        if(server.email===auth.currentUser.email){
+            const serverRef=firestore.collection('servers').doc(server.id);
+            await serverRef.delete();
+            
+        }
+        else{
+
+        }
+    }
+    const hadlechangeserver=(server)=>{
+        dispatch((currentserver({
+            id:server.id,
+            name:server.servername
+        })))
+        setState(initialState);
+    }
+    const [open,setopen]=useState(false);
+    const handleChangenickname=()=>{
+        if(myserver.email===auth.currentUser.email)
+        {
+            dispatch((currentserver({
+                id:server.id,
+                name:server.servername
+            })))
+            setopen(true);
+        }
+        handleClose();
+    }
+    const handledialogactions=()=>{
+        setopen(false);
+    }
+   
+    const StyledMenu = withStyles({
+        paper: {
+          backgroundColor:'#18191c',
+          color:'#b9bbbe',
+          padding: '6px 8px',
+        },
+      })((props) => (
+        <Menu  
+        anchorReference="anchorPosition"
+        anchorPosition={
+        state.mouseY !== null && state.mouseX !== null
+            ? { top: state.mouseY, left: state.mouseX }
+            : undefined
+        }{...props}/>
+      ));
+    const StyledMenuItem = withStyles((theme) => ({
+        root: {
+            fontSize:'1.4rem',
+            '&:first-child':{
+                backgroundColor:'#5c6fb1',
+                color:'#fff'
+            },
+            '&:last-child':{
+                color:'rgb(240, 71, 71)'
+            },
+          '&:focus': {
+            backgroundColor: theme.palette.primary.main,
+            '& .MuiListItemIcon-root, & .MuiListItemText-primary': {
+              color: theme.palette.common.white,
+              fontSize:'1.4rem'
+            },
+          },
+        },
+      }))(MenuItem);
+
     return (
         <div className='availableserver__map'>
-            <img key={server.id} onClick={()=>{
+            <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={()=>{
                  dispatch(currentserver({id:server.id,name:server.servername}))
                 }}
                 className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}
                 src={server.serverimage} alt="availableserver"
                 >
                 </img>
+                
+                <StyledMenu keepMounted open={state.mouseY !== null} onClose={handleClose}>
+                    <StyledMenuItem onClick={()=>hadlechangeserver(server)}>{server.servername}</StyledMenuItem>
+                    <StyledMenuItem onClick={handleChangenickname}>Change Nickname</StyledMenuItem>
+                    <StyledMenuItem onClick={()=>handleDelete(server)}>Delete Server</StyledMenuItem>
+                </StyledMenu>
+                {open && <Dialog open={open} onClose={()=>setopen(false)} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}} >
+                    <ChangeServername handleClose={handledialogactions}/>
+                </Dialog>}
         </div>
     )
 }

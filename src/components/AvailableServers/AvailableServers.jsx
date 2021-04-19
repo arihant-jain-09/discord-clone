@@ -4,7 +4,7 @@ import { firestore } from '../../firebase/firebase';
 import AvailableServersmap from './AvailableServersmap';
 import './AvailableServers.scss'
 import currentserver from '../../redux/server/server.actions';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 function AvailableServers () {
     const dispatch = useDispatch();
     const serverRef=firestore.collection('servers');
