@@ -25,7 +25,7 @@ const useStyles=makeStyles((theme)=>{
         return input.match(urlRegex)
     }
     const componentDecorator = (href, text, key) => (
-        <a className="linkify__text" href={href} key={key} target="_blank">
+        <a className="linkify__text" href={href} key={key} target="_blank" rel="noreferrer">
           {text}
         </a>
       );
@@ -43,13 +43,9 @@ const useStyles=makeStyles((theme)=>{
                 </div>
                 <div className="chatmessage__header">
                     <div className={`${msg.reply&& 'chatmessage__header-photo--replied'} chatmessage__header-photo`}>
-                        
                         <Avatar className={classes.avatar} src={`${msg && msg.senderphoto}`}/>
                     </div>
                     <div className="chatmessage__content">
-                        <div className="chatmessage__content-reply">
-                            {/* { msg.reply && <ChatReply msg={msg}/>} */}
-                        </div>
                         <div className="chatmessage__content-header">
                             <div className="chatmessage__content-name">
                                 {`${msg && msg.sendername}`}

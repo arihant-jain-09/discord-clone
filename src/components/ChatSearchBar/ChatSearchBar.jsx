@@ -15,7 +15,7 @@ import openupload from '../../redux/openupload/message.actions'
 import OutsideClick from '../OutsideClick/OutsideClick'
 import replytoggle from '../../redux/replytoggle/replytoggle.actions'
 import ChatSearchReply from './ChatSearchReply'
-const useStyles=makeStyles((theme)=>{
+const useStyles=makeStyles(()=>{
     return{
         button:{
             color: '#b8bbc0',

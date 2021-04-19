@@ -24,8 +24,6 @@ function ChatReply({msg}) {
             </div>
             <div className="chatreply__message">
                 {msg.reply.msg ? msg.reply.msg.slice(0,100)+"..." :  <ImageIcon/> }
-                {/* <ImageIcon/>  */}
-                {/* <img className='chatreply__message-photo' src={msg.reply.base64} alt="repied message"/> */}
             </div>
         </div>
     )

@@ -1,6 +1,5 @@
 import React from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
 import './Main.scss'
 import SidebarChannel from '../SidebarChannel/SidebarChannel';
 import BadgeAvatars from '../Avatar/BadgeAvatar';

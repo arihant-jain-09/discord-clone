@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,QAAQ,CAAA;EACJ,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,IAAI;EACb,gBAAgB,EAAE,OAAO;CAW5B;;AAVK,AAAD,gBAAS,CAAA;EACN,YAAY,EAAE,IAAI;EAClB,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;CACtB;;AACA,AAAD,cAAO,CAAA;EACH,WAAW,EAAE,IAAI;EACjB,KAAK,EAAC,OAEV;CAAC",
-    "sources": [
-        "../src/components/Avatar/BadgeAvatar.scss"
-    ],
-    "names": [],
-    "file": "BadgeAvatar.css"
-}

@@ -5,7 +5,7 @@ import {auth} from './firebase/firebase'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import firebase from 'firebase/app'
 import { Button, makeStyles } from '@material-ui/core';
-import GitHubIcon from '@material-ui/icons/GitHub';
+// import GitHubIcon from '@material-ui/icons/GitHub';
 const useStyles=makeStyles({
   github:{
     marginTop:'1rem',
@@ -28,10 +28,10 @@ function App() {
     const provider=new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
 }
-const signinWithGithub=()=>{
-  const provider=new firebase.auth.GithubAuthProvider();
-  auth.signInWithPopup(provider).catch(alert);
-}
+// const signinWithGithub=()=>{
+//   const provider=new firebase.auth.GithubAuthProvider();
+//   auth.signInWithPopup(provider).catch(alert);
+// }
 const classes=useStyles();
   return (
     <div className="App">
