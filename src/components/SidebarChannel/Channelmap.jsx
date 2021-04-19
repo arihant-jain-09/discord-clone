@@ -4,7 +4,7 @@ import currentdoc from '../../redux/document/document.actions'
 import './SidebarChannel.scss'
 function Channelmap({msg}) {
     const dispatch = useDispatch();
-    const id=useSelector((state)=>state.doc.id)
+    const id=useSelector((state)=>state.doc.id);
     return (
         <div>
              <p key={msg.id} onClick={()=>{
