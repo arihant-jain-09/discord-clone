@@ -36,7 +36,7 @@ function AvailableServersmap({server}) {
     const myserver=server;
     useEffect(() => {
         if(myserver.email===auth.currentUser.email){
-            dispatch(currentserver({id:myserver.id,name:myserver.servername}));
+            dispatch(currentserver({id:myserver.id,name:myserver.servername,email:myserver.email}));
         }
         return () => {   
         }
@@ -54,10 +54,11 @@ function AvailableServersmap({server}) {
 
         }
     }
-    const hadlechangeserver=(server)=>{
+    const handlechangeserver=(server)=>{
         dispatch((currentserver({
             id:server.id,
-            name:server.servername
+            name:server.servername,
+            email:server.email
         })))
         setState(initialState);
     }
@@ -67,7 +68,8 @@ function AvailableServersmap({server}) {
         {
             dispatch((currentserver({
                 id:server.id,
-                name:server.servername
+                name:server.servername,
+                email:server.email
             })))
             setopen(true);
         }
@@ -115,7 +117,7 @@ function AvailableServersmap({server}) {
     return (
         <div className='availableserver__map'>
             <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={()=>{
-                 dispatch(currentserver({id:server.id,name:server.servername}))
+                 dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
                 }}
                 className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}
                 src={server.serverimage} alt="availableserver"
@@ -123,7 +125,7 @@ function AvailableServersmap({server}) {
                 </img>
                 
                 <StyledMenu keepMounted open={state.mouseY !== null} onClose={handleClose}>
-                    <StyledMenuItem onClick={()=>hadlechangeserver(server)}>{server.servername}</StyledMenuItem>
+                    <StyledMenuItem onClick={()=>handlechangeserver(server)}>{server.servername}</StyledMenuItem>
                     <StyledMenuItem onClick={handleChangenickname}>Change Nickname</StyledMenuItem>
                     <StyledMenuItem onClick={()=>handleDelete(server)}>Delete Server</StyledMenuItem>
                 </StyledMenu>

@@ -12,12 +12,12 @@ function AvailableServers () {
     const [servers]=useCollectionData(query,{idField:'id'});
     useEffect(() => {
             if(servers && !!servers.length){
-                dispatch(currentserver({id:servers[0].id,name:servers[0].servername}));
+                dispatch(currentserver({id:servers[0].id,name:servers[0].servername,email:servers[0].email}));
             }
         return () => {   
         }
     }, [servers,dispatch])
-       return (
+          return (
         <div className='availableserver'>
             {servers && servers.map((server)=>{
                     return <AvailableServersmap key={server.id} server={server}/>

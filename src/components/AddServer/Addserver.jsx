@@ -94,6 +94,7 @@ function Addserver() {
                         id:value.id,
                         name:formValue
                     }))
+                    
                     const channelRef=firestore.collection('servers').doc(value.id).collection('channels')
                     await channelRef.add({
                         channel:'general',
@@ -103,6 +104,11 @@ function Addserver() {
                         id:value.id,
                         name:'general'
                     }))))
+                    await channelRef.add({
+                        channel:'roles',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        email:auth.currentUser.email,
+                    })
                  })
              }
              else{
@@ -126,6 +132,11 @@ function Addserver() {
                         id:value.id,
                         name:'general'
                     }))))
+                    await channelRef.add({
+                        channel:'roles',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        email:auth.currentUser.email,
+                    })
                  })
              }
         }

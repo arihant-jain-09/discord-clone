@@ -90,7 +90,6 @@
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    
     &__message{
         flex-direction: column-reverse;
         overflow: auto;
@@ -101,8 +100,7 @@
         margin-top: auto;
     }
 }
-.online{
+.main__roles{
     flex:1;
     background-color: #303136;
 }
-

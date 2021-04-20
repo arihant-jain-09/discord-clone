@@ -82,8 +82,9 @@ function Main() {
                             <ChatSearchBar/>
                         </div>
                     </div>
-                    <div className="online">
-              </div>
+                    <div className="main__roles">
+                        
+                    </div>
                 </div>
 
         </div>

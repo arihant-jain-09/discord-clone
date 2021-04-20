@@ -6,6 +6,7 @@ import openReducer from './openupload/messageReducer'
 import ReplyclickedReducer from './replyclicked/replyclickedReducer'
 import replytoggleReducer from './replytoggle/replytoggleReducer'
 import currentserverReducer from './server/serverReducer'
+import newserverReducer from './newserver/newserverReducer';
 export default combineReducers({
   doc:documentReducer,
   msg:messageReducer,
@@ -13,5 +14,6 @@ export default combineReducers({
   open:openReducer,
   reply:ReplyclickedReducer,
   replytoggle:replytoggleReducer,
-  currentserver:currentserverReducer
+  currentserver:currentserverReducer,
+  newserver:newserverReducer
 })

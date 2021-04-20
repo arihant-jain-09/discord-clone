@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import ChatReply from '../ChatReply/ChatReply'
 import Linkify from 'react-linkify';
 import RenderVideo from './RenderVideo'
+import RenderAudio from './RenderAudio'
 const useStyles=makeStyles((theme)=>{
     return{
       avatar:{
@@ -25,10 +26,11 @@ const useStyles=makeStyles((theme)=>{
         return input.match(urlRegex)
     }
     const componentDecorator = (href, text, key) => (
-        <a className="linkify__text" href={href} key={key} target="_blank" rel="noreferrer">
+        <a className={`${linkify(msg.message) && 'linkify__videotext'} linkify__text`} href={href} key={key} target="_blank" rel="noreferrer">
           {text}
         </a>
       );
+      
       
      return (
          <>
@@ -64,7 +66,7 @@ const useStyles=makeStyles((theme)=>{
                          {
                          useSelector((state)=>state.click.clicked) && msg.id===id ? <ChatEdit/>:
                          <Linkify componentDecorator={componentDecorator}>
-                            {msg.message}
+                            {msg && !!msg.message ? msg.message : !msg.base64 && <RenderAudio msg={msg}/>}
                             </Linkify>   
                          }
                             {msg.base64 &&<img src={msg.base64} alt="cannot decode"/>}

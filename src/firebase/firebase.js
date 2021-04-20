@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/storage'
+import 'firebase/database'
 import "firebase/performance";
 var firebaseConfig = {
     apiKey: "AIzaSyC_flKosPn-LPJF8JsKT3-IhlI3RDMOjqk",
@@ -16,3 +17,4 @@ var firebaseConfig = {
   export const auth=firebase.auth();
   export const storage=firebase.storage();
   export const perf = firebase.performance();
+  export const db=firebase.database();

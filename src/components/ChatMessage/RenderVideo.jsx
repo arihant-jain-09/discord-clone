@@ -7,7 +7,7 @@ function RenderVideo({msg}) {
         return input.match(urlRegex)
     }
     return (
-        <div className='rendervideo'>
+        <div className={`${!!linkify(msg).filter((item)=>item.includes('youtube.com/watch')&&item).length && 'rendervideo__videolink'} rendervideo`}> 
         {linkify(msg) && !!linkify(msg).filter((item)=>item.includes('youtube.com/watch')&&item).length && <ReactPlayer url={linkify(msg).filter((item)=>item.includes('youtube.com/watch')&&item)}/> }
         </div>
     )

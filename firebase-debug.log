@@ -1,0 +1,53 @@
+[debug] [2021-04-20T16:31:55.241Z] ----------------------------------------------------------------------
+[debug] [2021-04-20T16:31:55.243Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2021-04-20T16:31:55.243Z] CLI Version:   9.10.0
+[debug] [2021-04-20T16:31:55.243Z] Platform:      win32
+[debug] [2021-04-20T16:31:55.243Z] Node Version:  v14.15.4
+[debug] [2021-04-20T16:31:55.244Z] Time:          Tue Apr 20 2021 22:01:55 GMT+0530 (India Standard Time)
+[debug] [2021-04-20T16:31:55.244Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-04-20T16:31:55.249Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-04-20T16:31:55.249Z] > authorizing via signed-in user (jain.ari2000@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Arihant\Desktop\discord-clone
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[info] i  .firebaserc already has a default project, using discord-clone-12045. 
+[debug] [2021-04-20T16:31:57.564Z] > refreshing access token with scopes: []
+[debug] [2021-04-20T16:31:57.565Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2021-04-20T16:32:09.518Z] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2021-04-20T16:32:09.520Z] FirebaseError: Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+    at invalidCredentialError (C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:141:12)
+    at refreshTokens (C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\auth.js:450:15)
+    at processTicksAndRejections (internal/process/task_queues.js:93:5)
+    at async Client.getAccessToken (C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:144:23)
+    at async Client.addAuthHeader (C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:135:21)
+    at async Client.request (C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:93:34)
+    at async Object.getFirebaseProject (C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\management\projects.js:290:21)
+    at async Object.doSetup [as project] (C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\features\project.js:77:27)
+    at async init (C:\Users\Arihant\AppData\Roaming\npm\node_modules\firebase-tools\lib\init\index.js:19:9)
+[error] 
+[error] Error: Failed to get Firebase project discord-clone-12045. Please make sure the project exists and your account has permission to access it.

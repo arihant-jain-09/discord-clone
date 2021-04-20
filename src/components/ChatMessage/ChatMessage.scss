@@ -78,7 +78,33 @@
 .linkify__text{
    color:#00b0f4;
 }
+////////////////////////////////// render video
 .rendervideo{
     padding-top: 2%;
-    background-color: #2f3136;
+    &__videolink{
+        background-color: #2f3136;
+    }
+    
+}
+//////////////////////////////////// render audio
+.renderaudio{
+    &__name{
+        padding-bottom: 1rem;
+    }
+
+    &__mainplayer{
+        display: flex;
+        align-items: center;
+    }
+    &__player{
+        padding: .5rem 1rem 1rem 0;
+        &-size{
+            font-size: 1rem;
+        }
+        &-music{
+            display: block;
+            outline: none;
+            border: none;
+        }
+    }
 }
