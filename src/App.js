@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.scss'
 import Main from './components/Main/Main.jsx'
-import {auth} from './firebase/firebase'
+import {auth, firestore} from './firebase/firebase'
 import {useAuthState} from 'react-firebase-hooks/auth'
 import firebase from 'firebase/app'
 import { Button, makeStyles } from '@material-ui/core';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 // import GitHubIcon from '@material-ui/icons/GitHub';
 const useStyles=makeStyles({
   github:{
@@ -33,6 +34,27 @@ function App() {
 //   auth.signInWithPopup(provider).catch(alert);
 // }
 const classes=useStyles();
+const userRef=firestore.collection('users');
+const query=userRef.orderBy('createdAt');
+const [allusers]=useCollectionData(query,{idField:'id'});
+const newuserRef=firestore.collection('users');
+  useEffect(() => {
+    if(user && allusers){
+        const found = allusers.some(el => el.useremail === user.email);
+        if (!found) {
+        newuserRef.add({
+          username:user.displayName,
+          useremail:user.email,
+          userphoto:user.photoURL,
+          useruid:user.uid,
+          createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+        })
+        }
+    }
+    return () => {
+      
+    }
+  }, [user,allusers,newuserRef])
   return (
     <div className="App">
       <header className="App-header">

@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import './AvailableServers.scss'
 import { Dialog, makeStyles, withStyles } from '@material-ui/core';
 import ChangeServername from './Changeservername'
+import newserver from '../../redux/newserver/newserver.actions'
 const useStyles=makeStyles({
     paper: { 
         minWidth: '25%',
@@ -45,13 +46,14 @@ function AvailableServersmap({server}) {
 
     const handleDelete=async(server)=>{
         setState(initialState);
+        dispatch((newserver({present:false})));
         if(server.email===auth.currentUser.email){
             const serverRef=firestore.collection('servers').doc(server.id);
             await serverRef.delete();
             
         }
         else{
-
+          return
         }
     }
     const handlechangeserver=(server)=>{

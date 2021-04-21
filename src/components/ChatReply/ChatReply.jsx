@@ -15,7 +15,6 @@ function ChatReply({msg}) {
     const classes=useStyles();
     return (
         <div className='chatreply'>
-            {console.log(msg)}
             <div className="chatreply__photo">
                 <Avatar className={classes.small} src={msg.reply.photo}/>
             </div>

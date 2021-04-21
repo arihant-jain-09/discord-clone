@@ -12,6 +12,7 @@ import ChatMessage from '../ChatMessage/ChatMessage';
 import Addserver from '../AddServer/Addserver';
 import AvailableServers from '../AvailableServers/AvailableServers';
 import { useSelector } from 'react-redux';
+import Roles from '../Roles/Roles';
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -83,7 +84,7 @@ function Main() {
                         </div>
                     </div>
                     <div className="main__roles">
-                        
+                        <Roles/>
                     </div>
                 </div>
 

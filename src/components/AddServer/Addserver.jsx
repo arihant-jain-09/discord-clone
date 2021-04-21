@@ -10,6 +10,7 @@ import firebase from 'firebase/app'
 import { useDispatch } from 'react-redux';
 import currentdoc from '../../redux/document/document.actions';
 import currentserver from '../../redux/server/server.actions';
+import newserver from '../../redux/newserver/newserver.actions';
 const useStyles=makeStyles({
     addicon:{
         width:'4.8rem',
@@ -88,8 +89,10 @@ function Addserver() {
                      createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
-                     serverimage:uploadfile
+                     userimage:auth.currentUser.photoURL,
+                     serverimage:uploadfile,
                  }).then(async (value)=>{
+                     dispatch((newserver({present:true})));
                     dispatch(currentserver({
                         id:value.id,
                         name:formValue
@@ -117,8 +120,10 @@ function Addserver() {
                      createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
+                     userimage:auth.currentUser.photoURL,
                      serverimage:'./discord_server.png'
                  }).then(async (value)=>{
+                    dispatch((newserver({present:true})));
                      dispatch(currentserver({
                          id:value.id,
                          name:formValue

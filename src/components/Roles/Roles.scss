@@ -1,0 +1,32 @@
+.roles{
+    padding: .2rem .5rem;
+    display: flex;
+    flex-direction: column;
+    &__heading{
+        color: #8e9297;
+        margin-top: 2rem;
+        margin-left: 1.2rem;
+        margin-bottom: .5rem;
+        &-h2{
+            font-size: 1.5rem;
+        }
+    }
+    &__box{
+        display: flex;
+        align-items: center;
+        padding: .6rem 1rem;
+    }
+    &__content{
+        margin-left: 1rem;
+        &-name{
+            flex:1;
+        }
+        &--p{
+            color:rgb(231, 76, 60);
+        }
+        &-status{
+            color:#8e9297;
+            font-size: 1.2rem;
+        }
+    }
+}
