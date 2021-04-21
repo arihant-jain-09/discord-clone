@@ -7,6 +7,7 @@ import ReplyclickedReducer from './replyclicked/replyclickedReducer'
 import replytoggleReducer from './replytoggle/replytoggleReducer'
 import currentserverReducer from './server/serverReducer'
 import newserverReducer from './newserver/newserverReducer';
+import CurrentRoleReducer from './roles/rolesReducer';
 export default combineReducers({
   doc:documentReducer,
   msg:messageReducer,
@@ -15,5 +16,6 @@ export default combineReducers({
   reply:ReplyclickedReducer,
   replytoggle:replytoggleReducer,
   currentserver:currentserverReducer,
-  newserver:newserverReducer
+  newserver:newserverReducer,
+  currentrole:CurrentRoleReducer,
 })

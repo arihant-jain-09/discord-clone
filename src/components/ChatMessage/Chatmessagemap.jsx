@@ -21,6 +21,7 @@ const useStyles=makeStyles((theme)=>{
     // console.log(useSelector((state)=>state.reply));
     const classes=useStyles();
     const id=useSelector((state)=>state.msg.id);    
+    const admin=useSelector((state)=>state.currentrole.admin);
     const linkify=(input)=>{
         var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
         return input.match(urlRegex)
@@ -49,7 +50,7 @@ const useStyles=makeStyles((theme)=>{
                     </div>
                     <div className="chatmessage__content">
                         <div className="chatmessage__content-header">
-                            <div className="chatmessage__content-name">
+                            <div className={`${admin.admin === msg.sendername && 'chatmessage__content-admin'} chatmessage__content-name`}>
                                 {`${msg && msg.sendername}`}
                             </div>
                             <div className="chatmessage__content-date">

@@ -2,7 +2,9 @@
     display: flex;
     align-items: center;
     &__sender{
-        
+        &-admin{
+            color:rgb(231, 76, 60);
+        }
     }
     &__message{
         margin-left: .8rem;

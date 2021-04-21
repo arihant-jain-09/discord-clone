@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useCollectionData, useDocumentData } from 'react-firebase-hooks/firestore';
 import { firestore } from '../../firebase/firebase';
 import { Avatar, makeStyles } from '@material-ui/core'
 import './Roles.scss'
 import SquadRole from './SquadRole';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import currentrole from '../../redux/roles/roles.actions';
 const useStyles=makeStyles({
     avatar:{
         width:'3rem',
@@ -19,6 +20,15 @@ function Roles() {
     const userRef=firestore.collection('users');
     const query=userRef.orderBy('createdAt');
     const [allusers]=useCollectionData(query,{idField:'id'});
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(currentrole({admin:servers}));
+        return () => {
+           
+        }
+    }, [servers,dispatch])
+    
     return (
         <div className='roles'>
             <div className="roles__heading">
@@ -30,7 +40,7 @@ function Roles() {
                 </div>
                 <div className="roles__content">
                     <div className="roles__content-name">
-                        <p className='roles__content--p'>{servers && servers.admin && servers.admin}</p>
+                        <p className='roles__content--admin'>{servers && servers.admin && servers.admin}</p>
                     </div>
                     <div className='roles__content-status'>
                         Visual Studio Code

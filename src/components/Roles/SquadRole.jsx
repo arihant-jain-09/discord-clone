@@ -10,10 +10,10 @@ function SquadRole({usr,classes}) {
                 </div>
                 <div className="roles__content">
                     <div className="roles__content-name">
-                        <p className='roles__content--p'>{usr.username && usr.username}</p>
+                        <p className='roles__content--squad'>{usr.username && usr.username}</p>
                     </div>
                     <div className='roles__content-status'>
-                        Visual Studio Code
+                        {/* Visual Studio Code */}
                     </div>
                 </div>
             </div>
