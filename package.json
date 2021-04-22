@@ -26,7 +26,8 @@
     "react-scripts": "4.0.3",
     "react-textarea-autosize": "^8.3.2",
     "redux": "^4.0.5",
-    "redux-logger": "^3.0.6"
+    "redux-logger": "^3.0.6",
+    "styled-components": "^5.2.3"
   },
   "scripts": {
     "start": "react-scripts start",

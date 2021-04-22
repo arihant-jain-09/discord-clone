@@ -2,6 +2,7 @@ const initialState={
     id:'LNhwXEYI7pTlOgTN9Chm',
     name:'Welcome to Discord',
     email:'',
+    roleid:''
   }
    const currentserverReducer=(state=initialState,action)=>{
     switch(action.type){
@@ -10,7 +11,8 @@ const initialState={
         ...state,
         id:action.payload.id,
         name:action.payload.name,
-        email:action.payload.email
+        email:action.payload.email,
+        roleid:action.payload.roleid,
       }
       default: return state
     }

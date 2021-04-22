@@ -45,8 +45,13 @@ function ChatSearchBar() {
     const channelRef=firestore.collection('servers').doc(currentserverid).collection('channels').doc(id).collection('messages');
     const replymsg= useSelector((state)=>state.reply);
     const togglereply=useSelector((state)=>state.replytoggle.clicked);
+    const currentdoc=useSelector((state)=>state.doc.name);
     const handleSubmit=async(e)=>{
         e.preventDefault();
+        if(currentdoc==='roles'){
+            setformValue('Not authorized to send message here');
+            return
+        }
         if(!togglereply){
             await channelRef.add({
                 message:formValue,

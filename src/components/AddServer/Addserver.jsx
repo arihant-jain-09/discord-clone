@@ -57,6 +57,8 @@ function Addserver() {
     const [uploadfile,setuploadfile]=useState()
     const [formValue,setformValue]=useState('');
     const serverRef=firestore.collection('servers');
+    const roleRef=firestore.collection('roles');
+    
     const dispatch = useDispatch();
     const handleClickOpen = () => {
         setOpen(true);
@@ -97,7 +99,6 @@ function Addserver() {
                         id:value.id,
                         name:formValue
                     }))
-                    
                     const channelRef=firestore.collection('servers').doc(value.id).collection('channels')
                     await channelRef.add({
                         channel:'general',
@@ -112,6 +113,38 @@ function Addserver() {
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                         email:auth.currentUser.email,
                     })
+                    await roleRef.add({
+                        serverid:value.id,
+                        servername:formValue,
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                    }).then(async(val)=>{
+                        const docRef=firestore.collection('servers').doc(value.id);
+                        docRef.update({roleid:val.id})
+                        const roleref=firestore.collection('roles').doc(value.id).collection('rolemenu');
+                        await roleref.add({
+                            createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                            rolename:'Branch'
+                        }).then(async(val)=>{
+                            const myroleref=roleref.doc(val.id).collection('allroles');
+                            myroleref.add({
+                                CSE:{
+                                    color:'#02475e',
+                                    number:0
+                                },
+                                ECE:{
+                                    color:'#687980',
+                                    number:0
+                                },
+                                ME:{
+                                    color:'#fefecc',
+                                    number:0
+                                },
+                            })
+                        }
+                        )
+                    }
+                 
+                    )
                  })
              }
              else{
@@ -141,6 +174,35 @@ function Addserver() {
                         channel:'roles',
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                         email:auth.currentUser.email,
+                    })
+                    await roleRef.add({
+                        serverid:value.id,
+                        servername:formValue,
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                    }).then(async(val)=>{
+                        const docRef=firestore.collection('servers').doc(value.id);
+                        docRef.update({roleid:val.id})
+                        const rolemenuref=firestore.collection('roles').doc(value.id).collection('rolemenu');
+                        await rolemenuref.add({
+                            createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                            rolename:'Branch'
+                        }).then((val)=>{
+                            const myroleref=rolemenuref.doc(val.id).collection('allroles');
+                            myroleref.add({
+                                CSE:{
+                                    color:'#02475e',
+                                    number:0
+                                },
+                                ECE:{
+                                    color:'#687980',
+                                    number:0
+                                },
+                                ME:{
+                                    color:'#fefecc',
+                                    number:0
+                                },
+                            })
+                        })
                     })
                  })
              }

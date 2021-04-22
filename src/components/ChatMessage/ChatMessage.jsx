@@ -2,6 +2,7 @@
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useSelector } from 'react-redux';
 import {firestore } from '../../firebase/firebase';
+import RolesDocument from '../RolesDocument/RolesDocument';
 // import {db} from '../../firebase/firebase'
 import './ChatMessage.scss'
 import Chatmessagemap from './Chatmessagemap';
@@ -25,11 +26,13 @@ const ChatMessage= ()=> {
             
     //     }
     // }, [currentkey])
+
+    const currrentdoc=useSelector((state)=>state.doc.name);
     return (
         <div >
-            {messages && messages.map((msg)=>{
+            {currrentdoc==='roles'?<RolesDocument/>: messages && messages.map((msg)=>{
                 return <Chatmessagemap key={msg.id} msg={msg}/>
-            })}
+            })}            
         </div>
     )
 }

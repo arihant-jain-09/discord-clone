@@ -37,7 +37,7 @@ function AvailableServersmap({server}) {
     const myserver=server;
     useEffect(() => {
         if(myserver.email===auth.currentUser.email){
-            dispatch(currentserver({id:myserver.id,name:myserver.servername,email:myserver.email}));
+            dispatch(currentserver({id:myserver.id,name:myserver.servername,email:myserver.email,roleid:myserver.roleid}));
         }
         return () => {   
         }
@@ -60,7 +60,8 @@ function AvailableServersmap({server}) {
         dispatch((currentserver({
             id:server.id,
             name:server.servername,
-            email:server.email
+            email:server.email,
+            roleid:server.roleid
         })))
         setState(initialState);
     }
@@ -119,7 +120,7 @@ function AvailableServersmap({server}) {
     return (
         <div className='availableserver__map'>
             <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={()=>{
-                 dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
+                 dispatch(currentserver({id:server.id,name:server.servername,email:server.email,roleid:server.roleid}))
                 }}
                 className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}
                 src={server.serverimage} alt="availableserver"
