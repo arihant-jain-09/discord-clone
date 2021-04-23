@@ -1,3 +1,7 @@
+
+.roletype{
+    display: flex;
+}
 .rolesdocument{
     padding-bottom:1rem;
     &__main{
@@ -8,6 +12,7 @@
     }
     &__header{
         display: flex;
+   
         &-photo{
             padding: 1.2rem;
         }
@@ -63,12 +68,12 @@
         }
     }
 }
+
 //////////////////////allrolescolormap
 .allrolescolor{
     display: flex;
     align-items: center;
     padding: .9rem 0rem;
-    cursor: pointer;
     &__rolename{
         &-span{
             background-color: #2f3136;

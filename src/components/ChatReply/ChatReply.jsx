@@ -20,7 +20,7 @@ function ChatReply({msg}) {
             <div className="chatreply__photo">
                 <Avatar className={classes.small} src={msg.reply.photo}/>
             </div>
-            <div className={`${admin.admin === msg.reply.sender && 'chatreply__sender-admin'} chatreply__sender`}>
+            <div className={`${admin && admin.admin === msg.reply.sender && 'chatreply__sender-admin'} chatreply__sender`}>
                 @{msg.reply.sender}
             </div>
             <div className="chatreply__message">

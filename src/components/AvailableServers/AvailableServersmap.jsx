@@ -8,6 +8,7 @@ import './AvailableServers.scss'
 import { Dialog, makeStyles, withStyles } from '@material-ui/core';
 import ChangeServername from './Changeservername'
 import newserver from '../../redux/newserver/newserver.actions'
+import AddNewRole from '../AddNewRole/AddNewRole';
 const useStyles=makeStyles({
     paper: { 
         minWidth: '25%',
@@ -65,7 +66,9 @@ function AvailableServersmap({server}) {
         })))
         setState(initialState);
     }
+    
     const [open,setopen]=useState(false);
+    const [role,setrole]=useState(false);
     const handleChangenickname=()=>{
         if(myserver.email===auth.currentUser.email)
         {
@@ -76,6 +79,20 @@ function AvailableServersmap({server}) {
             })))
             setopen(true);
         }
+        handleClose();
+    }
+    const handleAddroles=()=>{
+      if(myserver.email===auth.currentUser.email)
+        {
+          setrole(true);
+
+        }
+        dispatch((currentserver({
+          id:myserver.id,
+          name:myserver.servername,
+          email:myserver.email,
+          roleid:myserver.roleid
+      })))
         handleClose();
     }
     const handledialogactions=()=>{
@@ -130,10 +147,14 @@ function AvailableServersmap({server}) {
                 <StyledMenu keepMounted open={state.mouseY !== null} onClose={handleClose}>
                     <StyledMenuItem onClick={()=>handlechangeserver(server)}>{server.servername}</StyledMenuItem>
                     <StyledMenuItem onClick={handleChangenickname}>Change Nickname</StyledMenuItem>
+                    <StyledMenuItem onClick={handleAddroles}>Add roles</StyledMenuItem>
                     <StyledMenuItem onClick={()=>handleDelete(server)}>Delete Server</StyledMenuItem>
                 </StyledMenu>
                 {open && <Dialog open={open} onClose={()=>setopen(false)} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}} >
                     <ChangeServername handleClose={handledialogactions}/>
+                </Dialog>}
+                {role && <Dialog open={role} onClose={()=>setrole(false)} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}} >
+                    <AddNewRole handleClose={()=>setrole(false)}/>
                 </Dialog>}
         </div>
     )

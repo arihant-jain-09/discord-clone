@@ -50,7 +50,7 @@ const useStyles=makeStyles((theme)=>{
                     </div>
                     <div className="chatmessage__content">
                         <div className="chatmessage__content-header">
-                            <div className={`${admin.admin === msg.sendername && 'chatmessage__content-admin'} chatmessage__content-name`}>
+                            <div className={`${admin && admin.admin === msg.sendername && 'chatmessage__content-admin'} chatmessage__content-name`}>
                                 {`${msg && msg.sendername}`}
                             </div>
                             <div className="chatmessage__content-date">

@@ -108,6 +108,22 @@ function Addserver() {
                         id:value.id,
                         name:'general'
                     }))))
+                    const serverroleRef=serverRef.doc(value.id).collection('allroles');
+                    await serverroleRef.add({
+                        rolename:'CSE',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        color:'#02475e'
+                    })
+                    await serverroleRef.add({
+                        rolename:'ECE',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        color:'#687980'
+                    })
+                    await serverroleRef.add({
+                        rolename:'ME',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        color:'#fefecc'
+                    })
                     await channelRef.add({
                         channel:'roles',
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
@@ -120,24 +136,25 @@ function Addserver() {
                     }).then(async(val)=>{
                         const docRef=firestore.collection('servers').doc(value.id);
                         docRef.update({roleid:val.id})
-                        const roleref=firestore.collection('roles').doc(value.id).collection('rolemenu');
+                        console.log(val.id);
+                        const roleref=firestore.collection('roles').doc(val.id).collection('rolemenu');
                         await roleref.add({
                             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                             rolename:'Branch'
-                        }).then(async(val)=>{
-                            const myroleref=roleref.doc(val.id).collection('allroles');
+                        }).then(async(val2)=>{
+                            const myroleref=roleref.doc(val2.id).collection('allroles');
                             myroleref.add({
                                 CSE:{
                                     color:'#02475e',
-                                    number:0
+                                    number:1
                                 },
                                 ECE:{
                                     color:'#687980',
-                                    number:0
+                                    number:1
                                 },
                                 ME:{
                                     color:'#fefecc',
-                                    number:0
+                                    number:1
                                 },
                             })
                         }
@@ -170,6 +187,22 @@ function Addserver() {
                         id:value.id,
                         name:'general'
                     }))))
+                    const serverroleRef=serverRef.doc(value.id).collection('allroles');
+                    await serverroleRef.add({
+                        rolename:'CSE',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        color:'02475e'
+                    })
+                    await serverroleRef.add({
+                        rolename:'ECE',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        color:'687980'
+                    })
+                    await serverroleRef.add({
+                        rolename:'ME',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        color:'fefecc'
+                    })
                     await channelRef.add({
                         channel:'roles',
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
@@ -182,24 +215,24 @@ function Addserver() {
                     }).then(async(val)=>{
                         const docRef=firestore.collection('servers').doc(value.id);
                         docRef.update({roleid:val.id})
-                        const rolemenuref=firestore.collection('roles').doc(value.id).collection('rolemenu');
+                        const rolemenuref=firestore.collection('roles').doc(val.id).collection('rolemenu');
                         await rolemenuref.add({
                             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                             rolename:'Branch'
-                        }).then((val)=>{
-                            const myroleref=rolemenuref.doc(val.id).collection('allroles');
+                        }).then((val2)=>{
+                            const myroleref=rolemenuref.doc(val2.id).collection('allroles');
                             myroleref.add({
                                 CSE:{
                                     color:'#02475e',
-                                    number:0
+                                    number:1
                                 },
                                 ECE:{
                                     color:'#687980',
-                                    number:0
+                                    number:1
                                 },
                                 ME:{
                                     color:'#fefecc',
-                                    number:0
+                                    number:1
                                 },
                             })
                         })

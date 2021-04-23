@@ -7,7 +7,7 @@ const Color=styled.div`
     width: 1.75rem;
     height: 1.75rem;
 `
-const Allrolesmap = ({rol,k,handleClick}) => {
+const Allrolesmap = ({rol,k,handleClick,roleheading,roleheadid}) => {
     return (
         <div onClick={()=>handleClick({
             photoURL:auth.currentUser.photoURL,
@@ -15,8 +15,12 @@ const Allrolesmap = ({rol,k,handleClick}) => {
             id:rol.id,
             rolename:k,
             number:rol[k].number,
-            color:rol[k].color
+            color:rol[k].color,
+            name:auth.currentUser.displayName,
+            serverroletypeid:roleheadid,
+            serverroleid:rol[k].serverroleid
         })}>
+       
             {rol && rol[k].number &&<div className='allroles'>
             <div className="allroles__button">
                 <Color className="allrolescolor__rolevalue" color={rol[k].color} />
@@ -24,7 +28,9 @@ const Allrolesmap = ({rol,k,handleClick}) => {
             <div className="allroles__number">
                 {rol[k].number}
             </div>
+            
             </div>}
+            {/* {console.log(rol)} */}
         </div>
     )
 }
