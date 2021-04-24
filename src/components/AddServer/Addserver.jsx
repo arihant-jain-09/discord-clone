@@ -58,7 +58,7 @@ function Addserver() {
     const [formValue,setformValue]=useState('');
     const serverRef=firestore.collection('servers');
     const roleRef=firestore.collection('roles');
-    
+    // const [allroleid,setallroleid]=useState('');
     const dispatch = useDispatch();
     const handleClickOpen = () => {
         setOpen(true);
@@ -86,6 +86,7 @@ function Addserver() {
         e.preventDefault();
         if(formValue){
             if(uploadfile){
+                const rolerefid=roleRef.doc();
                 await serverRef.add({
                      servername:formValue,
                      createdAt:firebase.firestore.FieldValue.serverTimestamp(),
@@ -93,6 +94,77 @@ function Addserver() {
                      admin:auth.currentUser.displayName,
                      userimage:auth.currentUser.photoURL,
                      serverimage:uploadfile,
+                     roleid:rolerefid.id
+                 }).then(async (value)=>{
+                     dispatch((newserver({present:true})));
+                    dispatch(currentserver({
+                        id:value.id,
+                        name:formValue
+                    }))
+                    setuploadfile('');
+                    const channelRef=firestore.collection('servers').doc(value.id).collection('channels')
+                    await channelRef.add({
+                        channel:'general',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        email:auth.currentUser.email,
+                    }).then((value)=>dispatch((currentdoc({
+                        id:value.id,
+                        name:'general'
+                    }))))
+                    await channelRef.add({
+                        channel:'roles',
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        email:auth.currentUser.email,
+                    })
+                    let allroleid;
+                    await rolerefid.set({
+                        serverid:value.id,
+                        servername:formValue,
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                    }).then(async()=>{
+                        const serverroleRef=serverRef.doc(value.id).collection('allroles');
+                        const roletyperef=roleRef.doc(rolerefid.id).collection('rolemenu');
+                        await serverroleRef.add({
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        rolename:'Branch'
+                    }).then(async(myval)=>{
+                        roletyperef.add({
+                            createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                            rolename:'Branch',
+                            serverroletypeid:myval.id,
+                        }).then(async(valid)=>{
+                            allroleid=valid.id
+                        })
+                        const serverallroles=serverroleRef.doc(myval.id).collection('allroles');
+                        serverallroles.add({
+                            color:'#02475e',
+                            createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                            rolename:'CSE'
+                        }).then(async(servallrole)=>{
+                            const rolesallref=roletyperef.doc(allroleid).collection('allroles')
+                            rolesallref.add({
+                                'CSE':{
+                                    color:'#02475e',
+                                    number:1,
+                                    serverroleid:servallrole.id
+                                }
+                            })
+                        })
+
+                    })
+                    })
+                 })
+             }
+             else{
+                const rolerefid=roleRef.doc();
+                await serverRef.add({
+                     servername:formValue,
+                     createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                     email:auth.currentUser.email,
+                     admin:auth.currentUser.displayName,
+                     userimage:auth.currentUser.photoURL,
+                     serverimage:'./discord_server.png',
+                     roleid:rolerefid.id,
                  }).then(async (value)=>{
                      dispatch((newserver({present:true})));
                     dispatch(currentserver({
@@ -108,136 +180,125 @@ function Addserver() {
                         id:value.id,
                         name:'general'
                     }))))
-                    const serverroleRef=serverRef.doc(value.id).collection('allroles');
-                    await serverroleRef.add({
-                        rolename:'CSE',
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        color:'#02475e'
-                    })
-                    await serverroleRef.add({
-                        rolename:'ECE',
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        color:'#687980'
-                    })
-                    await serverroleRef.add({
-                        rolename:'ME',
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        color:'#fefecc'
-                    })
                     await channelRef.add({
                         channel:'roles',
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                         email:auth.currentUser.email,
                     })
-                    await roleRef.add({
+                    let allroleid;
+                    await rolerefid.set({
                         serverid:value.id,
                         servername:formValue,
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                    }).then(async(val)=>{
-                        const docRef=firestore.collection('servers').doc(value.id);
-                        docRef.update({roleid:val.id})
-                        console.log(val.id);
-                        const roleref=firestore.collection('roles').doc(val.id).collection('rolemenu');
-                        await roleref.add({
+                    }).then(async()=>{
+                        const serverroleRef=serverRef.doc(value.id).collection('allroles');
+                        const roletyperef=roleRef.doc(rolerefid.id).collection('rolemenu');
+                        await serverroleRef.add({
+                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                        rolename:'Branch'
+                    }).then(async(myval)=>{
+                        roletyperef.add({
                             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                            rolename:'Branch'
-                        }).then(async(val2)=>{
-                            const myroleref=roleref.doc(val2.id).collection('allroles');
-                            myroleref.add({
-                                CSE:{
-                                    color:'#02475e',
-                                    number:1
-                                },
-                                ECE:{
-                                    color:'#687980',
-                                    number:1
-                                },
-                                ME:{
-                                    color:'#fefecc',
-                                    number:1
-                                },
-                            })
-                        }
-                        )
-                    }
-                 
-                    )
-                 })
-             }
-             else{
-                 await serverRef.add({
-                     servername:formValue,
-                     createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                     email:auth.currentUser.email,
-                     admin:auth.currentUser.displayName,
-                     userimage:auth.currentUser.photoURL,
-                     serverimage:'./discord_server.png'
-                 }).then(async (value)=>{
-                    dispatch((newserver({present:true})));
-                     dispatch(currentserver({
-                         id:value.id,
-                         name:formValue
-                     }))
-                    const channelRef=firestore.collection('servers').doc(value.id).collection('channels')
-                    await channelRef.add({
-                        channel:'general',
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        email:auth.currentUser.email,
-                    }).then((value)=>dispatch((currentdoc({
-                        id:value.id,
-                        name:'general'
-                    }))))
-                    const serverroleRef=serverRef.doc(value.id).collection('allroles');
-                    await serverroleRef.add({
-                        rolename:'CSE',
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        color:'02475e'
-                    })
-                    await serverroleRef.add({
-                        rolename:'ECE',
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        color:'687980'
-                    })
-                    await serverroleRef.add({
-                        rolename:'ME',
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        color:'fefecc'
-                    })
-                    await channelRef.add({
-                        channel:'roles',
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        email:auth.currentUser.email,
-                    })
-                    await roleRef.add({
-                        serverid:value.id,
-                        servername:formValue,
-                        createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                    }).then(async(val)=>{
-                        const docRef=firestore.collection('servers').doc(value.id);
-                        docRef.update({roleid:val.id})
-                        const rolemenuref=firestore.collection('roles').doc(val.id).collection('rolemenu');
-                        await rolemenuref.add({
+                            rolename:'Branch',
+                            serverroletypeid:myval.id,
+                        }).then(async(valid)=>{
+                            allroleid=valid.id
+                        })
+                        const serverallroles=serverroleRef.doc(myval.id).collection('allroles');
+                        serverallroles.add({
+                            color:'#02475e',
                             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                            rolename:'Branch'
-                        }).then((val2)=>{
-                            const myroleref=rolemenuref.doc(val2.id).collection('allroles');
-                            myroleref.add({
-                                CSE:{
+                            rolename:'CSE'
+                        }).then(async(servallrole)=>{
+                            const rolesallref=roletyperef.doc(allroleid).collection('allroles')
+                            rolesallref.add({
+                                'CSE':{
                                     color:'#02475e',
-                                    number:1
-                                },
-                                ECE:{
-                                    color:'#687980',
-                                    number:1
-                                },
-                                ME:{
-                                    color:'#fefecc',
-                                    number:1
-                                },
+                                    number:1,
+                                    serverroleid:servallrole.id
+                                }
                             })
                         })
+
+                    })
                     })
                  })
+
+
+                //  await serverRef.add({
+                //      servername:formValue,
+                //      createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                //      email:auth.currentUser.email,
+                //      admin:auth.currentUser.displayName,
+                //      userimage:auth.currentUser.photoURL,
+                //      serverimage:'./discord_server.png'
+                //  }).then(async (value)=>{
+                //     dispatch((newserver({present:true})));
+                //      dispatch(currentserver({
+                //          id:value.id,
+                //          name:formValue
+                //      }))
+                //     const channelRef=firestore.collection('servers').doc(value.id).collection('channels')
+                //     await channelRef.add({
+                //         channel:'general',
+                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                //         email:auth.currentUser.email,
+                //     }).then((value)=>dispatch((currentdoc({
+                //         id:value.id,
+                //         name:'general'
+                //     }))))
+                //     await channelRef.add({
+                //         channel:'roles',
+                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                //         email:auth.currentUser.email,
+                //     })
+                //     const serverroleRef=serverRef.doc(value.id).collection('allroles');
+                //     await serverroleRef.add({
+                //         rolename:'CSE',
+                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                //         color:'02475e'
+                //     })
+                //     await serverroleRef.add({
+                //         rolename:'ECE',
+                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                //         color:'687980'
+                //     })
+                //     await serverroleRef.add({
+                //         rolename:'ME',
+                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                //         color:'fefecc'
+                //     })
+                   
+                //     await roleRef.add({
+                //         serverid:value.id,
+                //         servername:formValue,
+                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                //     }).then(async(val)=>{
+                //         const docRef=firestore.collection('servers').doc(value.id);
+                //         docRef.update({roleid:val.id})
+                //         const rolemenuref=firestore.collection('roles').doc(val.id).collection('rolemenu');
+                //         await rolemenuref.add({
+                //             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                //             rolename:'Branch'
+                //         }).then((val2)=>{
+                //             const myroleref=rolemenuref.doc(val2.id).collection('allroles');
+                //             myroleref.add({
+                //                 CSE:{
+                //                     color:'#02475e',
+                //                     number:1
+                //                 },
+                //                 ECE:{
+                //                     color:'#687980',
+                //                     number:1
+                //                 },
+                //                 ME:{
+                //                     color:'#fefecc',
+                //                     number:1
+                //                 },
+                //             })
+                //         })
+                //     })
+                //  })
              }
         }
         setformValue('');
@@ -257,7 +318,7 @@ function Addserver() {
             </div>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}} >
             <DialogContent className={classes.dialogcontent}>
-            <DialogContentText className={classes.header}>
+            <DialogContentText component='div' className={classes.header}>
                     <Typography component={'span'} className={classes.header__heading}>
                         Customize your server
                     </Typography>

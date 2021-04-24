@@ -6,13 +6,16 @@
     padding-bottom:1rem;
     &__main{
         padding-left: 1rem;
+        flex-direction: column;
+        &-individual{
+            display: flex;
+        }
         &:hover{
             background-color: #32353b;
         }
     }
     &__header{
         display: flex;
-   
         &-photo{
             padding: 1.2rem;
         }

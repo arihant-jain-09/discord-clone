@@ -48,6 +48,9 @@ const newuserRef=firestore.collection('users');
           userphoto:user.photoURL,
           useruid:user.uid,
           createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+          roles:{
+            
+          }
         })
         }
     }

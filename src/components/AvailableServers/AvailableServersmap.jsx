@@ -36,14 +36,6 @@ function AvailableServersmap({server}) {
     const dispatch = useDispatch();
     const id=useSelector((state)=>state.currentserver.id)
     const myserver=server;
-    useEffect(() => {
-        if(myserver.email===auth.currentUser.email){
-            dispatch(currentserver({id:myserver.id,name:myserver.servername,email:myserver.email,roleid:myserver.roleid}));
-        }
-        return () => {   
-        }
-    }, [myserver,dispatch])
-
 
     const handleDelete=async(server)=>{
         setState(initialState);

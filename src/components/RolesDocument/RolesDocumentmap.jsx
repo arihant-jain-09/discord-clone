@@ -21,25 +21,60 @@ const RolesDocumentmap = ({role,roledoc}) => {
     // const query=allrolesRef.orderBy('createdAt').limit(10);
     const [allroles]=useCollectionData(allrolesRef,{idField:'id'});
     const [count,setcount]=useState(0);
+    const allusersref=firestore.collection('users');
+    const query=allusersref.orderBy('createdAt');
+    const [allusers,loading]=useCollectionData(query,{idField:'id'});
+
+    const handleuserexist=(keys,role)=>{
+        if(role && role.rolename && keys)
+        {
+                    for(const myk of keys){
+                        if(role && myk===role.rolename){
+                            console.log('already present');
+                           return true
+                        }
+                    }
+                    return false
+        }
+    }
     const handleclick=async(obj)=>{
         setcount(count+1);
         if(count>0){
             return
         }
-        const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid}=obj
-        const serverRef=firestore.collection('servers').doc(currentserverid).collection('allroles').doc(serverroletypeid).collection('allroles').doc(serverroleid).collection('allusers');
-        await serverRef.add({
-            username:name,
-            photoURL:photoURL,
-            email:email,
-            createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+        if(allusers && !loading){
+            allusers.map((usr)=>{
+                   if(usr && usr.roles && role.rolename){
+                    const keys = Object.keys(usr.roles);
+                        const found=handleuserexist(keys,role);
+                        if(!found){
+                            const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid}=obj
+                            const updateuserRef=allusersref.doc(usr.id);
+                            updateuserRef.set({
+                                // [`roles.${role.rolename}.rolename`]:rolename,
+                                roles:{
+                                    [role.rolename]:{
+                                        yourrole:rolename
+                                    }
+                                }
+                            },{merge: true})
+                            const serverRef=firestore.collection('servers').doc(currentserverid).collection('allroles').doc(serverroletypeid).collection('allroles').doc(serverroleid).collection('allusers');
+                            serverRef.add({
+                                username:name,
+                                photoURL:photoURL,
+                                email:email,
+                                createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                            })
+                    
+                            const roleref=allrolesRef.doc(id);
+                            roleref.update({
+                                [`${rolename}.number`]:firebase.firestore.FieldValue.increment(1),
+                            })
+                            
+                        }
+            }
         })
-
-        const roleref=allrolesRef.doc(id);
-        await roleref.update({
-            [`${rolename}.number`]:firebase.firestore.FieldValue.increment(1),
-        })
-        
+      
         // [`favorites.${key}.color`]
         // await serverRef.set({
         //     // [`allroles.${rolename}.user.email`]:email,
@@ -53,9 +88,10 @@ const RolesDocumentmap = ({role,roledoc}) => {
         //         }
         //     },
         // },{merge: true})
+        }
     }
     return (
-        <>
+        <div className='rolesdocument__main-individual'>
         <div className='rolesdocument__header-photo'>
                 <Avatar className={classes.avatar} src='./bot.png'/>
         </div>
@@ -101,7 +137,7 @@ const RolesDocumentmap = ({role,roledoc}) => {
                             </div>
                         </div>
                     </div>
-        </>
+        </div>
     )
 }
 

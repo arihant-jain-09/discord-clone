@@ -7,8 +7,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { useSelector } from 'react-redux';
 import { firestore } from '../../firebase/firebase';
-import { DialogActions, DialogContent, DialogContentText } from '@material-ui/core';
+import { DialogContent, DialogContentText } from '@material-ui/core';
 import firebase from 'firebase/app'
+import './AddNewRole.scss'
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '50rem',
@@ -26,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
   },
   dialogcontent:{
     width:'100%'
+  },
+  finishedanotherrole:{
+    marginTop:'1rem',
+    marginLeft:'2%'
   }
 }));
 
@@ -37,6 +42,7 @@ export default function AddNewRole({handleClose}) {
   const classes = useStyles();
   const roleid=useSelector((state)=>state.currentserver.roleid);
   const [activeStep, setActiveStep] = React.useState(0);
+  const [multirole,setmultirole]=useState([]);
   const [completed, setCompleted] = React.useState(false);
   const steps = getSteps();
   const currentserverid=useSelector((state)=>state.currentserver.id);
@@ -44,11 +50,10 @@ export default function AddNewRole({handleClose}) {
         color:'#fff',
         rolename:''
     });
-    const [multirole,setmultirole]=useState([]);
-    const [typeofrole,settypeofrole]=useState('');
+  const [typeofrole,settypeofrole]=useState('');
   const serverRef=firestore.collection('servers').doc(currentserverid).collection('allroles');
   const roleRef=firestore.collection('roles').doc(roleid).collection('rolemenu');
-
+  
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:
@@ -80,13 +85,18 @@ export default function AddNewRole({handleClose}) {
                       </DialogContentText>
                   <input type="text" name='color' required className='input__content' onChange={handleChange} value={formValue.color}/>
                   {/* {formValue.rolename && 'DO you want to add another role with same category type?'} */}
-                  <Button onClick={handleaddanotherrole} className={classes.anotherrole} color='primary' variant='contained'>DO you want to add another role with same category type?</Button>
+                  <div className="addmorediv">
+                    <Button onClick={handleaddanotherrole} className={classes.anotherrole} color='primary' variant='contained'>Add another role with same category type?</Button>
+                    <Button onClick={handlefinishedrole} className={classes.finishedanotherrole} color='primary' variant='contained'>Finished adding more</Button>
+                  </div>
+                 
               </DialogContent>
         </>
       default:
         return 'Unknown stepIndex';
     }
   }
+
   const handleaddanotherrole=()=>{
     setmultirole(()=>{
       return [...multirole,formValue]
@@ -96,6 +106,19 @@ export default function AddNewRole({handleClose}) {
       rolename:''
     })
   }
+  const handlefinishedrole=()=>{
+    if(typeofrole){
+      if(formValue.rolename){
+        setmultirole(()=>{
+          return [...multirole,formValue]
+        })
+      }
+  }
+  setformValue({
+    color:'',
+    rolename:''
+  })
+}
     const handleChange=(e)=>{
     const {name,value}=e.target;
     setformValue(()=>{
@@ -119,14 +142,14 @@ export default function AddNewRole({handleClose}) {
               createdAt:firebase.firestore.FieldValue.serverTimestamp(),
               rolename:typeofrole
           }).then(async(val)=>{
-            
+              settypeid(val.id);
               await roleRef.add({
                 createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                 rolename:typeofrole,
                 serverroletypeid:val.id,
               }).then((valid)=>{
                 console.log('called',valid.id);
-               
+                setroletypeid(valid.id);
               })
           })
           setCompleted(true);
@@ -136,48 +159,63 @@ export default function AddNewRole({handleClose}) {
   const handleroleandnext=async()=>{
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
     if(typeofrole){
-
-      if(!!multirole.length){
-        if(formValue.rolename){
-          setmultirole(()=>{
-            return [...multirole,formValue]
+        const addroleref=serverRef.doc(typeid).collection('allroles');
+        if(multirole && multirole.length){
+          multirole.map(async(rol)=>{
+            await addroleref.add({
+              color:rol.color,
+              createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+              rolename:rol.rolename
+          }).then(async (thisid)=>{
+            const allroleRef=roleRef.doc(roletypeid).collection('allroles');
+            await allroleRef.add({
+              [rol.rolename]:{
+                color:rol.color,
+                number:1,
+                serverroleid:thisid.id
+              }
+            })
+          }).then(()=>{
+            settypeofrole('');
+            setformValue('');
+            settypeid('');
+            setCompleted(false);
           })
+          })
+          setmultirole([]);
+          handleClose();
         }
-      }
-
-        // const addroleref=serverRef.doc(typeid).collection('allroles');
-        // if(formValue.rolename){
-        //     await addroleref.add({
-        //         color:formValue.color,
-        //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-        //         rolename:formValue.rolename
-        //     }).then(async (thisid)=>{
-        //       const allroleRef=roleRef.doc(roletypeid).collection('allroles');
-        //       await allroleRef.add({
-        //         [formValue.rolename]:{
-        //           color:formValue.color,
-        //           number:1,
-        //           serverroleid:thisid.id
-        //         }
-        //       }).then(()=>{
-        //         settypeofrole('');
-        //         setformValue('');
-        //         settypeid('');
-        //         setCompleted(false);
-        //       })
-        //     })
-        // }
+        else{
+          if(formValue.rolename){
+            await addroleref.add({
+                color:formValue.color,
+                createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                rolename:formValue.rolename
+            }).then(async (thisid)=>{
+              const allroleRef=roleRef.doc(roletypeid).collection('allroles');
+              await allroleRef.add({
+                [formValue.rolename]:{
+                  color:formValue.color,
+                  number:1,
+                  serverroleid:thisid.id
+                }
+              }).then(()=>{
+                settypeofrole('');
+                setformValue('');
+                settypeid('');
+                setCompleted(false);
+              })
+            })
+        }
+        handleClose();
+        }  
     }
+    
   }
-
 
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
-
-//   const handleReset = () => {
-//     setActiveStep(0);
-//   };
 
   return (
     <div className={classes.root}>
@@ -189,9 +227,9 @@ export default function AddNewRole({handleClose}) {
         ))}
       </Stepper>
       <div>
-        {activeStep === steps.length ? handleClose() : (
+        {activeStep === steps.length ? null : (
           <div>
-            <Typography className={classes.instructions}>{getStepContent(activeStep)}</Typography>
+            <Typography component='div' className={classes.instructions}>{getStepContent(activeStep)}</Typography>
             <div>
               <Button
                 disabled={activeStep === 0}
@@ -208,7 +246,6 @@ export default function AddNewRole({handleClose}) {
                 {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
               </Button>) 
               }
-              
             </div>
           </div>
         )}
