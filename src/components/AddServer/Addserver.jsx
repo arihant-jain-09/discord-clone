@@ -130,27 +130,40 @@ function Addserver() {
                     }).then(async(myval)=>{
                         roletyperef.add({
                             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                            rolename:'Branch',
+                            rolename:'Person',
                             serverroletypeid:myval.id,
                         }).then(async(valid)=>{
                             allroleid=valid.id
                         })
                         const serverallroles=serverroleRef.doc(myval.id).collection('allroles');
                         serverallroles.add({
-                            color:'#02475e',
+                            color:'#ea596e',
                             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                            rolename:'CSE'
+                            rolename:'Female'
                         }).then(async(servallrole)=>{
                             const rolesallref=roletyperef.doc(allroleid).collection('allroles')
                             rolesallref.add({
-                                'CSE':{
-                                    color:'#02475e',
+                                'Female':{
+                                    color:'#ea596e',
                                     number:1,
                                     serverroleid:servallrole.id
                                 }
                             })
                         })
-
+                        serverallroles.add({
+                            color:'#226699',
+                            createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                            rolename:'Male'
+                        }).then(async(servallrole)=>{
+                            const rolesallref=roletyperef.doc(allroleid).collection('allroles')
+                            rolesallref.add({
+                                'Male':{
+                                    color:'#226699',
+                                    number:1,
+                                    serverroleid:servallrole.id
+                                }
+                            })
+                        })
                     })
                     })
                  })
