@@ -1,7 +1,12 @@
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/arihant-jain-09/discord-clone)
+![GitHub repo size](https://img.shields.io/github/repo-size/arihant-jain-09/discord-clone)
+
 Deployed=> https://discord-clone-12045.web.app/
 
-
 <a href="https://discord-clone-12045.web.app/"><img src="https://i.ibb.co/gjCFfg4/2021-04-22-15-54-14.png" alt="2021-04-18-00-22-12" border="0"></a>
+
+### Assign self-roles and create new roles!
+<a href="https://discord-clone-12045.web.app/"><img src="https://i.ibb.co/8KypdyB/2021-04-25-10-35-05-Discord-Your-Place-to-Talk-and-Hang-Out.png" alt="2021-04-18-00-22-12" border="0"></a>
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
