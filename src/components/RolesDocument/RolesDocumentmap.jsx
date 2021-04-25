@@ -25,14 +25,22 @@ const RolesDocumentmap = ({role,roledoc}) => {
     const query=allusersref.orderBy('createdAt');
     const [allusers,loading]=useCollectionData(query,{idField:'id'});
 
-    const handleuserexist=(keys,role)=>{
+    const handleuserexist=(keys,role,usr)=>{
+  
         if(role && role.rolename && keys)
         {
+            keys.map((k)=>console.log(k))
                     for(const myk of keys){
-                        if(role && myk===role.rolename){
-                            console.log('already present');
-                            return true
+                        if(myk===currentserverid){
+                            const mykeys = Object.keys(usr.roles[myk]);
+                                for(const k of mykeys){
+                                    if(role && k===role.rolename){
+                                        console.log('already present');
+                                        return true
+                                    }
+                                }
                         }
+                    
                     }
                     return false
         }
@@ -47,15 +55,17 @@ const RolesDocumentmap = ({role,roledoc}) => {
                 const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid}=obj
                    if(usr && usr.roles && role.rolename && usr.useremail===email){
                     const keys = Object.keys(usr.roles);
-                        const found=handleuserexist(keys,role);
+                        const found=handleuserexist(keys,role,usr);
                         if(!found){
                             console.log('Not found');
                             
                             const updateuserRef=allusersref.doc(usr.id);
                             updateuserRef.set({
                                 roles:{
-                                    [role.rolename]:{
-                                        yourrole:rolename
+                                    [currentserverid]:{
+                                        [role.rolename]:{
+                                            yourrole:rolename
+                                        }
                                     }
                                 }
                             },{merge: true})

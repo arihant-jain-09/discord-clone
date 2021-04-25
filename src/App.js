@@ -49,7 +49,7 @@ const newuserRef=firestore.collection('users');
           useruid:user.uid,
           createdAt:firebase.firestore.FieldValue.serverTimestamp(),
           roles:{
-            
+
           }
         })
         }
