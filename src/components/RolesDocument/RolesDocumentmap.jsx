@@ -31,7 +31,7 @@ const RolesDocumentmap = ({role,roledoc}) => {
                     for(const myk of keys){
                         if(role && myk===role.rolename){
                             console.log('already present');
-                           return true
+                            return true
                         }
                     }
                     return false
@@ -44,14 +44,15 @@ const RolesDocumentmap = ({role,roledoc}) => {
         }
         if(allusers && !loading){
             allusers.map((usr)=>{
-                   if(usr && usr.roles && role.rolename){
+                const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid}=obj
+                   if(usr && usr.roles && role.rolename && usr.useremail===email){
                     const keys = Object.keys(usr.roles);
                         const found=handleuserexist(keys,role);
                         if(!found){
-                            const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid}=obj
+                            console.log('Not found');
+                            
                             const updateuserRef=allusersref.doc(usr.id);
                             updateuserRef.set({
-                                // [`roles.${role.rolename}.rolename`]:rolename,
                                 roles:{
                                     [role.rolename]:{
                                         yourrole:rolename
