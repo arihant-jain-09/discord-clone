@@ -65,12 +65,13 @@
     &__message{
         color:#d9dde0;
         font-family: 'Whitney-light', sans-serif;
-        font-size: 1.6rem;
+        font-size: 1.55rem;
         letter-spacing: .02rem;
         word-spacing: .02rem;
         padding-top: .5rem;
         padding-right: 1rem;
         white-space: pre-wrap;
+        line-height: 2.2rem;
     }
 }
 .chatmessage__content-menu{
