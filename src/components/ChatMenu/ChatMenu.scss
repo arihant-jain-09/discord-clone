@@ -1,3 +1,65 @@
 .chatmenu{
     display: flex;
+    background-color: #36393f;
+    padding:'.5rem';
+    position: relative;
+    &__image{
+        width:2rem;
+        height: 2rem;
+        cursor: pointer;
+        margin:.4rem
+        
+    }
+    &__addreaction{
+        margin:.1rem .2rem;
+        &:hover{
+            background-color: #373b41;
+        }
+    }
+    &__reply{
+        margin:.1rem .2rem;
+        &:hover{
+            background-color: #373b41;
+        }
+    }
+    &__more{
+        margin:.1rem .2rem;
+        &:hover{
+            background-color: #373b41;
+        }
+    }
+   
+}
+.morebox{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:-127%;
+    
+    &__container{
+        display: flex;
+        flex-direction: column;
+        background-color: #18191c;
+        padding: .6rem .8rem;
+        width: 18rem;
+        border-radius: .4rem;
+    }
+    &__item{
+        display: flex;
+        align-items: center;
+        margin: .4rem 0;
+        padding: .6rem .8rem;
+        cursor: pointer;
+        &-label{
+            color:#b9bbbe;
+            margin-right: auto;
+            font-size: 1.4rem;
+        }
+        &-deletelabel{
+            color:#f04747;
+            margin-right: auto;
+            font-size: 1.4rem;
+        }
+    }
 }

@@ -72,11 +72,17 @@
         white-space: pre-wrap;
     }
 }
-.chatmessgae__content-menu{
+.chatmessage__content-menu{
     margin-right: 3%;
     position: absolute;
-    left: 90%;
-    top:0%;
+    &-normal{
+    top:-60%;
+    right:1.5%;
+    }
+}
+.chatmessage__content-menu--replied{
+    top:-160%;
+    right:1.5%;
 }
 .linkify__text{
    color:#00b0f4;

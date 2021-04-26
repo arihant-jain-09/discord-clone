@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import AddIcon from '@material-ui/icons/AddCircle';
-import { Container, DialogActions, DialogContent, DialogContentText, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Avatar, Container, DialogActions, DialogContent, DialogContentText, IconButton, makeStyles, Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import PhotoIcon from '@material-ui/icons/Photo';
 import Resizer from "react-image-file-resizer";
@@ -39,6 +39,7 @@ const useStyles=makeStyles({
     },
     dialogcontent:{
         backgroundColor:'#fff',
+        padding:'1rem 1.6rem'
     },
     dialogaction:{
         backgroundColor:'#f6f6f7',
@@ -50,6 +51,9 @@ const useStyles=makeStyles({
     input:{
         display:'none'
     },
+    container:{
+        marginTop:'1.5rem'
+    }
 })
 function Addserver() {
     const classes=useStyles();
@@ -126,7 +130,7 @@ function Addserver() {
                         const roletyperef=roleRef.doc(rolerefid.id).collection('rolemenu');
                         await serverroleRef.add({
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        rolename:'Branch'
+                        rolename:'Person'
                     }).then(async(myval)=>{
                         roletyperef.add({
                             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
@@ -208,11 +212,11 @@ function Addserver() {
                         const roletyperef=roleRef.doc(rolerefid.id).collection('rolemenu');
                         await serverroleRef.add({
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                        rolename:'Branch'
+                        rolename:'Person'
                     }).then(async(myval)=>{
                         roletyperef.add({
                             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                            rolename:'Branch',
+                            rolename:'Person',
                             serverroletypeid:myval.id,
                         }).then(async(valid)=>{
                             allroleid=valid.id
@@ -250,82 +254,6 @@ function Addserver() {
                     })
                     })
                  })
-
-
-                //  await serverRef.add({
-                //      servername:formValue,
-                //      createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                //      email:auth.currentUser.email,
-                //      admin:auth.currentUser.displayName,
-                //      userimage:auth.currentUser.photoURL,
-                //      serverimage:'./discord_server.png'
-                //  }).then(async (value)=>{
-                //     dispatch((newserver({present:true})));
-                //      dispatch(currentserver({
-                //          id:value.id,
-                //          name:formValue
-                //      }))
-                //     const channelRef=firestore.collection('servers').doc(value.id).collection('channels')
-                //     await channelRef.add({
-                //         channel:'general',
-                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                //         email:auth.currentUser.email,
-                //     }).then((value)=>dispatch((currentdoc({
-                //         id:value.id,
-                //         name:'general'
-                //     }))))
-                //     await channelRef.add({
-                //         channel:'roles',
-                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                //         email:auth.currentUser.email,
-                //     })
-                //     const serverroleRef=serverRef.doc(value.id).collection('allroles');
-                //     await serverroleRef.add({
-                //         rolename:'CSE',
-                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                //         color:'02475e'
-                //     })
-                //     await serverroleRef.add({
-                //         rolename:'ECE',
-                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                //         color:'687980'
-                //     })
-                //     await serverroleRef.add({
-                //         rolename:'ME',
-                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                //         color:'fefecc'
-                //     })
-                   
-                //     await roleRef.add({
-                //         serverid:value.id,
-                //         servername:formValue,
-                //         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                //     }).then(async(val)=>{
-                //         const docRef=firestore.collection('servers').doc(value.id);
-                //         docRef.update({roleid:val.id})
-                //         const rolemenuref=firestore.collection('roles').doc(val.id).collection('rolemenu');
-                //         await rolemenuref.add({
-                //             createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                //             rolename:'Branch'
-                //         }).then((val2)=>{
-                //             const myroleref=rolemenuref.doc(val2.id).collection('allroles');
-                //             myroleref.add({
-                //                 CSE:{
-                //                     color:'#02475e',
-                //                     number:1
-                //                 },
-                //                 ECE:{
-                //                     color:'#687980',
-                //                     number:1
-                //                 },
-                //                 ME:{
-                //                     color:'#fefecc',
-                //                     number:1
-                //                 },
-                //             })
-                //         })
-                //     })
-                //  })
              }
         }
         setformValue('');
@@ -356,11 +284,11 @@ function Addserver() {
                     <Typography component={'span'} className={classes.header__text}>
                         You can always change it later.
                     </Typography>
-                    <Container maxWidth="sm">
+                    <Container className={classes.container} maxWidth="sm">
                     <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={handleImageUpload} />
                         <label htmlFor="icon-button-file">
                             <IconButton className={classes.iconbutton} color="primary" aria-label="upload picture" component="span">
-                                <PhotoIcon fontSize='large'/>
+                                <img className='uploadimage' src="./upload.png" alt=""/>
                             </IconButton>
                         </label>
                         </Container>
@@ -368,7 +296,7 @@ function Addserver() {
                         SERVER NAME
                     </Typography>                
             </DialogContentText>
-                <input type="text" required className='input__content' autoFocus onChange={(e)=>setformValue(e.target.value)} value={formValue}/>
+                <input type="text" required placeholder={`${auth.currentUser.displayName}'s server`} className='input__content' autoFocus onChange={(e)=>setformValue(e.target.value)} value={formValue}/>
             </DialogContent>
             <DialogActions className={classes.dialogaction}>
             <button type='text' onClick={handleClose} className='addserver__form-back'>Back</button>

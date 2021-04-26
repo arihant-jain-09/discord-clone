@@ -1,5 +1,5 @@
 import { Avatar } from '@material-ui/core'
-import React from 'react'
+import React, { useState } from 'react'
 import {makeStyles} from '@material-ui/core'
 import ChatMenu from '../ChatMenu/ChatMenu'
 import ChatEdit from '../ChatEdit/ChatEdit'
@@ -17,7 +17,7 @@ const useStyles=makeStyles((theme)=>{
     }
 })
  const Chatmessagemap=({msg})=> {
-    // const [inHover, setHover] = useState(false);
+    const [inHover, setHover] = useState(false);
     // console.log(useSelector((state)=>state.reply));
     const classes=useStyles();
     const id=useSelector((state)=>state.msg.id);    
@@ -36,7 +36,7 @@ const useStyles=makeStyles((theme)=>{
      return (
          <>
         <div className={`${msg.reply && 'chatmessage__main--replied'} chatmessage__main`}>
-            {/* <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="chatmessage"> */}
+            <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="chatmessage">
             <div className="chatmessage">
                 <div className="chatmessage__replycontent">
                     {msg.reply && <img className='chatmessage__replycontent--replyimage' src="/discord-reply.png" alt="reply"/>}
@@ -58,9 +58,10 @@ const useStyles=makeStyles((theme)=>{
                                     msg.createdAt.toDate().getDate()+"/"+(msg.createdAt.toDate().getMonth()+1)+"/"+msg.createdAt.toDate().getFullYear()
                                     }`}
                             </div>
-                            <div className="chatmessgae__content-menu">
-                               {/* {inHover&& <ChatMenu msg={msg} />} */}
-                               {<ChatMenu msg={msg}/>}
+                            <div className={`${msg.reply && 'chatmessage__content-menu--replied'} chatmessage__content-menu chatmessage__content-menu-normal`}>
+                                {/* {console.log(msg.reply)} */}
+                               {inHover&& <ChatMenu msg={msg} />}
+                               {/* {<ChatMenu msg={msg}/>} */}
                             </div>
                         </div>
                         <div className="chatmessage__message">
@@ -75,6 +76,7 @@ const useStyles=makeStyles((theme)=>{
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
         </>

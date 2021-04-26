@@ -14,7 +14,6 @@ const initialState={
             sender:action.payload.sender,
             msg:action.payload.msg,
             photo:action.payload.photo,
-            // base64:action.payload.base64
         }
       
       default: return state

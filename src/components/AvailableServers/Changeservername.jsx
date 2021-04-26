@@ -1,15 +1,10 @@
 import React, { useState } from 'react'
-import AddIcon from '@material-ui/icons/AddCircle';
 import { Container, DialogActions, DialogContent, DialogContentText, IconButton, makeStyles, Typography } from '@material-ui/core';
-import Dialog from '@material-ui/core/Dialog';
 import PhotoIcon from '@material-ui/icons/Photo';
 import Resizer from "react-image-file-resizer";
 import './Changeservername.scss'
-import { auth, firestore } from '../../firebase/firebase';
-import firebase from 'firebase/app'
+import { firestore } from '../../firebase/firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import currentdoc from '../../redux/document/document.actions';
-import currentserver from '../../redux/server/server.actions';
 const useStyles=makeStyles({
     addicon:{
         width:'4.8rem',
@@ -17,7 +12,7 @@ const useStyles=makeStyles({
         color:'#43b581'
     },
     header:{
-        textAlign:'center'
+        textAlign:'center',
     },
     header__heading:{
         fontSize:'2rem',
@@ -47,8 +42,11 @@ const useStyles=makeStyles({
         minWidth: '25%',
     },
     input:{
-        display:'none'
+        display:'none',
     },
+    container:{
+        marginTop:'1.5rem'
+    }
 })
 function ChangeServername({handleClose}) {
     const classes=useStyles();
@@ -56,7 +54,6 @@ function ChangeServername({handleClose}) {
     const [formValue,setformValue]=useState('');
     const currentserverid=useSelector((state)=>state.currentserver.id);
     const serverRef=firestore.collection('servers').doc(currentserverid);
-    const dispatch = useDispatch();
       const resizeFile = (file) =>
             new Promise((resolve) => {
                 Resizer.imageFileResizer(
@@ -110,11 +107,11 @@ function ChangeServername({handleClose}) {
                     <Typography component={'span'} className={classes.header__text}>
                         Change your Server Name and icon...
                     </Typography>
-                    <Container maxWidth="sm">
+                    <Container className={classes.container} maxWidth="sm">
                     <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={handleImageUpload} />
                         <label htmlFor="icon-button-file">
                             <IconButton className={classes.iconbutton} color="primary" aria-label="upload picture" component="span">
-                                <PhotoIcon fontSize='large'/>
+                                <img className='uploadimage' src="./upload.png" alt=""/>
                             </IconButton>
                         </label>
                         </Container>
@@ -122,7 +119,7 @@ function ChangeServername({handleClose}) {
                        SERVER NAME
                     </Typography>                
             </DialogContentText>
-                <input type="text" required className='input__content' autoFocus onChange={(e)=>setformValue(e.target.value)} value={formValue}/>
+                <input type="text" placeholder='Change server name' required className='input__content' autoFocus onChange={(e)=>setformValue(e.target.value)} value={formValue}/>
             </DialogContent>
             <DialogActions className={classes.dialogaction}>
             <button type='text' onClick={handleClose} className='ChangeServername__form-back'>Back</button>
