@@ -17,7 +17,7 @@ const useStyles=makeStyles(()=>{
             fontSize:'14px',
             color:'#fff',
             backgroundColor:'#363940',
-            padding:'5px 20px',
+            padding:'5px 1.9rem',
             textTransform:'none'
         }
     }

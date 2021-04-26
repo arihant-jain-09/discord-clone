@@ -18,7 +18,7 @@
         display: flex;
         &-sidebar{
             display: flex;
-            flex:0 0 18%;
+            flex:0 0 17%;
             background-color: #2C2F33;
             color: #fff;
             align-items: center;
@@ -45,7 +45,7 @@
     }
     &__sidebar{
         
-        flex:0 0 18%;
+        flex:0 1 17%;
         background-color: #2C2F33;
         color: #fff;
         display: flex;
@@ -85,7 +85,7 @@
     
 }
 .chat{
-    flex: 0 0 67%;
+    flex: 0 1 67%;
     background-color: #35383d;
     display: flex;
     flex-direction: column;

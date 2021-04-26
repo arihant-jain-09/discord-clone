@@ -42,10 +42,15 @@ const useStyles=makeStyles((theme)=>{
   return{
     settings:{
       display:'flex',
+      flexWrap:'wrap'
     },
     icon:{
-      padding:'1rem',
+      padding:'.5rem',
       color:'#babbbf'
+    },
+    avatar:{
+      width:'3.25rem',
+      height:'3.25rem'
     }
   }
 })
@@ -62,9 +67,16 @@ export default function BadgeAvatars() {
       <div className="profile">
         <div className="profile__avatar">
           <StyledBadge overlap="circle" anchorOrigin={{vertical: 'bottom',horizontal: 'right',}} variant="dot">
-            <Avatar alt="Remy Sharp" src={`${user?user.photoURL:null}`} />
+            <Avatar alt="Remy Sharp" src={`${user?user.photoURL:null}`} className={classes.avatar}/>
           </StyledBadge>
-          <div className="profile__name">{`${user?user.displayName:null}`}</div>
+          <div className="profile__name">
+            <div className="profile__name-name">
+              {`${user?user.displayName:null}`}
+            </div>
+            <div className="profile__name-uid">
+              #{user.uid.slice(0,6)}
+            </div>
+          </div>
         </div>
         <div className={classes.settings}>
             <IconButton className={classes.icon} onClick={()=>setmic(!mic)} aria-label="settings">

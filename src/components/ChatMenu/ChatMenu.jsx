@@ -76,10 +76,10 @@ function ChatMenu({msg}) {
         {auth.currentUser.email===msg.senderemail ? <div className="chatmenu__edt" onClick={handleClick}>
           <img className='chatmenu__image' src="./edit.png" alt=""/>
         </div> :<div className="chatmenu__reply" onClick={handleReply}>
-         <img className='chatmenu__image' src="./reply.png" alt=""/>
+         <img className='chatmenu__image' src="./reply.png" alt="reply"/>
         </div>}
         <div className="chatmenu__more" onClick={handlemore}>
-          <img className='chatmenu__image' src="./more.png" alt="" / >
+          <img className='chatmenu__image' src="./more.png" alt="more" / >
         </div>
       {user && <div className='morebox'>
           <div className="morebox__container">

@@ -103,8 +103,6 @@ const Myrolesmap = ({user,color}) => {
                             </div>
                         </StyledChip>
                         })}
-                        
-                    
                     </div>
                   </div>
               </div>

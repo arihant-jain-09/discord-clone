@@ -15,6 +15,7 @@ import openupload from '../../redux/openupload/message.actions'
 import OutsideClick from '../OutsideClick/OutsideClick'
 import replytoggle from '../../redux/replytoggle/replytoggle.actions'
 import ChatSearchReply from './ChatSearchReply'
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 const useStyles=makeStyles(()=>{
     return{
         button:{
@@ -46,6 +47,8 @@ function ChatSearchBar() {
     const replymsg= useSelector((state)=>state.reply);
     const togglereply=useSelector((state)=>state.replytoggle.clicked);
     const currentdoc=useSelector((state)=>state.doc.name);
+    const query=channelRef.orderBy('createdAt','desc').limit(1);
+    const [messages]=useCollectionData(query,{idField:'id'});
     const handleSubmit=async(e)=>{
         e.preventDefault();
         if(currentdoc==='roles'){
@@ -53,14 +56,23 @@ function ChatSearchBar() {
             return
         }
         if(!togglereply){
-            await channelRef.add({
-                message:formValue,
-                sendername:auth.currentUser.displayName,
-                senderemail:auth.currentUser.email,
-                senderuid:auth.currentUser.uid,
-                senderphoto:auth.currentUser.photoURL,
-                createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-            })
+            if(messages[0].senderemail===auth.currentUser.email){
+                const messageRef=channelRef.doc(messages[0].id);
+                await messageRef.update({
+                    message:messages[0].message+'\\n'+formValue
+                },{merge:true})
+            }
+            else{
+                await channelRef.add({
+                    message:formValue,
+                    sendername:auth.currentUser.displayName,
+                    senderemail:auth.currentUser.email,
+                    senderuid:auth.currentUser.uid,
+                    senderphoto:auth.currentUser.photoURL,
+                    createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                })
+            }
+            
         }
         else{
             await channelRef.add({

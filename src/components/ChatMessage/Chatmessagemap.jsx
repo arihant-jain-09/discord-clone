@@ -18,7 +18,7 @@ const useStyles=makeStyles((theme)=>{
 })
  const Chatmessagemap=({msg})=> {
     const [inHover, setHover] = useState(false);
-    // console.log(useSelector((state)=>state.reply));
+    const message=msg.message.replaceAll("\\n", "\n");
     const classes=useStyles();
     const id=useSelector((state)=>state.msg.id);    
     const admin=useSelector((state)=>state.currentrole.admin);
@@ -68,7 +68,7 @@ const useStyles=makeStyles((theme)=>{
                          {
                          useSelector((state)=>state.click.clicked) && msg.id===id ? <ChatEdit/>:
                          <Linkify componentDecorator={componentDecorator}>
-                            {msg && !!msg.message ? msg.message : !msg.base64 && <RenderAudio msg={msg}/>}
+                            {msg && !!msg.message ? message : !msg.base64 && <RenderAudio msg={msg}/>}
                             </Linkify>   
                          }
                             {msg.base64 &&<img src={msg.base64} alt="cannot decode"/>}
