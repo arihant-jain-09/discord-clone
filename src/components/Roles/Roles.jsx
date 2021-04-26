@@ -11,7 +11,7 @@ const useStyles=makeStyles({
     avatar:{
         width:'3rem',
         height:'3rem'
-    }
+    },
 })
 function Roles() {
     const classes=useStyles();
@@ -56,7 +56,7 @@ function Roles() {
                <h2 className="roles__heading-h2">Squad  —  {allusers && allusers.length}</h2> 
             </div> */}
             {allroles && allroles.map((role)=>{
-                return <Rolescategory key={role.id} role={role} classes={classes}/>
+                return <Rolescategory key={role.id} role={role}/>
             })}
 
             {/* {allusers && allusers.map((usr)=>{

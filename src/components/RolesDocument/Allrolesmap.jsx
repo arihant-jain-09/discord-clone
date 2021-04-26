@@ -20,7 +20,6 @@ const Allrolesmap = ({rol,k,handleClick,roleheadid}) => {
             serverroletypeid:roleheadid,
             serverroleid:rol[k].serverroleid
         })}>
-            
             {rol && rol[k].number &&<div className='allroles'>
             <div className="allroles__button">
                 <Color className="allrolescolor__rolevalue" color={rol[k].color} />

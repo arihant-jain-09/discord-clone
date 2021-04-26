@@ -35,7 +35,6 @@ const RolesDocumentmap = ({role,roledoc}) => {
                             const mykeys = Object.keys(usr.roles[myk]);
                                 for(const k of mykeys){
                                     if(role && k===role.rolename){
-                                        console.log('already present');
                                         return true
                                     }
                                 }
@@ -47,12 +46,13 @@ const RolesDocumentmap = ({role,roledoc}) => {
     }
     const handleclick=async(obj)=>{
         setcount(count+1);
-        if(count>0){
-            return
-        }
+        // if(count>0){
+        //     return
+        // }
         if(allusers && !loading){
             allusers.map((usr)=>{
-                const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid}=obj
+                const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid,color}=obj
+                console.log(obj.color);
                    if(usr && usr.roles && role.rolename && usr.useremail===email){
                     const keys = Object.keys(usr.roles);
                         const found=handleuserexist(keys,role,usr);
@@ -64,7 +64,8 @@ const RolesDocumentmap = ({role,roledoc}) => {
                                 roles:{
                                     [currentserverid]:{
                                         [role.rolename]:{
-                                            yourrole:rolename
+                                            yourrole:rolename,
+                                            color:color
                                         }
                                     }
                                 }
