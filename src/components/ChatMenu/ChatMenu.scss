@@ -36,6 +36,7 @@
     position: absolute;
     top:0;
     left:-127%;
+    animation: moveleftoright .3s;
     
     &__container{
         display: flex;
@@ -61,5 +62,13 @@
             margin-right: auto;
             font-size: 1.4rem;
         }
+    }
+}
+@keyframes moveleftoright {
+    0%{
+        transform: translateX(-13%);
+    }
+    100%{
+        transform: translateX(0%);
     }
 }

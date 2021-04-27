@@ -1,12 +1,15 @@
 .chatmessage{
+    margin-top: 1.7rem;  //27/04/21
     &__main{
         padding-left: 1rem;
         &:hover{
-            background-color: #32353b;
+            background-color: rgba(4,4,5,0.07);
         }
         &--replied{
-            padding-top: .7rem;
-            padding-bottom: 2rem;
+            padding-bottom: .2rem;
+        }
+        &--edit{
+            background-color: rgba(4,4,5,0.07);
         }
     }
     &__replycontent{
@@ -26,9 +29,10 @@
     &__header{
         display: flex;
         &-photo{
-            padding: 1.2rem;
+            // padding: 1.2rem;
+            padding: .6rem 1.2rem; //27/04/21
             &--replied{
-                padding: .8rem 1.2rem 1.2rem 1.2rem;
+                padding: .4rem 1.2rem 1.2rem 1.2rem;
             }
             &--replyimage{
                 padding-left: .9rem;
@@ -43,7 +47,8 @@
         &-header{
             display: flex;
             align-items: center;
-            padding-top: 1rem;
+            // padding-top: 1rem;
+            padding-top: .4rem; //27/04/21
             width: 100%;
             position: relative;
         }
@@ -78,7 +83,7 @@
     margin-right: 3%;
     position: absolute;
     &-normal{
-    top:-60%;
+    top:-71%;
     right:1.5%;
     }
 }
@@ -91,7 +96,7 @@
 }
 ////////////////////////////////// render video
 .rendervideo{
-    padding-top: 2%;
+    padding-top: 1.25%;
     &__videolink{
         background-color: #2f3136;
     }

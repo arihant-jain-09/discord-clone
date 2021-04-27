@@ -20,8 +20,9 @@ const useStyles=makeStyles((theme)=>{
     const [inHover, setHover] = useState(false);
     const message=msg.message.replaceAll("\\n", "\n");
     const classes=useStyles();
-    const id=useSelector((state)=>state.msg.id);    
+    const id=useSelector((state)=>state.msg.id); 
     const admin=useSelector((state)=>state.currentrole.admin);
+    const chatedittoggle=useSelector((state)=>state.click.clicked);
     const linkify=(input)=>{
         var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
         return input.match(urlRegex)
@@ -35,7 +36,7 @@ const useStyles=makeStyles((theme)=>{
       
      return (
          <>
-        <div className={`${msg.reply && 'chatmessage__main--replied'} chatmessage__main`}>
+        <div className={`${msg.reply && 'chatmessage__main--replied'} chatmessage__main ${chatedittoggle && id===msg.id && 'chatmessage__main--edit'}`}>
             <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="chatmessage">
             <div className="chatmessage">
                 <div className="chatmessage__replycontent">
@@ -59,7 +60,6 @@ const useStyles=makeStyles((theme)=>{
                                     }`}
                             </div>
                             <div className={`${msg.reply && 'chatmessage__content-menu--replied'} chatmessage__content-menu chatmessage__content-menu-normal`}>
-                                {/* {console.log(msg.reply)} */}
                                {inHover&& <ChatMenu msg={msg} />}
                                {/* {<ChatMenu msg={msg}/>} */}
                             </div>

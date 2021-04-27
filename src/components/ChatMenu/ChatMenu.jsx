@@ -116,22 +116,6 @@ function ChatMenu({msg}) {
         </div>
       }
       </div>
-    //     <div className={classes.chatmenu}>
-    //       {auth.currentUser.email===msg.senderemail ?(<>
-    //         <IconButton className={classes.icon} onClick={handleClick}>
-    //           <EditIcon />
-    //         </IconButton>
-    //         <IconButton className={classes.icon} onClick={handleDelete}>
-    //           <DeleteIcon/>
-    //         </IconButton>
-    //       </>): (<IconButton className={classes.icon} onClick={handleReply}>
-    //           <ReplyIcon />
-    //         </IconButton>)
-    //         }
-    //         {open && <Dialog open={open} onClose={()=>setopen(false)} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}} >
-    //                 <DeleteServer handleClose={()=>setopen(false)}/>
-    //             </Dialog>}
-    // </div>
     )
     }
 

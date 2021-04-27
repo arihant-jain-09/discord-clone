@@ -13,8 +13,8 @@ const useStyles=makeStyles({
         height:'3rem'
     },
     profileavatar:{
-        width:'7.5rem',
-        height:'7.5rem'
+        width:'8rem',
+        height:'8rem'
     },
     outlined:(rolearr)=>({
         color:rolearr.map((a)=>{
@@ -28,7 +28,7 @@ const Para=styled.p`
     color:${props=>props.color}
 `
 const StyledCircle=styled.svg`
-    width:'100px'
+    display:'inline-block'
 `
 const StyledChip=styled.div`
     border-color:${props=>props.color}
@@ -66,17 +66,11 @@ const Myrolesmap = ({user,color}) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
 }
     return (
+        
         <div onClick={handleClick} onMouseLeave={()=>{
             setopen(false)
-            setAnchorEl(null)
         }}>
-        {open && <Popper open={open} anchorEl={anchorEl} placement='left' transition>
-        {({ TransitionProps }) => (
-          <Fade {...TransitionProps} timeout={350}>
-              
-            <Paper>
-              {/* <Typography className={classes.typography}>{user.username && user.username}</Typography> */}
-              <div className="roleprofile">
+            {open && <div className="roleprofile">
                   <div className="roleprofile__header">
                     <div className="roleprofile__header-photo">
                         <Avatar src={user.photoURL && user.photoURL} className={classes.profileavatar} />
@@ -106,10 +100,7 @@ const Myrolesmap = ({user,color}) => {
                     </div>
                   </div>
               </div>
-            </Paper>
-          </Fade>
-        )}
-      </Popper>}
+               }
          <div className="roles__box">
                 <div className="roles__box-avatar">
                     <Avatar className={classes.avatar} src={user.photoURL && user.photoURL}/>
