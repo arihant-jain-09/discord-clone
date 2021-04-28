@@ -18,17 +18,9 @@
 
 ## Technologies
 
-<div align="center">
-<p>
-  <a href="http://discord-clone-12045.web.app/"><img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB&link=https://github.com/arihant-jain-09" alt="React" /></a>
-   <a href="http://discord-clone-12045.web.app/"><img src="https://img.shields.io/badge/Redux-593D88?style=flat&logo=redux&logoColor=white&link=https://github.com/arihant-jain-09" alt="Redux" /></a>
-    <a href="http://discord-clone-12045.web.app/"><img src="https://img.shields.io/badge/firebase-ffca28?style=flat&logo=firebase&logoColor=white&link=https://github.com/arihant-jain-09" alt="firebase deploy" /></a>
-    <a href="http://discord-clone-12045.web.app/"><img src=" https://img.shields.io/badge/Material--UI-0081CB?style=flat&logo=material-ui&logoColor=white&link=https://github.com/arihant-jain-09" alt="Material UI" /></a>
-    <a href="http://discord-clone-12045.web.app/"><img src="  https://img.shields.io/badge/Sass-CC6699?style=flat&logo=sass&logoColor=white&link=https://github.com/arihant-jain-09" alt="Material UI" /></a>
-     <a href="http://discord-clone-12045.web.app/"><img src="  https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black&link=https://github.com/arihant-jain-09" alt="Javascript" /></a>
-         <a href="http://discord-clone-12045.web.app/"><img src="  https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white&link=https://github.com/arihant-jain-09" alt="HTML" /></a>
- </p>
-</div>
+
+[![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB&link=https://github.com/arihant-jain-09)](https://github.com/arihant-jain-09) [![Redux](https://img.shields.io/badge/Redux-593D88?style=flat&logo=redux&logoColor=white&link=https://github.com/arihant-jain-09)](https://github.com/arihant-jain-09) [![Firebase](https://img.shields.io/badge/firebase-ffca28?style=flat&logo=firebase&logoColor=white&link=https://github.com/arihant-jain-09)](https://github.com/arihant-jain-09) [![Material-UI](https://img.shields.io/badge/Material--UI-0081CB?style=flat&logo=material-ui&logoColor=white&link=https://github.com/arihant-jain-09)](https://github.com/arihant-jain-09) [![SASS](https://img.shields.io/badge/Sass-CC6699?style=flat&logo=sass&logoColor=white&link=https://github.com/arihant-jain-09)](https://github.com/arihant-jain-09) [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black&link=https://github.com/arihant-jain-09)](https://github.com/arihant-jain-09) [![HTML5](https://img.shields.io/badge/-HTML5-E34F26?style=flat&logo=html5&logoColor=white&link=https://github.com/arihant-jain-09)](https://github.com/arihant-jain-09) 
+
 
 ## Table of contents
 
