@@ -62,6 +62,7 @@ const useStyles=makeStyles((theme)=>{
                             <div className={`${msg.reply && 'chatmessage__content-menu--replied'} chatmessage__content-menu chatmessage__content-menu-normal`}>
                                {inHover&& <ChatMenu msg={msg} />}
                                {/* {<ChatMenu msg={msg}/>} */}
+                               {/* {console.log(id===msg.id)} */}
                             </div>
                         </div>
                         <div className="chatmessage__message">

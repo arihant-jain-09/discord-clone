@@ -1,9 +1,6 @@
 import React,{useState} from 'react'
 import styled from "styled-components"
-import Popper from '@material-ui/core/Popper';
 import { Avatar, makeStyles } from '@material-ui/core'
-import Fade from '@material-ui/core/Fade';
-import Paper from '@material-ui/core/Paper';
 import { firestore } from '../../firebase/firebase';
 import { useSelector } from 'react-redux';
 

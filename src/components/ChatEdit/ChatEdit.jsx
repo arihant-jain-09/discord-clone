@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { firestore } from '../../firebase/firebase';
-import TextareaAutosize from 'react-textarea-autosize';
 import './ChatEdit.scss'
 import setclicked from '../../redux/clicked/clicked.actions';
 import useKeypress from '../Keypress/Keypress';

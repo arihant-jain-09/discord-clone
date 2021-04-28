@@ -8,11 +8,12 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { IconButton,makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth, firestore } from '../../firebase/firebase';
-import { Picker } from 'emoji-mart'
-import 'emoji-mart/css/emoji-mart.css'
+// import { Picker } from 'emoji-mart'
+// import 'emoji-mart/css/emoji-mart.css'
 import FileUpload from '../FileUpload/FileUpload'
 import openupload from '../../redux/openupload/message.actions'
-import OutsideClick from '../OutsideClick/OutsideClick'
+// import OutsideClick from '../OutsideClick/OutsideClick'
+import Emojicontainer from '../Emoji/Emojicontainer'
 import replytoggle from '../../redux/replytoggle/replytoggle.actions'
 import ChatSearchReply from './ChatSearchReply'
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -33,10 +34,6 @@ const useStyles=makeStyles(()=>{
     }
 })
 function ChatSearchBar() {
-    const ref = useRef();
-    OutsideClick(ref, () => {
-        if (openpicker) setopenpicker(false);
-      });
     const dispatch = useDispatch()
     const classes=useStyles();
     const [openpicker,setopenpicker]=useState(false);
@@ -132,8 +129,9 @@ function ChatSearchBar() {
                     </IconButton>
                 </div>
             </div>
-         {openpicker&& <div ref={ref} className='emojipicker'><Picker  onSelect={handleselect} /></div>}
-        {useSelector((state)=>state.open.open) && <div ref={ref} className='upload'><FileUpload/></div>}
+         {/* {openpicker&& <div ref={ref} className='emojipicker'><Picker  onSelect={handleselect} /></div>} */}
+         {openpicker&& <div className='emojipicker'><Emojicontainer/></div>}
+        {useSelector((state)=>state.open.open) && <div className='upload'><FileUpload/></div>}
         </div>
     )
 }

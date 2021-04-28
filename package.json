@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.21.1",
     "byte-size": "^7.0.1",
     "emoji-mart": "^3.0.1",
     "firebase": "^8.4.1",
@@ -24,7 +25,6 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "react-textarea-autosize": "^8.3.2",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "styled-components": "^5.2.3"

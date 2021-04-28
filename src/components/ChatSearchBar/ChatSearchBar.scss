@@ -22,9 +22,6 @@
         background-color: #40454b;
         border-radius: 0 0 0 .7rem;
     }
-    &__emojiicon-picker{
-        // width: 5rem;
-    }
     &__input{
         flex:1;        
         margin-right: -14%;
@@ -52,7 +49,7 @@
 }
 .emojipicker{
     position: absolute;
-    bottom:90%;
+    bottom:230%;
     right:2.1%;
 }
 .upload{
