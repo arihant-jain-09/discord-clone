@@ -45,26 +45,33 @@ function AvailableServersmap({server}) {
         dispatch((newserver({present:false})));
         if(server.email===auth.currentUser.email){
             const serverRef=firestore.collection('servers').doc(server.id);
-            await serverRef.get().then(async(snapshot)=>{
-              const roleref=firestore.collection('roles').doc(snapshot.data().roleid)
-              await roleref.delete();
-            })            
+            const roleref=firestore.collection('roles').doc(server.id);
+            await roleref.delete();
+            // await serverRef.get().then(async(snapshot)=>{
+            //   const roleref=firestore.collection('roles').doc(snapshot.data().roleid)
+            //   await roleref.delete();
+            // })            
             await serverRef.delete();
             const userref=firestore.collection('users');
-            await userref.get().then((snapshot)=>snapshot.docs.forEach((doc)=>{
-              if(doc.data().useruid===auth.currentUser.uid){
-                const keys = Object.keys(doc.data().roles);
-                for(const k of keys){
-                  if(k===server.id){
-                    userref.doc(doc.id).set({
-                      roles:{
-                        [k]:firebase.firestore.FieldValue.delete()
-                      }
-                    },{ merge: true })            
-                  }
-                }
+            userref.doc(auth.currentUser.uid).set({
+              roles:{
+                [auth.currentUser.uid]:firebase.firestore.FieldValue.delete()
               }
-            }))
+            },{ merge: true })  
+            // await userref.get().then((snapshot)=>snapshot.docs.forEach((doc)=>{
+            //   if(doc.data().useruid===auth.currentUser.uid){
+            //     const keys = Object.keys(doc.data().roles);
+            //     for(const k of keys){
+            //       if(k===server.id){
+            //         userref.doc(doc.id).set({
+            //           roles:{
+            //             [k]:firebase.firestore.FieldValue.delete()
+            //           }
+            //         },{ merge: true })            
+            //       }
+            //     }
+            //   }
+            // }))
         }
         else{
           return

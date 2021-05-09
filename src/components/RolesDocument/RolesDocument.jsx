@@ -14,7 +14,9 @@ const RolesDocument = ({roleid}) => {
             <div className="rolesdocument">
                 <div className="rolesdocument__main">
                         {roles && roles.map((role)=>{
-                            return <RolesDocumentmap key={role.id} role={role} roledoc={roleid}/>
+                            return <RolesDocumentmap key={role.id} role={role}/>
+                            // return <RolesDocumentmap key={role.id} role={role} roledoc={roleid}/>
+
                         })}
                 </div>
             </div>

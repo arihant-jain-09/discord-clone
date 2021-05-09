@@ -14,98 +14,56 @@ const useStyles=makeStyles((theme)=>{
       }
     }
 })
-const RolesDocumentmap = ({role,roledoc}) => {
+const RolesDocumentmap = ({role}) => {
     const classes=useStyles();
     const currentserverid=useSelector((state)=>state.currentserver.id);
-    const allrolesRef=firestore.collection('roles').doc(roledoc).collection('rolemenu').doc(role.id).collection('allroles');
+    const allrolesRef=firestore.collection('roles').doc(currentserverid).collection('rolemenu').doc(role.id).collection('allroles');
     // const query=allrolesRef.orderBy('createdAt').limit(10);
     const [allroles]=useCollectionData(allrolesRef,{idField:'id'});
     const [count,setcount]=useState(0);
-    const allusersref=firestore.collection('users');
-    const query=allusersref.orderBy('createdAt');
-    const [allusers,loading]=useCollectionData(query,{idField:'id'});
-
-    const handleuserexist=(keys,role,usr)=>{
-  
-        if(role && role.rolename && keys)
-        {
-            keys.map((k)=>console.log(k))
-                    for(const myk of keys){
-                        if(myk===currentserverid){
-                            const mykeys = Object.keys(usr.roles[myk]);
-                                for(const k of mykeys){
-                                    if(role && k===role.rolename){
-                                        return true
-                                    }
-                                }
-                        }
-                    
-                    }
-                    return false
-        }
-    }
+    const currentUserRef=firestore.collection('users').doc(currentserverid);
     const handleclick=async(obj)=>{
         setcount(count+1);
-        // if(count>0){
-        //     return
-        // }
-        if(allusers && !loading){
-            allusers.map((usr)=>{
-                const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid,color}=obj
-                console.log(obj.color);
-                   if(usr && usr.roles && role.rolename && usr.useremail===email){
-                    const keys = Object.keys(usr.roles);
-                        const found=handleuserexist(keys,role,usr);
-                        if(!found){
-                            console.log('Not found');
-                            
-                            const updateuserRef=allusersref.doc(usr.id);
-                            updateuserRef.set({
-                                roles:{
-                                    [currentserverid]:{
-                                        [role.rolename]:{
-                                            yourrole:rolename,
-                                            color:color
-                                        }
-                                    }
-                                }
-                            },{merge: true})
-                            const serverRef=firestore.collection('servers').doc(currentserverid).collection('allroles').doc(serverroletypeid).collection('allroles').doc(serverroleid).collection('allusers');
-                            serverRef.add({
-                                username:name,
-                                photoURL:photoURL,
-                                email:email,
-                                createdAt:firebase.firestore.FieldValue.serverTimestamp(),
-                            })
-                    
-                            const roleref=allrolesRef.doc(id);
-                            roleref.update({
-                                [`${rolename}.number`]:firebase.firestore.FieldValue.increment(1),
-                            })
-                            
-                        }
+        if(count>0){
+            return
+        }
+        const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid,color}=obj;
+        const user= (await currentUserRef.get()).data()
+        const userid=await currentUserRef.get();
+        if(user && user.roles){
+            if(user.roles[currentserverid] && user.roles[currentserverid][role.rolename]){
+                return
             }
-        })
-      
-        // [`favorites.${key}.color`]
-        // await serverRef.set({
-        //     // [`allroles.${rolename}.user.email`]:email,
-        //     // [`allroles.${rolename}.user.photoURL`]:photoURL,
-        //     allroles:{
-        //         [rolename]:{
-        //             user:[{
-        //                 email:email,
-        //                 photoURL:photoURL
-        //             }]
-        //         }
-        //     },
-        // },{merge: true})
+            else{
+                await currentUserRef.set({
+                    roles:{
+                        [currentserverid]:{
+                            [role.rolename]:{
+                                yourrole:rolename,
+                                color:color
+                            }
+                        }
+                    }
+                },{merge:true})
+
+                const serverRef=firestore.collection('servers').doc(currentserverid).collection('allroles').doc(serverroletypeid).collection('allroles').doc(serverroleid).collection('allusers');
+                serverRef.doc(userid.id).set({
+                    username:name,
+                    photoURL:photoURL,
+                    email:email,
+                    createdAt:firebase.firestore.FieldValue.serverTimestamp(),
+                })
+                const roleref=allrolesRef.doc(id);
+                roleref.update({
+                    [`${rolename}.number`]:firebase.firestore.FieldValue.increment(1),
+                })
+            }
         }
     }
     return (
         <div className='rolesdocument__main-individual'>
         <div className='rolesdocument__header-photo'>
-                <Avatar className={classes.avatar} src='./bot.png'/>
+                <Avatar className={classes.avatar} src='/./bot.png'/>
         </div>
             <div className="rolesdocument__content">
                         <div className="rolesdocument__content-header">
@@ -154,8 +112,3 @@ const RolesDocumentmap = ({role,roledoc}) => {
 }
 
 export default RolesDocumentmap
-// console.log(k,rol[k]);
-// console.log(keys);
-                                    // for(const myrole in rol){
-                                    //    console.log(rol[myrole]);
-                                    // }

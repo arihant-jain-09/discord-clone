@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import { useSelector } from 'react-redux';
-import { firestore } from '../../firebase/firebase';
+import { auth, firestore } from '../../firebase/firebase';
 import RolesDocument from './RolesDocument';
 
 const FetchRoleid = () => {
@@ -10,7 +10,7 @@ const FetchRoleid = () => {
     const [serverdata]=useDocumentData(serverRef);
     return (
         <>
-            {serverdata && serverdata.roleid && <RolesDocument roleid={serverdata && serverdata.roleid}/>}
+            {serverdata && auth.currentUser && <RolesDocument roleid={auth.currentUser && auth.currentUser.uid}/>}
         </>
     )
 }

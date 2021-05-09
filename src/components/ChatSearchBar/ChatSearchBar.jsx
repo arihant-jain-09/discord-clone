@@ -53,7 +53,7 @@ function ChatSearchBar() {
             return
         }
         if(!togglereply){
-            if(messages[0].senderemail===auth.currentUser.email){
+            if(!!messages.length && messages[0].senderemail===auth.currentUser.email){
                 const messageRef=channelRef.doc(messages[0].id);
                 await messageRef.update({
                     message:messages[0].message+'\\n'+formValue
