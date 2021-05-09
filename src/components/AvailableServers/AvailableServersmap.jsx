@@ -10,12 +10,14 @@ import ChangeServername from './Changeservername'
 import newserver from '../../redux/newserver/newserver.actions'
 import firebase from 'firebase/app'
 import AddNewRole from '../AddNewRole/AddNewRole';
+import { useHistory } from 'react-router';
 const useStyles=makeStyles({
     paper: { 
         minWidth: '25%',
     },
 })
 function AvailableServersmap({server}) {
+  const history=useHistory();
     const classes=useStyles();
     const initialState = {
         mouseX: null,
@@ -148,6 +150,7 @@ function AvailableServersmap({server}) {
     return (
         <div className='availableserver__map'>
             <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={()=>{
+                 history.push(`/channels/${server.id}`);
                  dispatch(currentserver({id:server.id,name:server.servername,email:server.email,roleid:server.roleid}))
                 }}
                 className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}

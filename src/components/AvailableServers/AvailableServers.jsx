@@ -17,7 +17,7 @@ function AvailableServers () {
         }
         else{
             if(servers && !!servers.length){
-                dispatch(currentserver({id:servers[0].id,name:servers[0].servername,email:servers[0].email,roleid:servers[0].roleid}));
+                // dispatch(currentserver({id:servers[0].id,name:servers[0].servername,email:servers[0].email,roleid:servers[0].roleid}));
             }
         }
         return () => {   

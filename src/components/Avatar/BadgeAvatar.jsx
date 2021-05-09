@@ -9,6 +9,7 @@ import MicIcon from '@material-ui/icons/Mic';
 import MicOffIcon from '@material-ui/icons/MicOff';
 import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
 import './BadgeAvatar.scss'
+import { useHistory } from 'react-router';
 const StyledBadge = withStyles((theme) => ({
   badge: {
     backgroundColor: '#44b700',
@@ -56,25 +57,27 @@ const useStyles=makeStyles((theme)=>{
 })
 
 export default function BadgeAvatars() {
+  const history=useHistory();
   const [user]=useAuthState(auth);
   const [mic,setmic]=useState(false);
   const classes=useStyles();
   const handleClick=async ()=>{
-    auth.signOut();
+    await auth.signOut();
+    history.push('/');
   }
     return (
     <div>
       <div className="profile">
         <div className="profile__avatar">
           <StyledBadge overlap="circle" anchorOrigin={{vertical: 'bottom',horizontal: 'right',}} variant="dot">
-            <Avatar alt="Remy Sharp" src={`${user?user.photoURL:null}`} className={classes.avatar}/>
+            <Avatar alt="Remy Sharp" src={`${user&& user.photoURL?user.photoURL:null}`} className={classes.avatar}/>
           </StyledBadge>
           <div className="profile__name">
             <div className="profile__name-name">
-              {`${user?user.displayName:null}`}
+              {`${user&& user.displayName?user.displayName:null}`}
             </div>
             <div className="profile__name-uid">
-              #{user.uid.slice(0,6)}
+              #{user && user.uid.slice(0,6)}
             </div>
           </div>
         </div>

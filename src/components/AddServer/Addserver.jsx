@@ -180,7 +180,7 @@ function Addserver() {
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
                      userimage:auth.currentUser.photoURL,
-                     serverimage:'./discord_server.png',
+                     serverimage:'/./discord_server.png',
                      roleid:rolerefid.id,
                  }).then(async (value)=>{
                      dispatch((newserver({present:true})));
@@ -288,7 +288,7 @@ function Addserver() {
                     <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={handleImageUpload} />
                         <label htmlFor="icon-button-file">
                             <IconButton className={classes.iconbutton} color="primary" aria-label="upload picture" component="span">
-                                <img className='uploadimage' src="./upload.png" alt=""/>
+                                <img className='uploadimage' src="/./upload.png" alt=""/>
                             </IconButton>
                         </label>
                         </Container>
@@ -296,7 +296,7 @@ function Addserver() {
                         SERVER NAME
                     </Typography>                
             </DialogContentText>
-                <input type="text" required placeholder={`${auth.currentUser.displayName}'s server`} className='input__content' autoFocus onChange={(e)=>setformValue(e.target.value)} value={formValue}/>
+                <input type="text" required placeholder={`${auth.currentUser && auth.currentUser.displayName}'s server`} className='input__content' autoFocus onChange={(e)=>setformValue(e.target.value)} value={formValue}/>
             </DialogContent>
             <DialogActions className={classes.dialogaction}>
             <button type='text' onClick={handleClose} className='addserver__form-back'>Back</button>
