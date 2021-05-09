@@ -90,21 +90,21 @@ function Addserver() {
         e.preventDefault();
         if(formValue){
             if(uploadfile){
-                await serverRef.doc(auth.currentUser.uid).set({
+                await serverRef.add({
                      servername:formValue,
                      createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
                      userimage:auth.currentUser.photoURL,
                      serverimage:uploadfile,
-                 }).then(async ()=>{
+                 }).then(async (value)=>{
                     dispatch((newserver({present:true})));
                     dispatch(currentserver({
                         id:auth.currentUser.uid,
                         name:formValue
                     }))
                     setuploadfile('');
-                    const channelRef=firestore.collection('servers').doc(auth.currentUser.uid).collection('channels');
+                    const channelRef=firestore.collection('servers').doc(value.id).collection('channels');
                     await channelRef.add({
                         channel:'general',
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
@@ -113,19 +113,19 @@ function Addserver() {
                         id:value.id,
                         name:'general'
                     }))))
-                    await channelRef.doc(auth.currentUser.uid).set({
+                    await channelRef.doc(value.id).set({
                         channel:'roles',
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                         email:auth.currentUser.email,
                     })
                     let allroleid;
-                    const rolerefid=roleRef.doc(auth.currentUser.uid);
+                    const rolerefid=roleRef.doc(value.id);
                     await rolerefid.set({
                         servername:formValue,
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                     }).then(async()=>{
-                        const serverroleRef=serverRef.doc(auth.currentUser.uid).collection('allroles');
-                        const roletyperef=roleRef.doc(auth.currentUser.uid).collection('rolemenu');
+                        const serverroleRef=serverRef.doc(value.id).collection('allroles');
+                        const roletyperef=roleRef.doc(value.id).collection('rolemenu');
                         await serverroleRef.add({
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                         rolename:'Person'

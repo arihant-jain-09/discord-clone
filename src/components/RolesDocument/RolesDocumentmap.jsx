@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useSelector } from 'react-redux';
-import { firestore } from '../../firebase/firebase'
+import { auth, firestore } from '../../firebase/firebase'
 import Allrolescolormap from './Allrolescolormap';
 import Allrolesmap from './Allrolesmap';
 import firebase from 'firebase/app'
@@ -21,12 +21,12 @@ const RolesDocumentmap = ({role}) => {
     // const query=allrolesRef.orderBy('createdAt').limit(10);
     const [allroles]=useCollectionData(allrolesRef,{idField:'id'});
     const [count,setcount]=useState(0);
-    const currentUserRef=firestore.collection('users').doc(currentserverid);
     const handleclick=async(obj)=>{
         setcount(count+1);
         if(count>0){
             return
         }
+        const currentUserRef=firestore.collection('users').doc(auth.currentUser.uid);
         const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid,color}=obj;
         const user= (await currentUserRef.get()).data()
         const userid=await currentUserRef.get();
@@ -98,6 +98,7 @@ const RolesDocumentmap = ({role}) => {
                             <div className="rolesdocument__message-rolebuttons">
                             {allroles && allroles.map((rol)=>{
                                     const keys = Object.keys(rol);
+                                    
                                     return(
                                         keys.map((k,index)=>{
                                         return <Allrolesmap key={index} rol={rol} k={k} handleClick={handleclick} roleheading={role.rolename} roleheadid={role.serverroletypeid}/>

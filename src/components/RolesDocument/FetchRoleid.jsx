@@ -10,7 +10,7 @@ const FetchRoleid = () => {
     const [serverdata]=useDocumentData(serverRef);
     return (
         <>
-            {serverdata && auth.currentUser && <RolesDocument roleid={auth.currentUser && auth.currentUser.uid}/>}
+            {serverdata && auth.currentUser && <RolesDocument roleid={serverid}/>}
         </>
     )
 }

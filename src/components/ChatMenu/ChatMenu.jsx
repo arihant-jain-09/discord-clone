@@ -72,15 +72,15 @@ function ChatMenu({msg}) {
       <div className='chatmenu'>
         {emoji && <div className='emojcontain'><Emojicontainer/></div>}
         <div className="chatmenu__addreaction" onClick={handleemoji}>
-          <img className='chatmenu__image' src="./addreaction.png" alt=""/>
+          <img className='chatmenu__image' src="/./addreaction.png" alt=""/>
         </div>
         {auth.currentUser.email===msg.senderemail ? <div className="chatmenu__edt" onClick={handleClick}>
-          <img className='chatmenu__image' src="./edit.png" alt=""/>
+          <img className='chatmenu__image' src="/./edit.png" alt=""/>
         </div> :<div className="chatmenu__reply" onClick={handleReply}>
-         <img className='chatmenu__image' src="./reply.png" alt="reply"/>
+         <img className='chatmenu__image' src="/./reply.png" alt="reply"/>
         </div>}
         <div className="chatmenu__more" onClick={handlemore}>
-          <img className='chatmenu__image' src="./more.png" alt="more" / >
+          <img className='chatmenu__image' src="/./more.png" alt="more" / >
         </div>
       {user && <div className='morebox'>
           <div className="morebox__container">

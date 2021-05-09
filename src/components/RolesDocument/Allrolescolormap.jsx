@@ -7,7 +7,6 @@ const Color=styled.div`
     height: 2.5rem;
 `
 const Allrolescolormap = ({k,rol}) => {
-    
     return (
         <div className='allrolescolor'>  
         {rol && rol[k].color && <>

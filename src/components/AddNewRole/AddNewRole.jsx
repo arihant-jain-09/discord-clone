@@ -40,7 +40,7 @@ function getSteps() {
 
 export default function AddNewRole({handleClose}) {
   const classes = useStyles();
-  const roleid=useSelector((state)=>state.currentserver.roleid);
+  // const roleid=useSelector((state)=>state.currentserver.roleid);
   const [activeStep, setActiveStep] = React.useState(0);
   const [multirole,setmultirole]=useState([]);
   const [completed, setCompleted] = React.useState(false);
@@ -52,8 +52,7 @@ export default function AddNewRole({handleClose}) {
     });
   const [typeofrole,settypeofrole]=useState('');
   const serverRef=firestore.collection('servers').doc(currentserverid).collection('allroles');
-  const roleRef=firestore.collection('roles').doc(roleid).collection('rolemenu');
-  
+  const roleRef=firestore.collection('roles').doc(currentserverid).collection('rolemenu');
   function getStepContent(stepIndex) {
     switch (stepIndex) {
       case 0:

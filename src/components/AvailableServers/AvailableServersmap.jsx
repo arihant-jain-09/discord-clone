@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth, firestore } from '../../firebase/firebase';
 import currentserver from '../../redux/server/server.actions';
@@ -46,11 +46,7 @@ function AvailableServersmap({server}) {
         if(server.email===auth.currentUser.email){
             const serverRef=firestore.collection('servers').doc(server.id);
             const roleref=firestore.collection('roles').doc(server.id);
-            await roleref.delete();
-            // await serverRef.get().then(async(snapshot)=>{
-            //   const roleref=firestore.collection('roles').doc(snapshot.data().roleid)
-            //   await roleref.delete();
-            // })            
+            await roleref.delete();        
             await serverRef.delete();
             const userref=firestore.collection('users');
             userref.doc(auth.currentUser.uid).set({
@@ -58,20 +54,6 @@ function AvailableServersmap({server}) {
                 [auth.currentUser.uid]:firebase.firestore.FieldValue.delete()
               }
             },{ merge: true })  
-            // await userref.get().then((snapshot)=>snapshot.docs.forEach((doc)=>{
-            //   if(doc.data().useruid===auth.currentUser.uid){
-            //     const keys = Object.keys(doc.data().roles);
-            //     for(const k of keys){
-            //       if(k===server.id){
-            //         userref.doc(doc.id).set({
-            //           roles:{
-            //             [k]:firebase.firestore.FieldValue.delete()
-            //           }
-            //         },{ merge: true })            
-            //       }
-            //     }
-            //   }
-            // }))
         }
         else{
           return
@@ -82,7 +64,6 @@ function AvailableServersmap({server}) {
             id:server.id,
             name:server.servername,
             email:server.email,
-            roleid:server.roleid
         })))
         setState(initialState);
     }
@@ -111,7 +92,6 @@ function AvailableServersmap({server}) {
           id:myserver.id,
           name:myserver.servername,
           email:myserver.email,
-          roleid:myserver.roleid
       })))
         handleClose();
     }
@@ -158,7 +138,7 @@ function AvailableServersmap({server}) {
         <div className='availableserver__map'>
             <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={()=>{
                  history.push(`/channels/${server.id}`);
-                 dispatch(currentserver({id:server.id,name:server.servername,email:server.email,roleid:server.roleid}))
+                 dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
                 }}
                 className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}
                 src={server.serverimage} alt="availableserver"
