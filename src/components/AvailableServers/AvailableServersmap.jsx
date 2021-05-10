@@ -11,6 +11,7 @@ import newserver from '../../redux/newserver/newserver.actions'
 import firebase from 'firebase/app'
 import AddNewRole from '../AddNewRole/AddNewRole';
 import { useHistory } from 'react-router';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 const useStyles=makeStyles({
     paper: { 
         minWidth: '25%',
@@ -18,6 +19,9 @@ const useStyles=makeStyles({
 })
 function AvailableServersmap({server}) {
   const history=useHistory();
+  const channelRef=firestore.collection('servers').doc(server.id).collection('channels');
+  const query=channelRef.orderBy('createdAt').limit(1);
+  const [channels]=useCollectionData(query,{idField:'id'});
     const classes=useStyles();
     const initialState = {
         mouseX: null,
@@ -136,9 +140,16 @@ function AvailableServersmap({server}) {
 
     return (
         <div className='availableserver__map'>
-            <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={()=>{
-                 history.push(`/channels/${server.id}`);
-                 dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
+            <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={async()=>{
+                dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
+                 await history.push(`/channels/${server.id}/${channels[0].id}`);
+                //  const channelRef=firestore.collection('servers').doc(server.id).collection('channels');
+                  // channelRef.get().then((response)=>{
+                  //   response.forEach(doc=>{
+                  //     console.log(doc.data())
+                  //   })
+                  // })
+                  // console.log(result);                 
                 }}
                 className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}
                 src={server.serverimage} alt="availableserver"

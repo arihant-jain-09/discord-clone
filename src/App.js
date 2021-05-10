@@ -6,7 +6,8 @@ import { Redirect, Route, Switch } from 'react-router';
 import Homepage from './pages/homepage';
 import Home from './pages/home@me/home@me';
 import Universal from './pages/Universal/Universal';
-import Home_serverId from './pages/home_serverId/home_serverId';
+import ServerPage from './pages/ServerPage/ServerPage';
+import LayoutSidebar from './pages/Layout_Sidebar/Layout_Sidebar';
 function App() {
 const [user]=useAuthState(auth);
   return (
@@ -17,12 +18,10 @@ const [user]=useAuthState(auth);
         {!user && <Redirect to='/'/>}
         <Switch>
           <Route exact path='/' render={()=>auth.currentUser?<Redirect to='channels/@me'/>:<Homepage/>} />
-          <Universal>
             <Switch>
-              <Route exact path='/channels/@me' component={Home}/>
-              <Route exact path='/channels/:serverId' component={Home_serverId}/>
+              <Route exact path='/channels/@me' render={()=><Universal><Home></Home></Universal>}/>
+              <Route path='/channels/:serverId' render={(props)=><LayoutSidebar><ServerPage {...props}/></LayoutSidebar>}/>
             </Switch>
-          </Universal>
         </Switch>
       </main>
     </div>

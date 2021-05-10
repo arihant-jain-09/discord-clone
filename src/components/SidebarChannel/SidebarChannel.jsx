@@ -5,20 +5,29 @@ import { firestore } from '../../firebase/firebase';
 import Channelmap from './Channelmap';
 import { useDispatch, useSelector } from 'react-redux';
 import currentdoc from '../../redux/document/document.actions';
-export default function SidebarChannel() {
+import { useHistory, useLocation } from 'react-router';
+
+const SidebarChannel=React.memo(()=>{
+
+    const history=useHistory();
+    const location=useLocation();
     const dispatch = useDispatch();
       const currentserverid=useSelector((state)=>state.currentserver.id)
       const channelRef=firestore.collection('servers').doc(currentserverid).collection('channels')
       const query=channelRef.orderBy('createdAt').limit(10);
       const [channels]=useCollectionData(query,{idField:'id'});
-      useEffect(() => {
-          if(channels && !!channels.length){
-            dispatch(currentdoc({id:channels[0].id,name:channels[0].channel}));
-          }
-        return () => {   
-        }
-    }, [channels,dispatch])
-      
+      console.log('Sidebar got rendered');
+    //   useEffect(() => {
+    //       const myfun=async()=>{
+    //         if(channels && !!channels.length){
+    //             await history.push(`${location.pathname}/${channels[0].id}`)
+    //             // dispatch(currentdoc({id:channels[0].id,name:channels[0].channel}));
+    //           }
+    //       }
+    //       myfun();
+    //     return () => {   
+    //     }
+    // }, [channels,dispatch])
     return (
         <div>
             <div className="sidebarchannel">
@@ -28,4 +37,6 @@ export default function SidebarChannel() {
             </div>
         </div>
     )
-}
+})
+
+export default SidebarChannel

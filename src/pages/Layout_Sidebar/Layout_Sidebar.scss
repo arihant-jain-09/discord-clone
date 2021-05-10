@@ -1,0 +1,91 @@
+.mainpage{
+    display: flex;
+    &__servers{
+        flex:0 0 4.62%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+         background-color: #202225;
+    }
+}
+.main{
+    flex:1;
+    height: 100vh;
+    font-size: 1.5rem;
+    overflow: hidden;
+    font-family: 'Whitney-semibold', sans-serif;
+    &__header{
+        display: flex;
+        &-sidebar{
+            display: flex;
+            flex:0 0 17%;
+            background-color: #2C2F33;
+            color: #fff;
+            align-items: center;
+            padding: .58rem 1.5rem .58rem 2.25rem;
+            font-size: 1.7rem;
+            border-bottom: 1px solid #23272a;
+        }
+        &-currentchannel{
+            letter-spacing: .75px;
+            margin-right: auto;
+            font-family: "Whitney-semibold",sans-serif;
+        }
+        &-expandicon{
+            cursor: pointer;
+        }
+        &-chatbar{
+            flex:1;
+        }
+        
+    }
+    &__content{
+        display: flex;
+        height: 93vh;
+    }
+    &__sidebar{
+        
+        flex:0 1 17%;
+        background-color: #2C2F33;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        &-header{
+            display: flex;
+            align-items: center;
+            padding: .58rem 1.5rem .58rem 2.25rem;
+            font-size: 1.7rem;
+            border-bottom: 1px solid #23272a;
+        }
+        // &-currentchannel{
+        //     letter-spacing: .75px;
+        //     margin-right: auto;
+        // }
+        // &-expandicon{
+        //     cursor: pointer;
+        // }
+       
+    }
+    &__channels{
+        color:gray;
+        &-header{
+            display: flex;
+            align-items: center;
+            padding: 1.2rem 1.2rem .9rem 1.2rem;
+        }
+        &-addicon{
+            margin-left: auto;
+            cursor: pointer;
+        }
+    }
+    &__voice{
+        margin-top: auto;
+        border-bottom:1px solid #35383d;
+    }
+    
+}
+
+.main__roles{
+    flex:1;
+    background-color: #303136;
+}

@@ -5,12 +5,7 @@ import Addserver from '../../components/AddServer/Addserver'
 import AvailableServers from '../../components/AvailableServers/AvailableServers'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChatHeader from '../../components/ChatHeader/ChatHeader'
-import AddChannelPopup from '../../components/AddChannelPopup/AddChannelPopup'
-import SidebarChannel from '../../components/SidebarChannel/SidebarChannel'
-import Sidebarvoice from '../../components/Sidebarvoice/Sidebarvoice'
-import BadgeAvatars from '../../components/Avatar/BadgeAvatar'
-import Roles from '../../components/Roles/Roles'
-import './Universal.scss'
+import './Layout_Sidebar.scss'
 const useStyles=makeStyles((theme)=>{
     return{
         button:{
@@ -19,9 +14,9 @@ const useStyles=makeStyles((theme)=>{
         }
     }
 })
-const Universal = ({children}) => {
+const LayoutSidebar = ({children}) => {
+    console.log('layout sidebar');
     const classes=useStyles();
-    console.log('Universal called');
     return (
         <>
             <div className="mainpage">
@@ -50,8 +45,8 @@ const Universal = ({children}) => {
                         </div>
                     </div>
                     <div className="main__content">
-                        <div className='main__sidebar'>
-                            {/* <div className='main__channels'>
+                        {/* <div className='main__sidebar'>
+                            <div className='main__channels'>
                                 <div className="main__channels-header">
                                     <div className="main__channels-expandicon">
                                     <IconButton className={classes.button} aria-label="settings">
@@ -72,8 +67,8 @@ const Universal = ({children}) => {
                             </div>
                             <div className="main__avatar">
                                     <BadgeAvatars/>
-                            </div> */}
-                        </div>
+                            </div>
+                        </div> */}
                         {children}
                         {/* <div className="chat">
                             <div className='chat__message'>
@@ -93,4 +88,4 @@ const Universal = ({children}) => {
     )
 }
 
-export default Universal
+export default LayoutSidebar
