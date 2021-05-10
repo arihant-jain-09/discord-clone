@@ -24,12 +24,12 @@ function Roles() {
     const dispatch = useDispatch();
     
     useEffect(() => {
-        dispatch(currentrole({admin:servers}));
+        // dispatch(currentrole({admin:servers}));
         return () => {
            
         }
     }, [servers,dispatch])
-
+    // console.log('Roles called');
     const allrolesref=serverRef.collection('allroles');
     const rolequery=allrolesref.orderBy('createdAt');
     const [allroles]=useCollectionData(rolequery,{idField:'id'});

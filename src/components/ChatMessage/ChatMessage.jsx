@@ -12,7 +12,6 @@ const ChatMessage= ()=> {
      const channelRef=firestore.collection('servers').doc(currentserverid).collection('channels').doc(id).collection('messages');
     const query=channelRef.orderBy('createdAt');
     const [messages]=useCollectionData(query,{idField:'id'});
-    
     // const currentkey=useSelector((state)=>state.key.key);
     // useEffect(() => {
     //     const uploadRef= db.ref(`uploads/${currentkey}`);

@@ -27,8 +27,10 @@ const Home_serverId_channel = ({match}) => {
     useEffect(() => {
         const myfun=async()=>{
             const channelRef=firestore.collection("servers").doc(match.params.serverId).collection("channels").doc(match.params.channelId);
-            const channel=(await channelRef.get()).data();
-            dispatch(currentdoc({id:match.params.channelId,name:channel.channel}));
+            await channelRef.get().then((snapshot)=>{
+                dispatch(currentdoc({id:match.params.channelId,name:snapshot.data().channel}))                
+            })
+            
         }
         myfun();        
         return () => {

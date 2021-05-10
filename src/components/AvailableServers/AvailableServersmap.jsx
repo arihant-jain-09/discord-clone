@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { auth, firestore } from '../../firebase/firebase';
-import currentserver from '../../redux/server/server.actions';
+import currentserver, { deleteServer } from '../../redux/server/server.actions';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import './AvailableServers.scss'
 import { Dialog, makeStyles, withStyles } from '@material-ui/core';
 import ChangeServername from './Changeservername'
-import newserver from '../../redux/newserver/newserver.actions'
-import firebase from 'firebase/app'
+// import newserver from '../../redux/newserver/newserver.actions'
+// import firebase from 'firebase/app'
 import AddNewRole from '../AddNewRole/AddNewRole';
 import { useHistory } from 'react-router';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -44,26 +44,28 @@ function AvailableServersmap({server}) {
     const id=useSelector((state)=>state.currentserver.id)
     const myserver=server;
 
-    const handleDelete=async(server)=>{
-        setState(initialState);
-        dispatch((newserver({present:false})));
-        if(server.email===auth.currentUser.email){
-            const serverRef=firestore.collection('servers').doc(server.id);
-            const roleref=firestore.collection('roles').doc(server.id);
-            await roleref.delete();        
-            await serverRef.delete();
-            const userref=firestore.collection('users');
-            userref.doc(auth.currentUser.uid).set({
-              roles:{
-                [auth.currentUser.uid]:firebase.firestore.FieldValue.delete()
-              }
-            },{ merge: true })  
-        }
-        else{
-          return
-        }
-    }
-    const handlechangeserver=(server)=>{
+    // const handleDelete=async(server)=>{
+    //     setState(initialState);
+    //     dispatch(deleteServer(server));
+    //     dispatch((newserver({present:false})));
+    //     if(server.email===auth.currentUser.email){
+    //         const serverRef=firestore.collection('servers').doc(server.id);
+    //         const roleref=firestore.collection('roles').doc(server.id);
+    //         await roleref.delete();        
+    //         await serverRef.delete();
+    //         const userref=firestore.collection('users');
+    //         userref.doc(auth.currentUser.uid).set({
+    //           roles:{
+    //             [auth.currentUser.uid]:firebase.firestore.FieldValue.delete()
+    //           }
+    //         },{ merge: true })  
+    //     }
+    //     else{
+    //       return
+    //     }
+    // }
+    const handlechangeserver=async(server)=>{
+      await history.push(`/channels/${server.id}/${channels[0].id}`);
         dispatch((currentserver({
             id:server.id,
             name:server.servername,
@@ -160,7 +162,10 @@ function AvailableServersmap({server}) {
                     <StyledMenuItem onClick={()=>handlechangeserver(server)}>{server.servername}</StyledMenuItem>
                     <StyledMenuItem onClick={handleChangenickname}>Change Nickname</StyledMenuItem>
                     <StyledMenuItem onClick={handleAddroles}>Add roles</StyledMenuItem>
-                    <StyledMenuItem onClick={()=>handleDelete(server)}>Delete Server</StyledMenuItem>
+                    <StyledMenuItem onClick={()=>{
+                      setState(initialState);
+                      dispatch(deleteServer(server));
+                    }}>Delete Server</StyledMenuItem>
                 </StyledMenu>
                 {open && <Dialog open={open} onClose={()=>setopen(false)} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}} >
                     <ChangeServername handleClose={handledialogactions}/>
