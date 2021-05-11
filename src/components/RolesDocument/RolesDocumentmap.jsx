@@ -63,7 +63,7 @@ const RolesDocumentmap = ({role}) => {
     return (
         <div className='rolesdocument__main-individual'>
         <div className='rolesdocument__header-photo'>
-                <Avatar className={classes.avatar} src='/./bot.png'/>
+                <Avatar className={classes.avatar} src='/discord-clone/bot.png'/>
         </div>
             <div className="rolesdocument__content">
                         <div className="rolesdocument__content-header">

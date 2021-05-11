@@ -40,7 +40,7 @@ const useStyles=makeStyles((theme)=>{
             <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className="chatmessage">
             <div className="chatmessage">
                 <div className="chatmessage__replycontent">
-                    {msg.reply && <img className='chatmessage__replycontent--replyimage' src="/discord-reply.png" alt="reply"/>}
+                    {msg.reply && <img className='chatmessage__replycontent--replyimage' src="/discord-clone/discord-reply.png" alt="reply"/>}
                     <div className="chatmessage__replycontent--content">
                             { msg.reply && <ChatReply msg={msg}/>}
                         </div>

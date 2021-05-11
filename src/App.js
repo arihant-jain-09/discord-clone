@@ -15,12 +15,13 @@ const [user]=useAuthState(auth);
       <header className="App-header">
       </header>
       <main>
-        {!user && <Redirect to='/'/>}
+        {/* <img src='/discord-clone/discord_server.png' alt='discord-svg'/> */}
+        {!user && <Redirect to='/discord-clone'/>}
         <Switch>
-          <Route exact path='/' render={()=>auth.currentUser?<Redirect to='channels/@me'/>:<Homepage/>} />
+          <Route exact path='/discord-clone' render={()=>auth.currentUser?<Redirect to='/discord-clone/channels/@me'/>:<Homepage/>} />
             <Switch>
-              <Route exact path='/channels/@me' render={()=><Universal><Home></Home></Universal>}/>
-              <Route path='/channels/:serverId' render={(props)=><LayoutSidebar><ServerPage {...props}/></LayoutSidebar>}/>
+              <Route exact path='/discord-clone/channels/@me' render={()=><Universal><Home></Home></Universal>}/>
+              <Route path='/discord-clone/channels/:serverId' render={(props)=><LayoutSidebar><ServerPage {...props}/></LayoutSidebar>}/>
             </Switch>
         </Switch>
       </main>

@@ -63,7 +63,7 @@ export default function BadgeAvatars() {
   const classes=useStyles();
   const handleClick=async ()=>{
     await auth.signOut();
-    history.push('/');
+    history.push('/discord-clone');
   }
     return (
     <div>

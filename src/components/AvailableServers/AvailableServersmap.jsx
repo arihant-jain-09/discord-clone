@@ -144,7 +144,7 @@ function AvailableServersmap({server}) {
         <div className='availableserver__map'>
             <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={async()=>{
                 dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
-                 await history.push(`/channels/${server.id}/${channels[0].id}`);
+                 await history.push(`/discord-clone/channels/${server.id}/${channels[0].id}`);
                 //  const channelRef=firestore.collection('servers').doc(server.id).collection('channels');
                   // channelRef.get().then((response)=>{
                   //   response.forEach(doc=>{
@@ -153,6 +153,7 @@ function AvailableServersmap({server}) {
                   // })
                   // console.log(result);                 
                 }}
+                
                 className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}
                 src={server.serverimage} alt="availableserver"
                 >

@@ -30,7 +30,7 @@ const Channelmap=({msg})=>{
     return (
         <div>
              <p key={msg.id} onClick={async()=>{
-                 await history.push(`/channels/${currentserverid}/${msg.id}`)
+                 await history.push(`/discord-clone/channels/${currentserverid}/${msg.id}`)
                 }}
                 className={`${id===msg.id && `clicked`} sidebarchannel__content`}>
                 <span className='sidebarchannel__hash'>#</span>{msg.channel}</p>

@@ -178,7 +178,7 @@ function Addserver() {
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
                      userimage:auth.currentUser.photoURL,
-                     serverimage:'/./discord_server.png',
+                     serverimage:'./discord-clone/discord_server.png',
                      roleid:rolerefid.id,
                  }).then(async (value)=>{
                      dispatch((newserver({present:true})));
