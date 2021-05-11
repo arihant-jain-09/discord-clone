@@ -4,7 +4,7 @@ const Home = () => {
     return (
         <>
         <div className="home">
-                <img className="home__image" src="/discord-clone/discord-background.jpg" alt="Discord background" />
+                <img className="home__image" src="/discord-clone/wumpus.png" alt="Discord background" />
         </div>
         </>
     )

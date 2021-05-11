@@ -18,6 +18,7 @@ const useStyles=makeStyles({
     },
 })
 function AvailableServersmap({server}) {
+  console.log('servermap called');
   const history=useHistory();
   const channelRef=firestore.collection('servers').doc(server.id).collection('channels');
   const query=channelRef.orderBy('createdAt').limit(1);

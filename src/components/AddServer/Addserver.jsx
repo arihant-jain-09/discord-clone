@@ -178,7 +178,7 @@ function Addserver() {
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
                      userimage:auth.currentUser.photoURL,
-                     serverimage:'./discord-clone/discord_server.png',
+                     serverimage:'/discord-clone/discord_server.png',
                      roleid:rolerefid.id,
                  }).then(async (value)=>{
                      dispatch((newserver({present:true})));
@@ -286,7 +286,7 @@ function Addserver() {
                     <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={handleImageUpload} />
                         <label htmlFor="icon-button-file">
                             <IconButton className={classes.iconbutton} color="primary" aria-label="upload picture" component="span">
-                                <img className='uploadimage' src="/./upload.png" alt=""/>
+                                <img className='uploadimage' src="/discord-clone/upload.png" alt=""/>
                             </IconButton>
                         </label>
                         </Container>

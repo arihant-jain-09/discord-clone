@@ -6,6 +6,7 @@ import './AvailableServers.scss'
 import currentserver from '../../redux/server/server.actions';
 import { useDispatch, useSelector} from 'react-redux';
 function AvailableServers () {
+    console.log('Available Servers called');
     const dispatch = useDispatch();
     const serverRef=firestore.collection('servers');
     const query=serverRef.orderBy('createdAt').limit(10);

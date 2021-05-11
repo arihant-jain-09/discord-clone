@@ -1,7 +1,7 @@
 .home{
-    &__image{
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-    }
+    background-color: #36393f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex:1;
 }

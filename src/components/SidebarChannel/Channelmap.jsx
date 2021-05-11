@@ -22,7 +22,6 @@ import './SidebarChannel.scss'
 // },(prevProps, nextProps) => prevProps.msg === nextProps.msg)
 
 const Channelmap=({msg})=>{
-    console.log('Channel map called');
     // const {msg}=props;
     const history=useHistory();
     const id=useSelector((state)=>state.doc.id);

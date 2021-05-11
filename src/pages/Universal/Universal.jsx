@@ -1,47 +1,25 @@
-import { IconButton, makeStyles } from '@material-ui/core'
+import styled from 'styled-components'
 import React from 'react'
-import { useSelector } from 'react-redux'
-import Addserver from '../../components/AddServer/Addserver'
-import AvailableServers from '../../components/AvailableServers/AvailableServers'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChatHeader from '../../components/ChatHeader/ChatHeader'
-import AddChannelPopup from '../../components/AddChannelPopup/AddChannelPopup'
-import SidebarChannel from '../../components/SidebarChannel/SidebarChannel'
-import Sidebarvoice from '../../components/Sidebarvoice/Sidebarvoice'
-import BadgeAvatars from '../../components/Avatar/BadgeAvatar'
-import Roles from '../../components/Roles/Roles'
 import './Universal.scss'
-const useStyles=makeStyles((theme)=>{
-    return{
-        button:{
-            padding:theme.spacing(1),
-            color:'#fff'
-        }
-    }
-})
+import { ReactComponent as FriendsLogo } from '../../assets/friends.svg'
+
+const FriendsStyled=styled(FriendsLogo)`
+width:2.5rem;
+height:2.5rem;
+display:flex;
+align-items:center;
+`
 const Universal = ({children}) => {
-    const classes=useStyles();
     console.log('Universal called');
     return (
         <>
-            <div className="mainpage">
-                <div className="mainpage__servers">
-                    <div className="mainpage__servers--add">
-                        <Addserver/>
-                    </div>
-                    <div className="mainpage__servers-display">
-                        <AvailableServers/>
-                    </div>
-                </div>
                 <div className='universal'>
                     <div className="universal__header">
                         <div className="universal__header-sidebar">
-                                <p className='universal__header-currentchannel'>{useSelector((state)=>state.currentserver.name)}</p>
-                                <div className="universal__header-expandicon">
-                                    <IconButton className={classes.button} aria-label="settings">
-                                        <ExpandMoreIcon fontSize='large'/>
-                                    </IconButton>
-                                </div>
+                            <div className="universal__header-inputcontainer">
+                                <input type="text" className='universal__header-input' placeholder='Find or start a conversation'/>
+                            </div>
                         </div>
                         <div className="universal__header-chatbar">
                             <div className="universal__header--chat">
@@ -51,6 +29,16 @@ const Universal = ({children}) => {
                     </div>
                     <div className="universal__content">
                         <div className='universal__sidebar'>
+                            <div className="universal__sidebar-container">
+                                <div className="universal__sidebar-content">
+                                    <div className="universal__sidebar-avatar">
+                                       <FriendsStyled/>
+                                    </div>
+                                    <div className="universal__sidebar-title">
+                                        Friends
+                                    </div>
+                                </div>
+                            </div>
                             {/* <div className='universal__channels'>
                                 <div className="universal__channels-header">
                                     <div className="universal__channels-expandicon">
@@ -83,12 +71,24 @@ const Universal = ({children}) => {
                                 <ChatSearchBar/>
                             </div>
                         </div> */}
-                        <div className="universal__roles">
-                            {/* <Roles/> */}
+                        <div className="activity">
+                            <div className="activity__container">
+                                <div className="activity__container-heading">
+                                    ACTIVE NOW
+                                </div>
+                                <div className="activity__container-content">
+                                    <div className="activity__container--head">
+                                        It's quiet for now...
+                                    </div>
+                                    <div className="activity__container--para">
+                                    When a friend starts an activity—like playing a game or hanging out on voice—we’ll show it here!
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

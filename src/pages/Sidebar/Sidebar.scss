@@ -1,0 +1,12 @@
+.mainpage{
+    display: flex;
+    position: relative;
+    height: 100%;
+    &__servers{
+        width: 7.1rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #202225;
+    }
+}

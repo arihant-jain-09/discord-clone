@@ -19,15 +19,15 @@ const LayoutSidebar = ({children}) => {
     const classes=useStyles();
     return (
         <>
-            <div className="mainpage">
-                <div className="mainpage__servers">
+            {/* <div className="mainpage"> */}
+                {/* <div className="mainpage__servers">
                     <div className="mainpage__servers--add">
                         <Addserver/>
                     </div>
                     <div className="mainpage__servers-display">
                         <AvailableServers/>
                     </div>
-                </div>
+                </div> */}
                 <div className='main'>
                     <div className="main__header">
                         <div className="main__header-sidebar">
@@ -83,7 +83,7 @@ const LayoutSidebar = ({children}) => {
                         </div> */}
                     </div>
                 </div>
-            </div>
+            {/* </div> */}
         </>
     )
 }

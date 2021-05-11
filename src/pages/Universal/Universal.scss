@@ -1,38 +1,52 @@
-.mainpage{
-    display: flex;
-    &__servers{
-        flex:0 0 4.62%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-         background-color: #202225;
-    }
-}
+// .mainpage{
+//     display: flex;
+//     &__servers{
+//         flex:0 0 4.62%;
+//         display: flex;
+//         flex-direction: column;
+//         align-items: center;
+//          background-color: #202225;
+//     }
+// }
 .universal{
-    flex:1;
+    position: absolute;
+    top:0;
+    left:7.1rem;
+    right:0;
     height: 100vh;
     font-size: 1.5rem;
     overflow: hidden;
     font-family: 'Whitney-semibold', sans-serif;
     &__header{
         display: flex;
+        height: 4.8rem;
         &-sidebar{
             display: flex;
-            flex:0 0 17%;
-            background-color: #2C2F33;
+            flex:0 0 16.45%;
+            background-color: #2f3136;
             color: #fff;
             align-items: center;
-            padding: .58rem 1.5rem .58rem 2.25rem;
+            justify-content: center;
+            padding: 1.75rem 1rem 1.75rem 1rem;
             font-size: 1.7rem;
             border-bottom: 1px solid #23272a;
         }
-        &-currentchannel{
-            letter-spacing: .75px;
-            margin-right: auto;
-            font-family: "Whitney-semibold",sans-serif;
+        &-inputcontainer{
+            display: flex;
+            align-items: center;
+            border-radius: 4px;
+            width: 100%;
+            background-color: #202225;
+            padding: .55rem;
         }
-        &-expandicon{
-            cursor: pointer;
+        &-input{
+            border:0;
+            color:#5f6369;
+            font-family: 'Whitney-medium';
+            outline: none;
+            width: 100%;
+            font-size: 1.4rem;
+            background-color: #202225;
         }
         &-chatbar{
             flex:1;
@@ -48,25 +62,34 @@
         height: 93vh;
     }
     &__sidebar{
-        flex:0 0 17%;
+        flex:0 0 16.45%;
         background-color: #2C2F33;
         color: #fff;
         display: flex;
         flex-direction: column;
-        &-header{
-            display: flex;
-            align-items: center;
-            padding: .58rem 1.5rem .58rem 2.25rem;
-            font-size: 1.7rem;
-            border-bottom: 1px solid #23272a;
+        &-container{
+            padding: 1rem;
         }
-        // &-currentchannel{
-        //     letter-spacing: .75px;
-        //     margin-right: auto;
-        // }
-        // &-expandicon{
-        //     cursor: pointer;
-        // }
+        &-content{
+            border-radius: 3px;
+            display: flex;
+            height: 4rem;
+            align-items: center;
+            padding: 1rem;
+            &:hover{
+                background-color: #34373c;
+            }
+        }
+        &-avatar{
+            font-size: 2rem;
+            margin-right: 1.6rem;
+        }
+        &-title{
+            font-family: 'Whitney-medium';
+            font-size: 1.65rem;
+            padding-bottom: .2rem;
+        }
+
        
     }
     &__channels{
@@ -88,7 +111,35 @@
     
 }
 
-.universal__roles{
-    flex:0 0 20%;
+.activity{
+    flex:0 0 25%;
     background-color: #303136;
+    padding: 1.69rem;
+    &__container{
+        display: flex;
+        flex-direction: column;
+        color:#acaeb1;
+        &-heading{
+            font-size: 1.2rem;
+            padding-bottom: 1rem;
+        }
+        &-content{
+            background-color: #36393f;
+            padding: 1.7rem;
+            display: flex;
+            flex-direction: column;
+            border-radius: 5px;
+            text-align: center;
+        }
+        &--head{
+            color:#fff;
+            display: inline-block;
+            font-size: 1.6rem;
+            padding-bottom: .75rem;
+        }
+        &--para{
+            font-size: 1.42rem;
+            font-family: 'Whitney-light';
+        }
+    }
 }
