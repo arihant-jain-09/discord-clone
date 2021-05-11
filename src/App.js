@@ -15,7 +15,6 @@ const [user]=useAuthState(auth);
       <header className="App-header">
       </header>
       <main>
-        {/* <img src='/discord-clone/discord_server.png' alt='discord-svg'/> */}
         {!user && <Redirect to='/discord-clone'/>}
         <Switch>
           <Route exact path='/discord-clone' render={()=>auth.currentUser?<Redirect to='/discord-clone/channels/@me'/>:<Homepage/>} />
