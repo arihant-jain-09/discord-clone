@@ -1,6 +1,6 @@
-import React, { useEffect,useState } from 'react';
+import React, { useState } from 'react';
 import EditIcon from '@material-ui/icons/Edit';
-import { Dialog, IconButton, makeStyles } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import { auth, firestore } from '../../firebase/firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import currentmessage from '../../redux/message/message.actions'
