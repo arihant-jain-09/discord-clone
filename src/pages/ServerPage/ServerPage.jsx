@@ -1,14 +1,17 @@
-import React from 'react'
+import React,{lazy,Suspense} from 'react'
 import { Route, Switch } from 'react-router'
-import Home_serverId from '../home_serverId/home_serverId';
-import Home_serverId_channel from '../Home_serverId_channel/Home_serverId_channel';
+import Spinner from '../../components/Spinner/Spinner';
+const Home_serverId=lazy(()=>import('../home_serverId/home_serverId'));
+const Home_serverId_channel=lazy(()=>import('../Home_serverId_channel/Home_serverId_channel'))
 const ServerPage = ({match}) => {
     return (
         <>
+        <Suspense fallback={<Spinner/>}>
             <Switch>
                 <Route exact path={`${match.path}`} component={Home_serverId}/>
                 <Route path={`${match.path}/:channelId`} component={Home_serverId_channel}/>
             </Switch>
+        </Suspense>
         </>
     )
 }

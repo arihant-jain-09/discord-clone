@@ -1,0 +1,14 @@
+.discord__homepage{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color:#232428;
+    &-svg{
+        width: 40%;
+    }
+    &-btn{
+        width: 15%;
+    }
+}

@@ -6,7 +6,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { BrowserRouter } from 'react-router-dom';
-
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
@@ -15,3 +15,4 @@ ReactDOM.render(
     </Provider>,
   document.getElementById('root')
 );
+serviceWorkerRegistration.register();
