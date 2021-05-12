@@ -21,7 +21,8 @@
         display: flex;
         &-sidebar{
             display: flex;
-            flex:0 0 17%;
+            min-width: 24rem;
+            flex:0 0 16.45%;
             height: 4.8rem;
             background-color: #2C2F33;
             color: #fff;
@@ -52,7 +53,8 @@
         height: 93vh;
     }
     &__sidebar{
-        flex:0 0 17%;
+        flex:0 0 16.45%;
+        // min-width: 23.9rem;
         background-color: #2C2F33;
         color: #fff;
         display: flex;

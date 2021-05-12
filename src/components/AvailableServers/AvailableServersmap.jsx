@@ -18,7 +18,6 @@ const useStyles=makeStyles({
     },
 })
 function AvailableServersmap({server}) {
-  console.log('servermap called');
   const history=useHistory();
   const channelRef=firestore.collection('servers').doc(server.id).collection('channels');
   const query=channelRef.orderBy('createdAt').limit(1);
@@ -65,8 +64,8 @@ function AvailableServersmap({server}) {
     //       return
     //     }
     // }
-    const handlechangeserver=async(server)=>{
-      await history.push(`/channels/${server.id}/${channels[0].id}`);
+    const handlechangeserver=(server)=>{
+      history.push(`/channels/${server.id}/${channels[0].id}`);
         dispatch((currentserver({
             id:server.id,
             name:server.servername,
@@ -142,20 +141,20 @@ function AvailableServersmap({server}) {
       }))(MenuItem);
 
     return (
-        <div className='availableserver__map'>
+        <div className={`${id===server.id?'availableserver__clicked':'availableserver__map'}`}>
             <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={async()=>{
-                dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
-                 await history.push(`/discord-clone/channels/${server.id}/${channels[0].id}`);
-                //  const channelRef=firestore.collection('servers').doc(server.id).collection('channels');
-                  // channelRef.get().then((response)=>{
-                  //   response.forEach(doc=>{
-                  //     console.log(doc.data())
-                  //   })
-                  // })
-                  // console.log(result);                 
+              //  await channelRef.orderBy('createdAt').limit(1).get().then((snapshot)=>{
+              //    snapshot.docs.map(async(channel)=>{
+              //     dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
+              //     history.push(`/discord-clone/channels/${server.id}/${channel.id}`);
+              //    })
+              //  })
+               dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
+               if(channels && !!channels.length)
+                  history.push(`/discord-clone/channels/${server.id}/${channels[0].id}`);               
                 }}
                 
-                className={`${id===server.id && `availableserver__map-clicked`} availableserver__map-image`}
+                className={`${id===server.id && 'availableserver__clicked-imageuniversal'} availableserver__map-imageuniversal`}
                 src={server.serverimage} alt="availableserver"
                 >
                 </img>

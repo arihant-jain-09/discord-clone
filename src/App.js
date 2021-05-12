@@ -28,6 +28,7 @@ const [user]=useAuthState(auth);
   return (
     <div className="App">
       <main>
+
         {!user && <Redirect to='/discord-clone'/>}
         <Switch>
           <ErrorBoundary FallbackComponent={ErrorFallback}>

@@ -1,5 +1,5 @@
 const initialState={
-    id:'LNhwXEYI7pTlOgTN9Chm',
+    id:null,
     name:'Welcome to Discord',
     email:'',
   }

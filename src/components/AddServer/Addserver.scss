@@ -12,6 +12,22 @@
     }
 }
 .addserver{
+    &__addicon{
+        color:#3ba55c;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        background-color: #36393f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        &:hover{
+            border-radius: 30%;
+            color:#fff;
+            background-color: #3ba55c;
+        }
+    }
     &__form{
         width: 100%;
         border:0;

@@ -27,9 +27,6 @@
         &--admin{
             color:rgb(231, 76, 60);
         }
-        &--squad{
-            color:#d9dde0;
-        }
         &-status{
             color:#8e9297;
             font-size: 1.2rem;
@@ -65,6 +62,7 @@
     font-family: 'UniSansRegular';
     position: absolute;
     top:0;
+    z-index: 100;
     left:-120%;
     animation: moveleftoright .3s;
     &__header{

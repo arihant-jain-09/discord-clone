@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import AddIcon from '@material-ui/icons/AddCircle';
 import { Avatar, Container, DialogActions, DialogContent, DialogContentText, IconButton, makeStyles, Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
-import PhotoIcon from '@material-ui/icons/Photo';
 import Resizer from "react-image-file-resizer";
 import './Addserver.scss'
 import { auth, firestore } from '../../firebase/firebase';
@@ -16,6 +14,9 @@ const useStyles=makeStyles({
         width:'4.8rem',
         height:'4.8rem',
         color:'#43b581'
+    },
+    addiconcontainer:{
+        padding:0
     },
     header:{
         textAlign:'center'
@@ -264,10 +265,10 @@ function Addserver() {
       
     return (
     <div className='addserver'>
-            <div className="addserver__addicon">
-                <IconButton onClick={handleClickOpen} >
-                   <AddIcon className={classes.addicon} />
-                </IconButton>
+            <div className="addserver__addicon" onClick={handleClickOpen}>
+                <svg className="circleIcon-1-oi1i" aria-hidden="false" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M20 11.1111H12.8889V4H11.1111V11.1111H4V12.8889H11.1111V20H12.8889V12.8889H20V11.1111Z"></path>
+                </svg>
             </div>
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}} >
             <DialogContent className={classes.dialogcontent}>
