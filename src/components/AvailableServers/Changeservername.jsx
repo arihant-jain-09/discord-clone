@@ -99,7 +99,7 @@ function ChangeServername({handleClose}) {
     return (
     <div className='ChangeServername'>
             <DialogContent className={classes.dialogcontent}>
-            <DialogContentText className={classes.header}>
+            <DialogContentText component={'div'}className={classes.header}>
                     <Typography component={'span'} className={classes.header__heading}>
                         Customize your server
                     </Typography>
@@ -111,7 +111,7 @@ function ChangeServername({handleClose}) {
                     <input accept="image/*" className={classes.input} id="icon-button-file" type="file" onChange={handleImageUpload} />
                         <label htmlFor="icon-button-file">
                             <IconButton className={classes.iconbutton} color="primary" aria-label="upload picture" component="span">
-                                <img className='uploadimage' src="./upload.png" alt=""/>
+                                <img className='uploadimage' src="/discord-clone/upload.png" alt=""/>
                             </IconButton>
                         </label>
                         </Container>

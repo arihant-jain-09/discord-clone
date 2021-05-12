@@ -2,7 +2,6 @@ import {all,call, takeEvery} from 'redux-saga/effects'
 import { auth, firestore, default as firebase } from '../../firebase/firebase';
 
 export function* DeleteServerSuccess({payload}){
-    yield console.log(payload);
     if(payload.email===auth.currentUser.email){
         const serverRef=yield firestore.collection('servers').doc(payload.id);
         const roleref=yield firestore.collection('roles').doc(payload.id);

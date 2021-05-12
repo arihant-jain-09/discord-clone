@@ -140,24 +140,27 @@ function AvailableServersmap({server}) {
         },
       }))(MenuItem);
 
-    return (
-        <div className={`${id===server.id?'availableserver__clicked':'availableserver__map'}`}>
-            <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={async()=>{
-              //  await channelRef.orderBy('createdAt').limit(1).get().then((snapshot)=>{
+      const ChangeServer=()=>{
+        dispatch(currentserver({id:server.id,name:server.servername,email:server.email}));
+        //  await channelRef.orderBy('createdAt').limit(1).get().then((snapshot)=>{
               //    snapshot.docs.map(async(channel)=>{
               //     dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
               //     history.push(`/discord-clone/channels/${server.id}/${channel.id}`);
               //    })
               //  })
-               dispatch(currentserver({id:server.id,name:server.servername,email:server.email}))
-               if(channels && !!channels.length)
-                  history.push(`/discord-clone/channels/${server.id}/${channels[0].id}`);               
-                }}
-                
+              if(channels && !!channels.length)
+              history.push(`/discord-clone/channels/${server.id}/${channels[0].id}`);               
+            }
+
+    return (
+        <div className={`${id===server.id?'availableserver__clicked':'availableserver__map'}`}>
+          {server.serverimage ? <img  key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={ChangeServer}
                 className={`${id===server.id && 'availableserver__clicked-imageuniversal'} availableserver__map-imageuniversal`}
                 src={server.serverimage} alt="availableserver"
-                >
-                </img>
+                />:<div className='availableserver__map-text' onClick={ChangeServer} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} >
+                    {server.servername.slice(0,1)}
+                  </div>}
+            
                 
                 <StyledMenu keepMounted open={state.mouseY !== null} onClose={handleClose}>
                     <StyledMenuItem onClick={()=>handlechangeserver(server)}>{server.servername}</StyledMenuItem>
@@ -166,6 +169,7 @@ function AvailableServersmap({server}) {
                     <StyledMenuItem onClick={()=>{
                       setState(initialState);
                       dispatch(deleteServer(server));
+                      history.push('/discord-clone/channels/@me');
                     }}>Delete Server</StyledMenuItem>
                 </StyledMenu>
                 {open && <Dialog open={open} onClose={()=>setopen(false)} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}} >

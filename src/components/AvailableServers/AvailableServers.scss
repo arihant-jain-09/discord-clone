@@ -6,7 +6,7 @@
     
 }
 .availableserver__map{
-    margin-bottom: .5rem;
+    margin-bottom: .8rem;
     position: relative;
     &--homeicon{
         color:#dcddde;
@@ -47,6 +47,26 @@
             border-radius: 30%;
         }
     }
+    &-text{
+        color:#dcddde;
+        width: 4.8rem;
+        height: 4.8rem;
+        border-radius: 50%;
+        background-color: #36393f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all .3s;
+        position: relative;
+        font-size: 1.8rem;
+        font-family: "Whitney-semibold";
+        &:hover{
+            color:#fff;
+            border-radius: 30%;
+            background-color: #7289DA;
+        }
+        
+    }
     &:hover::before{
         border-radius: 0 2px 2px 0;
         transform: scaleY(2.5)
@@ -65,7 +85,7 @@
     }
 }
 .availableserver__clicked{
-    margin-bottom: .5rem;
+    margin-bottom: .8rem;
     position: relative;
     &--homeicon{
         color:#fff;

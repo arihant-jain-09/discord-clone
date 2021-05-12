@@ -172,15 +172,13 @@ function Addserver() {
                  })
              }
              else{
-                const rolerefid=roleRef.doc();
                 await serverRef.add({
                      servername:formValue,
                      createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                      email:auth.currentUser.email,
                      admin:auth.currentUser.displayName,
                      userimage:auth.currentUser.photoURL,
-                     serverimage:'/discord-clone/discord_server.png',
-                     roleid:rolerefid.id,
+                     serverimage:'',
                  }).then(async (value)=>{
                      dispatch((newserver({present:true})));
                     dispatch(currentserver({
@@ -196,14 +194,14 @@ function Addserver() {
                         id:value.id,
                         name:'general'
                     }))))
-                    await channelRef.add({
+                    await channelRef.doc(value.id).set({
                         channel:'roles',
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                         email:auth.currentUser.email,
                     })
                     let allroleid;
+                    const rolerefid=roleRef.doc(value.id);
                     await rolerefid.set({
-                        serverid:value.id,
                         servername:formValue,
                         createdAt:firebase.firestore.FieldValue.serverTimestamp(),
                     }).then(async()=>{
