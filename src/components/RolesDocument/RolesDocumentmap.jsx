@@ -23,9 +23,9 @@ const RolesDocumentmap = ({role}) => {
     const [count,setcount]=useState(0);
     const handleclick=async(obj)=>{
         setcount(count+1);
-        // if(count>0){
-        //     return
-        // }
+        if(count>0){
+            return
+        }
         const currentUserRef=firestore.collection('users').doc(auth.currentUser.uid);
         const {rolename,id,email,photoURL,name,serverroleid,serverroletypeid,color}=obj;
         const user= (await currentUserRef.get()).data()

@@ -1,8 +1,6 @@
 import { IconButton, makeStyles } from '@material-ui/core'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import Addserver from '../../components/AddServer/Addserver'
-import AvailableServers from '../../components/AvailableServers/AvailableServers'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChatHeader from '../../components/ChatHeader/ChatHeader'
 import './Layout_Sidebar.scss'

@@ -1,7 +1,6 @@
 import React from 'react'
-import ReactPlayer from 'react-player/lazy'
+import ReactPlayer from 'react-player/youtube'
 function RenderVideo({msg}) {
-   
     const linkify=(input)=>{
         var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
         return input.match(urlRegex)

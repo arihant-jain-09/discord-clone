@@ -20,21 +20,26 @@ html {
   @font-face {
     font-family: 'Whitney-semibold';
     src: local('Whitney-semibold'), url(./fonts/whitneysemibold.otf);
+    font-display: swap;
   }
   @font-face {
     font-family: 'Whitney-light';
     src: local('Whitney-light'), url(./fonts/whitneylight.otf);
+    font-display: swap;
   }
   @font-face {
     font-family: 'Whitney-bold';
     src: local('Whitney-bold'), url(./fonts/whitneybold.otf);
+    font-display: swap;
   }
   @font-face {
     font-family: 'Whitney-medium';
     src: local('Whitney-medium'), url(./fonts/whitneymedium.otf);
+    font-display: swap;
   }
   @font-face {
     font-family: 'UniSansRegular';
     src: local('UniSansRegular'), url(./fonts/UniSansRegular.otf);
+    font-display: swap;
   }
  

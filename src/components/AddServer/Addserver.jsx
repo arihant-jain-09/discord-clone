@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Container, DialogActions, DialogContent, DialogContentText, IconButton, makeStyles, Typography } from '@material-ui/core';
+import { Container, DialogActions, DialogContent, DialogContentText, IconButton, makeStyles, Typography } from '@material-ui/core';
 import Dialog from '@material-ui/core/Dialog';
 import Resizer from "react-image-file-resizer";
 import './Addserver.scss'

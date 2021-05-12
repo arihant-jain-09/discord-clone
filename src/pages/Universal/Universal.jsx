@@ -10,7 +10,7 @@ height:2.5rem;
 display:flex;
 align-items:center;
 `
-const Universal = ({children}) => {
+const Universal = () => {
     console.log('Universal called');
     return (
         <>
@@ -62,7 +62,9 @@ const Universal = ({children}) => {
                                     <BadgeAvatars/>
                             </div> */}
                         </div>
-                        {children}
+                        <div className="universal__mid">
+                            <img className="universal__mid-image" src="/discord-clone/wumpus.png" alt="Discord background" />
+                        </div>
                         {/* <div className="chat">
                             <div className='chat__message'>
                                 <ChatMessage/>

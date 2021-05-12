@@ -1,7 +1,7 @@
 import React from 'react'
 import Addserver from '../../components/AddServer/Addserver'
 import AvailableServers from '../../components/AvailableServers/AvailableServers'
-import './Sidebar.scss'
+import './ServerComponent.scss'
 const Sidebar = () => {
     return (
         <>

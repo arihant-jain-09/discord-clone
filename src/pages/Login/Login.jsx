@@ -1,7 +1,7 @@
 import { Button, makeStyles } from '@material-ui/core'
 import React from 'react'
 import { useDispatch } from 'react-redux';
-import './HomePage.scss'
+import './Login.scss'
 import { GoogleSignInStart } from '../../redux/users/user.action';
 // import GitHubIcon from '@material-ui/icons/GitHub';
 const useStyles=makeStyles({

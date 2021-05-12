@@ -154,7 +154,7 @@ function AvailableServersmap({server}) {
 
     return (
         <div className={`${id===server.id?'availableserver__clicked':'availableserver__map'}`}>
-          {server.serverimage ? <img  key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={ChangeServer}
+          {server.serverimage ? <img key={server.id} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} onClick={ChangeServer}
                 className={`${id===server.id && 'availableserver__clicked-imageuniversal'} availableserver__map-imageuniversal`}
                 src={server.serverimage} alt="availableserver"
                 />:<div className='availableserver__map-text' onClick={ChangeServer} onContextMenu={handleClick} style={{ cursor: 'context-menu' }} >

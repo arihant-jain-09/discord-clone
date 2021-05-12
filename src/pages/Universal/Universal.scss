@@ -94,6 +94,17 @@
 
        
     }
+    &__mid{
+        background-color: #36393f;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex:1;
+        &-image{
+            display: block;
+            width: auto;
+        }
+    }
     &__channels{
         color:gray;
         &-header{

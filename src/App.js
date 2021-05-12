@@ -8,11 +8,9 @@ import LayoutSidebar from './pages/Layout_Sidebar/Layout_Sidebar';
 import Spinner from './components/Spinner/Spinner';
 import {ErrorBoundary} from 'react-error-boundary'
 import {ErrorImageOverlay,ErrorImageContainer,ErrorImageText} from './pages/ErrorBoundaries/Errorboundaries.styles.jsx'
-import Sidebar from './pages/Sidebar/Sidebar';
-const Homepage=lazy(()=>import('./pages/HomePage/homepage.jsx'));
-const Home=lazy(()=>import('./pages/home@me/home@me'));
+import ServerComponent from './pages/ServerComponent/ServerComponent.jsx'
+const Login=lazy(()=>import('./pages/Login/Login.jsx'));
 const ServerPage=lazy(()=>import('./pages/ServerPage/ServerPage'));
-
 const ErrorFallback=({error,resetErrorBoundary})=>{
   return <>
     <ErrorImageOverlay>
@@ -33,10 +31,10 @@ const [user]=useAuthState(auth);
         <Switch>
           <ErrorBoundary FallbackComponent={ErrorFallback}>
           <Suspense fallback={<Spinner/>}>
-          <Route exact path='/discord-clone' render={()=>auth.currentUser?<Redirect to='/discord-clone/channels/@me'/>:<Homepage/>} />
-          <Route path='/discord-clone/channels' component={Sidebar}/>
+          <Route exact path='/discord-clone' render={()=>auth.currentUser?<Redirect to='/discord-clone/channels/@me'/>:<Login/>} />
+          <Route path='/discord-clone/channels' component={ServerComponent}/>
             <Switch>
-              <Route exact path='/discord-clone/channels/@me' render={()=><Universal><Home></Home></Universal>}/>
+              <Route exact path='/discord-clone/channels/@me' render={()=><Universal/>}/>
               <Route path='/discord-clone/channels/:serverId' render={(props)=><LayoutSidebar><ServerPage {...props}/></LayoutSidebar>}/>
             </Switch>
             </Suspense>

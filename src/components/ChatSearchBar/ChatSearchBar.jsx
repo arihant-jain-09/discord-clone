@@ -1,4 +1,4 @@
-import React, { useState,useRef } from 'react'
+import React, { useState} from 'react'
 import './ChatSearchBar.scss'
 import firebase from 'firebase/app'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
@@ -8,11 +8,8 @@ import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
 import { IconButton,makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { auth, firestore } from '../../firebase/firebase';
-// import { Picker } from 'emoji-mart'
-// import 'emoji-mart/css/emoji-mart.css'
 import FileUpload from '../FileUpload/FileUpload'
 import openupload from '../../redux/openupload/message.actions'
-// import OutsideClick from '../OutsideClick/OutsideClick'
 import Emojicontainer from '../Emoji/Emojicontainer'
 import replytoggle from '../../redux/replytoggle/replytoggle.actions'
 import ChatSearchReply from './ChatSearchReply'
@@ -85,12 +82,6 @@ function ChatSearchBar() {
         }
         setformValue('');
     }
-    const handleselect=(emoj)=>{
-        setformValue(()=>{
-           return formValue+emoj.native
-        })
-        
-    }
     const handlePicker=()=>{
         setopenpicker(!openpicker)
     }
@@ -129,7 +120,6 @@ function ChatSearchBar() {
                     </IconButton>
                 </div>
             </div>
-         {/* {openpicker&& <div ref={ref} className='emojipicker'><Picker  onSelect={handleselect} /></div>} */}
          {openpicker&& <div className='emojipicker'><Emojicontainer/></div>}
         {useSelector((state)=>state.open.open) && <div className='upload'><FileUpload/></div>}
         </div>
