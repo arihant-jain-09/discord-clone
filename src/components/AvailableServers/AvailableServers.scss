@@ -39,8 +39,8 @@
     }
     &-imageuniversal{
         object-fit:cover;
-        width: 5rem;
-        height: 5rem;
+        width: 4.8rem;
+        height: 4.8rem;
         border-radius: 50%;
         transition: border-radius .3s;
         &:hover{
@@ -55,12 +55,12 @@
         content:'';
         display:block;
         background-color: #fff;
-        width: .5rem;   
+        width: .45rem;   
         height:.9rem;
         position: absolute;
         border-radius: 0 4px 4px 0;
         top:2.25rem;
-        left:-23.5%;
+        left:-25%;
         transition: all .3s;    
     }
 }
@@ -93,19 +93,19 @@
     }
     &-imageuniversal{
         object-fit:cover;
-        width: 5rem;
-        height: 5rem;
+        width: 4.8rem;
+        height: 4.8rem;
         border-radius: 30%;
     }
     &::before{
         content:'';
         display:block;
         background-color: #fff;
-        width: .4rem;   
+        width:.45rem;   
         height:4rem;
         position: absolute;
         border-radius: 0 4px 4px 0;
         top:.5rem;
-        left:-23.5%;
+        left:-25%;
     }
 }
