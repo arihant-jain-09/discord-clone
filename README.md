@@ -28,19 +28,16 @@
 - [Installation](#installation)
 - [Links](#links)
 - [Deployed](#Deployed)
+- [Contribution](#Contribution)
 
 ## About
 
 A clone of Discord with features like realtime chat app, roles, file sharing, servers...etc,
 - React is used along with Redux to power front-end.
-- Redux to manage state
+- Redux to manage state along with Redux Saga.
+- React Routing with Error handling and Discord Loading between pages.
 - Firebase is used for authentication and firestore to store messages, users and servers.
 - Material UI is used along with SASS with a little of styled components for UI.
-
-#### There are 2 Links in deployment section:
-- Firebase:  More stable but less performance no routing  (branch-> master-node).
-- Github Pages: In Development more optimized performance gains with routing (branch-> master-routing).
-
 
 ## Installation
 ```js
@@ -54,10 +51,19 @@ $ npm run start
 
 ## Links
 
-- [Website](http://discord-clone-12045.web.app/)
+- [Website](https://arihant-jain-09.github.io/discord-clone/)
 - [GitHub](https://github.com/arihant-jain-09/discord-clone)
 
 ## Deployed
 
-- [Firebase](http://discord-clone-12045.web.app/)
 - [GitHub](https://arihant-jain-09.github.io/discord-clone/)
+
+## Contribution
+Contributions are always Welcome...
+
+-   Fork the repository
+-   Improve current program by
+    -   improving functionality
+    -   adding new feature
+    -   bug fixes
+-   Push your work and Create a Pull Request
