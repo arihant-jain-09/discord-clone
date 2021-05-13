@@ -96,9 +96,70 @@
 }
 ////////////////////////////////// render video
 .rendervideo{
-    padding-top: 1.25%;
-    &__videolink{
+    padding-top: 0.25%;
+    &__videocontainer{
+        width: 42.5rem;
+        padding: 1rem;
+        margin-left: .4rem;
         background-color: #2f3136;
+        border-radius: 3px;
+        position: relative;
+        &::before{
+            content:"";
+            width:.4rem;
+            height: 100%;
+            background-color: red;
+            position: absolute;
+            top:0;
+            left:-.4rem;
+            border-radius:3px 0 0 3px;
+        }
+        &-providerlink{
+            font-size: 1.25rem;
+            letter-spacing: .08rem;
+            &:link,&:visited{
+            color:#b9bbbe;
+            text-decoration: none;
+            }
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        &-authorurl{
+            font-size: 1.4rem;
+            font-family: "Whitney-semibold";
+            &:link,&:visited{
+            color:#fff;
+            text-decoration: none;
+            }
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        &-providername{
+            margin-top: .3rem;
+        }
+        &-authorname{
+            margin: .5rem 0;
+        }
+        &-titlename{
+            margin-bottom: 1rem;
+        }
+        &-title{
+            font-size: 1.65rem;
+            font-family: "Whitney-semibold";
+            &:link,&:visited{
+            color:#00b0f4;
+            text-decoration: none;
+            }
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+        &-video{
+            width: 40rem;
+            height: 22.5rem;
+        }
     }
     
 }

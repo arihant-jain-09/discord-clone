@@ -97,12 +97,20 @@
     &__mid{
         background-color: #36393f;
         display: flex;
+        flex-direction: column;
+        flex: 1;
         justify-content: center;
         align-items: center;
-        flex:1;
-        &-image{
-            display: block;
-            width: auto;
+        font-family: 'Whitney-light';
+        color:#72767D;
+        &-imagecontainer{
+            height: 21.8rem;
+            width: 42.1rem;
+        }
+        &-text{
+            font-size: 1.5rem;
+            margin-top: 5rem;
+            letter-spacing: .05rem;
         }
     }
     &__channels{

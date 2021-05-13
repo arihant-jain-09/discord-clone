@@ -73,7 +73,7 @@ const useStyles=makeStyles((theme)=>{
                             </Linkify>   
                          }
                             {msg.base64 &&<img src={msg.base64} alt="cannot decode"/>}
-                            {linkify(msg.message) && <RenderVideo msg={msg.message}/>}
+                            {linkify(msg.message) &&<RenderVideo msg={linkify(msg.message)}/>}
                         </div>
                     </div>
                 </div>

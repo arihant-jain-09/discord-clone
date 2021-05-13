@@ -63,7 +63,10 @@ const Universal = () => {
                             </div> */}
                         </div>
                         <div className="universal__mid">
-                            <img className="universal__mid-image" src="/discord-clone/wumpus.png" alt="Discord background" />
+                            <div className="universal__mid-imagecontainer">
+                                <img className="universal__mid-image" src="https://discord.com/assets/a12ff54c4c5c03b41006fd96a4709c29.svg" alt="Discord background" />
+                            </div>
+                            <p className="universal__mid-text">No one's around to play with Wumpus.</p>
                         </div>
                         {/* <div className="chat">
                             <div className='chat__message'>
