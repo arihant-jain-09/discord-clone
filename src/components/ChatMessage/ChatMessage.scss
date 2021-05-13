@@ -156,9 +156,45 @@
                 text-decoration: underline;
             }
         }
-        &-video{
-            width: 40rem;
-            height: 22.5rem;
+    }
+    &__video{
+        width: 40rem;
+        height: 22.5rem;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &-image{
+            width: 100%;
+            height: 100%;
+            img{
+            margin: -10% 0;
+            max-width: 100%;
+            }
+        }
+        &-container{
+            display: flex;
+            z-index: 100;
+            position: absolute;
+            color:#dcddde;
+            padding: 1rem 2rem;
+            background-color: rgba(0,0,0,.6);
+            border-radius: 5rem;
+        }
+        &-openurl,&-load{
+            &:link,&:visited{
+                color:currentColor;
+                text-decoration: none;
+            }
+            &:hover{
+                color:#fff;
+            }
+        }
+        svg{
+            cursor: pointer;
+            width: 2.5rem;
+            height: 2.5rem;
         }
     }
     
