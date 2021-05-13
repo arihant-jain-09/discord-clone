@@ -63,6 +63,7 @@ $ npm run start
 ## Features
 -   Real time messaging 
 -   Loads User Data upon login (Servers, Channels, Roles)
+-   Loading logo of Discord between page renderings
 -   Creation and Joining Servers
 -   Creation of Channels in a Server
 -   Server Settings (Change name and delete)
