@@ -28,6 +28,8 @@
 - [Installation](#installation)
 - [Links](#links)
 - [Deployed](#Deployed)
+- [Features](#Features)
+- [Website Score](#Websitescore)
 - [Contribution](#Contribution)
 
 ## About
@@ -58,6 +60,24 @@ $ npm run start
 
 - [GitHub](https://arihant-jain-09.github.io/discord-clone/)
 
+## Features
+-   Real time messaging 
+-   Loads User Data upon login (Servers, Channels, Roles)
+-   Creation and Joining Servers
+-   Creation of Channels in a Server
+-   Server Settings (Change name and delete)
+-   Channel Settings (Change name and delete)
+-   Reply to messages
+-   Upload and send images, audio files
+-   Auto render video from links
+-   Timestamps for messages
+-   Create new Roles unique to each server
+
+## Website Score
+<div align="center">
+	<a href="https://github.com/arihant-jain-09/discord-clone"><img src="https://i.ibb.co/VT0c167/2021-05-13-22-24-36-Discord-Your-Place-to-Talk-and-Hang-Out.png" alt="Web score" /></a>
+</div>
+
 ## Contribution
 Contributions are always Welcome...
 
@@ -65,5 +85,7 @@ Contributions are always Welcome...
 -   Improve current program by
     -   improving functionality
     -   adding new feature
-    -   bug fixes
+    -   improving the documentation
 -   Push your work and Create a Pull Request
+
+
