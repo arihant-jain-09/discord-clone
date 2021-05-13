@@ -85,7 +85,7 @@ Contributions are always Welcome...
 -   Improve current program by
     -   improving functionality
     -   adding new feature
-    -   improving the documentation
+    -   bug fixes
 -   Push your work and Create a Pull Request
 
 
