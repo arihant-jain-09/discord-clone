@@ -55,7 +55,7 @@ function RenderVideo({msg}) {
                         </div>
                     </>:data && <iframe className='rendervideo__videocontainer__video' 
                 src={data && data.html.split('src="')[1].split('"')[0]+"&autoplay=1&amp;auto_play=1"} width="400" height="225" title="YouTube video player" frameBorder="0" 
-                allowfullscreen="" sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>}
+                allowFullScreen="" sandbox="allow-forms allow-modals allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-presentation"></iframe>}
                 </div>
             </div>
         </div>
