@@ -10,24 +10,37 @@
         margin:.4rem
         
     }
-    &__addreaction{
+    &__addreaction,&__reply,&__more{
         margin:.1rem .2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         &:hover{
             background-color: #373b41;
         }
     }
-    &__reply{
-        margin:.1rem .2rem;
-        &:hover{
-            background-color: #373b41;
-        }
+    svg{
+        color: #b9bbbe;
     }
-    &__more{
-        margin:.1rem .2rem;
-        &:hover{
-            background-color: #373b41;
-        }
-    }
+    // &__addreaction{
+    //     margin:.1rem .2rem;
+    //     color: #b9bbbe;
+    //     &:hover{
+    //         background-color: #373b41;
+    //     }
+    // }
+    // &__reply{
+    //     margin:.1rem .2rem;
+    //     &:hover{
+    //         background-color: #373b41;
+    //     }
+    // }
+    // &__more{
+    //     margin:.1rem .2rem;
+    //     &:hover{
+    //         background-color: #373b41;
+    //     }
+    // }
    
 }
 .emojcontain{
@@ -43,7 +56,10 @@
     top:0;
     left:-130%;
     animation: moveleftoright .3s;
-    
+    svg{
+        width: 1.8rem;
+        height: 1.8rem;
+    }
     &__container{
         display: flex;
         flex-direction: column;

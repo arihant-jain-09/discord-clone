@@ -3,15 +3,16 @@ function RenderVideo({msg}) {
     const [clicked,setclicked]=useState(false);
     const [data,setdata]=useState('');
     useEffect(() => {
-        fetch(`https://www.youtube.com/oembed?url=${msg}&maxwidth=400&maxheight=225&format=json`)
+        if(msg){
+            fetch(`https://www.youtube.com/oembed?url=${msg}&maxwidth=400&maxheight=225&format=json`)
         .then((response)=>{
             if(response.ok){
                 return response.json()
             }
-            throw response.ok
+            // throw response
         }
         ).then((results)=>setdata(results))
-        .catch((error)=>console.log(error))
+        }
         return () => {
             
         }

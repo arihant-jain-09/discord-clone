@@ -3,8 +3,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
-import { IconButton, makeStyles, Typography } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import { makeStyles, Typography } from '@material-ui/core';
 import {auth, firestore} from '../../firebase/firebase'
 import firebase from 'firebase/app'
 import './AddChannelPopup.scss' 
@@ -62,9 +61,9 @@ export default function AddChannelPopup() {
   const channelRef=firestore.collection('servers').doc(currentserverid).collection('channels')
   return (
     <div>
-        <IconButton onClick={handleClickOpen} className={classes.button} aria-label="settings">
-            <AddIcon fontSize='large'/>
-        </IconButton>
+        <svg onClick={handleClickOpen} style={{cursor:'pointer'}}aria-hidden="false" width="18" height="18" viewBox="0 0 18 18">
+            <polygon fillRule="nonzero" fill="currentColor" points="15 10 10 10 10 15 8 15 8 10 3 10 3 8 8 8 8 3 10 3 10 8 15 8"></polygon>
+        </svg>
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title" classes={{ paper: classes.paper}}>
         <DialogContent className={classes.dialog}>
           <DialogContentText>

@@ -8,7 +8,7 @@
 //          background-color: #202225;
 //     }
 // }
-.universal{
+.homepage{
     position: absolute;
     top:0;
     left:7.1rem;
@@ -85,6 +85,12 @@
         &-avatar{
             font-size: 2rem;
             margin-right: 1.6rem;
+            width:2.5rem;
+            svg{
+                height:2.5rem;
+                display:flex;
+                align-items:center;
+            }
         }
         &-title{
             font-family: 'Whitney-medium';

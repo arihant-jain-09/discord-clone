@@ -13,8 +13,8 @@ const useStyles=makeStyles((theme)=>{
     }
 })
 const LayoutSidebar = ({children}) => {
-    console.log('layout sidebar');
     const classes=useStyles();
+    console.log('layout sidebar called');
     return (
         <>
             {/* <div className="mainpage"> */}

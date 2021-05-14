@@ -57,9 +57,12 @@
             outline: none;
         }
     }
-}
-.uploadimage{
-    width:8rem;
-    height:8rem;
+    &__imageupload{
+     padding: 2rem 0;
+     color:rgba(79, 86, 96,.96);
+     svg{
+         cursor: pointer;
+     }
+    }
 }
 
