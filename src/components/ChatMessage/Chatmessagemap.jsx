@@ -27,12 +27,13 @@ const useStyles=makeStyles((theme)=>{
         var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
         return input.match(urlRegex)
     }
+    // console.log(msg.message,linkify("Cool time-lapse animation of the number of submarine data cables (internet backbone) since 1989 - https://youtu.be/6dkiqJ_IZGw\nhttps://www.youtube.com/watch?v=2ApV7zqd7no&list=RDMM&index=13"));
+    const linkifiedmsg=linkify(message);
     const componentDecorator = (href, text, key) => (
-        <a className={`${linkify(msg.message) && 'linkify__videotext'} linkify__text`} href={href} key={key} target="_blank" rel="noreferrer">
+        <a className={`${linkifiedmsg && 'linkify__videotext'} linkify__text`} href={href} key={key} target="_blank" rel="noreferrer">
           {text}
         </a>
       );
-      
       
      return (
          <>
@@ -73,7 +74,7 @@ const useStyles=makeStyles((theme)=>{
                             </Linkify>   
                          }
                             {msg.base64 &&<img src={msg.base64} alt="cannot decode"/>}
-                            {linkify(msg.message) &&<RenderVideo msg={linkify(msg.message)}/>}
+                            {linkifiedmsg && linkifiedmsg.length>1?linkifiedmsg.map((link)=><RenderVideo key={link} msg={link}/>):<RenderVideo msg={linkifiedmsg}/>}
                         </div>
                     </div>
                 </div>
