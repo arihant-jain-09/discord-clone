@@ -68,7 +68,7 @@ const useStyles=makeStyles((theme)=>{
                         </div>
                         <div className="chatmessage__message">
                          {
-                         useSelector((state)=>state.click.clicked) && msg.id===id ? <ChatEdit/>:
+                         useSelector((state)=>state.click.clicked) && msg.id===id ? <ChatEdit msg={message} msgid={msg.id}/>:
                          <Linkify componentDecorator={componentDecorator}>
                             {msg && !!msg.message ? message : !msg.base64 && <RenderAudio msg={msg}/>}
                             </Linkify>   
