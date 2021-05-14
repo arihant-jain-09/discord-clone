@@ -14,7 +14,6 @@ const useStyles=makeStyles((theme)=>{
 })
 const LayoutSidebar = ({children}) => {
     const classes=useStyles();
-    console.log('layout sidebar called');
     return (
         <>
             {/* <div className="mainpage"> */}
