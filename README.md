@@ -80,11 +80,6 @@ $ npm run start
 -   Timestamps for messages
 -   Create new Roles unique to each server
 
-## Website Score
-<div align="center">
-	<a href="https://github.com/arihant-jain-09/discord-clone"><img src="https://i.ibb.co/VT0c167/2021-05-13-22-24-36-Discord-Your-Place-to-Talk-and-Hang-Out.png" alt="Web score" /></a>
-</div>
-
 ## Contribution
 Contributions are always Welcome...
 
