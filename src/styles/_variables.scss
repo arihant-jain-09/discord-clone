@@ -1,0 +1,72 @@
+@import './fonts';
+
+$saturation-factor: 1;
+
+$google-blue: #4285f4;
+$white: #ffff;
+$brand: #7289da;
+$brand-experiment: hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%);
+$background-modifier-accent: hsla(0, 0%, 100%, 0.06);
+$strikethrough: hsl(359, calc(var(--saturation-factor, 1) * 82.6%), 59.4%);
+
+//light
+$background-tertiary-light: #e3e5e8;
+$background-primary-light: #fff;
+$text-normal-light: #2e3338;
+$text-link-light: hsl(212, calc(var(1, 1) * 100%), 43.9%);
+$header-primary-light: #060607;
+$background-secondary-light: #f2f3f5;
+$background-secondary-alt-light: #ebedef;
+$header-secondary-light: #4f5660;
+$interactive-normal-light: #4f5660;
+$interactive-hover-light: #2e3338;
+$interactive-active-light: #060607;
+$background-modifier-accent-light: rgba(6, 6, 7, 0.08);
+$background-modifier-selected-light: rgba(116, 127, 141, 0.24);
+$background-modifier-hover-light: rgba(116, 127, 141, 0.08);
+$channels-default-light: #6a7480;
+
+//scrollbar
+$background-color-scrollbar-light: darkgrey;
+$outline-color-scrollbar-light: slategrey;
+$background-color-scrollbar-dark: #060607;
+$text-muted-light: #747f8d;
+$text-normal-light: #2e3338;
+
+//dark
+$background-tertiary-dark: #202225;
+$background-primary-dark: #36393f;
+$text-normal-dark: #dcddde;
+$text-link-dark: hsl(197, calc(var(1, 1) * 100%), 47.8%);
+$header-primary-dark: #fff;
+$background-secondary-dark: #2f3136;
+$background-secondary-alt-dark: #292b2f;
+$header-secondary-dark: #b9bbbe;
+$interactive-normal-dark: #b9bbbe;
+$interactive-hover-dark: #dcddde;
+$interactive-active-dark: #fff;
+$background-modifier-accent-dark: hsla(0, 0%, 100%, 0.06);
+$background-modifier-selected-dark: rgba(79, 84, 92, 0.32);
+$background-modifier-hover-dark: rgba(79, 84, 92, 0.16);
+$text-muted-dark: #72767d;
+$text-normal-dark: #dcddde;
+$channels-default-dark: #8e9297;
+
+//light
+$text-light: hsl(254, 40%, 14%);
+$accent1-light: hsl(175, 100%, 31%);
+$accent2-light: hsl(21, 84%, 56%);
+$accent3-light: hsl(40, 89%, 65%);
+$bkg1-light: hsl(0, 0%, 100%);
+$bkg2-light: hsl(26, 37%, 96%);
+
+//dark
+$text-dark: hsl(217, 54.2%, 88%);
+$accent1-dark: hsl(175, 100%, 31%);
+$accent2-dark: hsl(21, 84%, 56%);
+$accent3-dark: hsl(40, 89%, 65%);
+$bkg1-dark: hsl(218, 15.4%, 10.2%);
+$bkg2-dark: hsl(218, 14.7%, 18.7%);
+
+$elevation-low: 0 1px 0 rgba(4, 4, 5, 0.2), 0 1.5px 0 rgba(6, 6, 7, 0.05),
+  0 2px 0 rgba(4, 4, 5, 0.05);

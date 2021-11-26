@@ -1,0 +1,78 @@
+@import './variables';
+@import './mixins';
+$themes: (
+  light: (
+    text: $text-light,
+    accent1: $accent1-light,
+    accent2: $accent2-light,
+    accent3: $accent3-light,
+    bkg1: $bkg1-light,
+    bkg2: $bkg2-light,
+    background-tertiary: $background-tertiary-light,
+    background-primary: $background-primary-light,
+    text-normal: $text-normal-light,
+    text-link: $text-link-light,
+    header-primary: $header-primary-light,
+    background-secondary: $background-secondary-light,
+    background-secondary-alt: $background-secondary-alt-light,
+    header-secondary: $header-secondary-light,
+    interactive-normal: $interactive-normal-light,
+    interactive-hover: $interactive-hover-light,
+    interactive-active: $interactive-active-light,
+    background-modifier-accent: $background-modifier-accent-light,
+    background-modifier-selected: $background-modifier-selected-light,
+    background-modifier-hover: $background-modifier-hover-light,
+    background-color-scrollbar: $background-color-scrollbar-light,
+    outline-color-scrollbar: $outline-color-scrollbar-light,
+    text-muted: $text-muted-light,
+    channels-default: $channels-default-light,
+  ),
+  dark: (
+    text: $text-dark,
+    accent1: $accent1-dark,
+    accent2: $accent2-dark,
+    accent3: $accent3-dark,
+    bkg1: $bkg1-dark,
+    bkg2: $bkg2-dark,
+    background-tertiary: $background-tertiary-dark,
+    background-primary: $background-primary-dark,
+    text-normal: $text-normal-dark,
+    text-link: $text-link-dark,
+    header-primary: $header-primary-dark,
+    background-secondary: $background-secondary-dark,
+    background-secondary-alt: $background-secondary-alt-dark,
+    header-secondary: $header-secondary-dark,
+    interactive-normal: $interactive-normal-dark,
+    interactive-hover: $interactive-hover-dark,
+    interactive-active: $interactive-active-dark,
+    background-modifier-accent: $background-modifier-accent-dark,
+    background-modifier-selected: $background-modifier-selected-dark,
+    background-modifier-hover: $background-modifier-hover-dark,
+    background-color-scrollbar: $background-color-scrollbar-dark,
+    text-muted: $text-muted-dark,
+    channels-default: $channels-default-dark,
+  ),
+);
+
+@mixin themed() {
+  @each $theme, $map in $themes {
+    .theme--#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge(
+          $theme-map,
+          (
+            $key: $value,
+          )
+        ) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}

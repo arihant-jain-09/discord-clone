@@ -1,0 +1,51 @@
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+@font-face {
+  font-family: 'Whitney-semibold';
+  src: local('Whitney-semibold'), url(./styles/fonts/whitneysemibold.otf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Whitney-light';
+  src: local('Whitney-light'), url(./styles/fonts/whitneylight.otf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Whitney-bold';
+  src: local('Whitney-bold'), url(./styles/fonts/whitneybold.otf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Whitney-medium';
+  src: local('Whitney-medium'), url(./styles/fonts/whitneymedium.otf);
+  font-display: swap;
+}
+@font-face {
+  font-family: 'UniSansRegular';
+  src: local('UniSansRegular'), url(./styles/fonts/UniSansRegular.otf);
+  font-display: swap;
+}

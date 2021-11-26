@@ -1,47 +1,42 @@
-import React,{lazy,Suspense} from 'react';
-import './App.scss'
-import {auth} from './firebase/firebase'
+import React from 'react';
+import './App.scss';
 import {useAuthState} from 'react-firebase-hooks/auth'
-import { Redirect, Route, Switch } from 'react-router';
-import LayoutSidebar from './pages/Layout_Sidebar/Layout_Sidebar';
-import Spinner from './components/Spinner/Spinner';
-import {ErrorBoundary} from 'react-error-boundary'
-import {ErrorImageOverlay,ErrorImageContainer,ErrorImageText} from './pages/ErrorBoundaries/Errorboundaries.styles.jsx'
-import ServerComponent from './pages/ServerComponent/ServerComponent.jsx'
-import Homepage from './pages/Homepage/HomePage.jsx';
-const Login=lazy(()=>import('./pages/Login/Login.jsx'));
-const ServerPage=lazy(()=>import('./pages/ServerPage/ServerPage'));
-const ErrorFallback=({error,resetErrorBoundary})=>{
-  return <>
-    <ErrorImageOverlay>
-      <ErrorImageContainer imageUrl='https://i.imgur.com/lKJiT77.png'/>
-      <ErrorImageText>Sorry this page is broken</ErrorImageText>
-      <button onClick={resetErrorBoundary}>Try again</button>
-    </ErrorImageOverlay>
-  </>
-}
-
-function App() {
-const [user]=useAuthState(auth);
+import { auth } from './firebase/firebase';
+import { Redirect, Route, Switch } from 'react-router-dom';
+import Login from './features/auth/components/Login/Login';
+import HomePage from './pages/HomePage/HomePage';
+import ServerPageIndex from './features/sidebar/Server/components';
+import ChannelPageIndex from './features/sidebar/Channel/components';
+import ThemeSetter from "./components/ThemeSetter/ThemeSetter.jsx";
+import Messaging from './pages/Messaging/Messaging';
+const App=()=> {
+  const [user]=useAuthState(auth);
+  console.log(user);
   return (
-    <div className="App">
-      <main>
-
-        {!user && <Redirect to='/discord-clone'/>}
+    <>
+      <div className="app">
+      <ThemeSetter />
         <Switch>
-          <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Suspense fallback={<Spinner/>}>
-          <Route exact path='/discord-clone' render={()=>auth.currentUser?<Redirect to='/discord-clone/channels/@me'/>:<Login/>} />
-          <Route path='/discord-clone/channels' component={ServerComponent}/>
+          <Route exact path='/' render={()=>auth.currentUser?<Redirect to='/channels/@me'/>:<Login/>}/>
+          <Route path='/channels/'>
+            <ServerPageIndex/>
+            <ChannelPageIndex/>
             <Switch>
-              <Route exact path='/discord-clone/channels/@me' render={()=><Homepage/>}/>
-              <Route path='/discord-clone/channels/:serverId' render={(props)=><LayoutSidebar><ServerPage {...props}/></LayoutSidebar>}/>
+              <Route exact path='/channels/@me'>
+                <div className="app__home">
+                  <HomePage/>
+                </div>
+              </Route>
+              <Route path='/channels/*'>
+                <div className="app__chat">
+                  <Messaging/>
+                </div>
+              </Route>
             </Switch>
-            </Suspense>
-          </ErrorBoundary>
+          </Route>
         </Switch>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }
 

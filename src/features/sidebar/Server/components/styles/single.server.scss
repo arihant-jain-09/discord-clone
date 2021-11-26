@@ -1,0 +1,82 @@
+@import '../../../../../styles/theme';
+@import '../../../../../styles/fonts';
+.singleServer {
+  position: relative;
+  font-family: $font-medium;
+  &__image {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: border-radius 0.3s;
+    &:hover {
+      border-radius: 30%;
+    }
+  }
+  &__text {
+    @include themed() {
+      color: t('text-normal');
+    }
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 50%;
+    @include themed() {
+      background: t('background-primary');
+    }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    position: relative;
+    font-size: 1.8rem;
+    font-family: 'Whitney-semibold';
+    &:hover {
+      @include themed() {
+        color: t('header-primary');
+      }
+      border-radius: 30%;
+      background-color: $brand;
+    }
+  }
+  &:hover::before {
+    border-radius: 0 2px 2px 0;
+    transform: scaleY(2.5);
+  }
+  &::before {
+    content: '';
+    display: block;
+    @include themed() {
+      background-color: t('header-primary');
+    }
+    width: 0.45rem;
+    height: 0.9rem;
+    position: absolute;
+    border-radius: 0 4px 4px 0;
+    top: 2.25rem;
+    left: -25%;
+    transition: all 0.3s;
+  }
+
+  &__clicked {
+    position: relative;
+    &-image {
+      object-fit: cover;
+      width: 4.8rem;
+      height: 4.8rem;
+      border-radius: 30%;
+    }
+    &::before {
+      content: '';
+      display: block;
+      @include themed() {
+        background-color: t('header-primary');
+      }
+      width: 0.45rem;
+      height: 4rem;
+      position: absolute;
+      border-radius: 0 4px 4px 0;
+      top: 0.5rem;
+      left: -25%;
+    }
+  }
+}

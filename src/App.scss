@@ -1,16 +1,28 @@
-main{
-  height: 100%;
-  width: 100%;
+@import './styles/theme';
+.app {
+  height: 100vh;
+  font-size: 1.25rem;
+  font-family: sans-serif;
+  display: grid;
+  grid-template-columns:
+    [full-start sidebar-start] auto
+    [sidebar-end content-start] repeat(
+      12,
+      [col-start] minmax(min-content, 10rem) [col-end]
+    )
+    [content-end] minmax(10rem, 1fr) [full-end];
+  position: relative;
+  @include themed() {
+    color: t('text');
+    background: t('bkg1');
+  }
+  &__home {
+    grid-column: 4/14;
+  }
+  &__chat {
+    grid-column: 4/-1;
+    display: grid;
+    grid-template-columns: repeat(10, minmax(min-content, 10rem)) 1fr;
+    grid-template-rows: auto;
+  }
 }
-html {
-    height: 100%;
-    font-size: 10px;
-  }
-  body {
-    min-height: 100%;
-  }
-  *{
-    padding:0;
-    margin:0;
-    box-sizing: border-box;
-  }

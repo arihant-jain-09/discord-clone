@@ -1,0 +1,51 @@
+@import '../../../../../styles/theme';
+.singleChannel {
+  padding: 0 0.8rem;
+  font-size: 1.75rem;
+  cursor: pointer;
+  &__msg {
+    margin-bottom: 0.2rem;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+    font-size: 1.6rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    @include themed() {
+      color: t('channels-default');
+    }
+    &:hover {
+      @include themed() {
+        background-color: t('background-modifier-hover');
+      }
+      border-radius: 0.5rem;
+      @include themed() {
+        color: t('text-link');
+      }
+    }
+  }
+  &__hash {
+    display: inline-block;
+    padding: 0 0.8rem;
+    @include themed() {
+      color: t('text-muted');
+    }
+    svg {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+  &__clicked {
+    @include themed() {
+      background-color: t('background-modifier-selected');
+      color: t('interactive-active');
+    }
+    margin-bottom: 0.2rem;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+    font-size: 1.6rem;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+  }
+}
