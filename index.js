@@ -7,6 +7,8 @@ const passport=require('passport');
 const keys = require('./config/keys');
 const mongoose=require('mongoose');
 require('./models/User');
+require('./models/Server');
+require('./models/Channel');
 require('./services/passport');
 app.use(cookieSession({
     age:1000 * 60 * 60 * 24,
@@ -16,6 +18,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 mongoose.connect(keys.mongoURI,{ useNewUrlParser: true, useUnifiedTopology: true },()=>{console.log('connected to mongodb');})
 require('./routes/authRoutes')(app);
+require('./routes/serverRoutes')(app);
 
 if(process.env.NODE_ENV==='production'){
     app.use(express.static('client/build'))

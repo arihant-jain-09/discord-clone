@@ -4,8 +4,15 @@ import './styles/serverPage.scss'
 import SingleServer from './SingleServer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentServer } from './serverSlice';
-import { Dialog } from '@material-ui/core';
+import { Dialog, makeStyles } from '@material-ui/core';
+import AddServer from './server.add.form';
+
+const useStyles = makeStyles(() => ({
+  paper: { maxWidth: "44rem" },
+}));
+
 const ServerPageIndex = () => {
+  const classes=useStyles();
   const [open,setopen]=useState(false);
   const history=useHistory();
   const [servers,setServers]=useState([]);
@@ -26,7 +33,7 @@ const ServerPageIndex = () => {
       }
     }, [])
 
-    // const handledialogactions=()=>{setopen(false)}
+    const handledialogactions=()=>{setopen(false)}
   return (
     <>
       <div className="serverPage">
@@ -46,16 +53,17 @@ const ServerPageIndex = () => {
           {servers?.map((server)=>{
             return <SingleServer key={server.id} server={server}/>
           })}
-          <div className="serverPage__map-addicon">
+          <div className="serverPage__map-addicon" onClick={()=>setopen(true)}>
                 <svg aria-hidden="false" width="24" height="24" viewBox="0 0 24 24">
                     <path fill="currentColor" d="M20 11.1111H12.8889V4H11.1111V11.1111H4V12.8889H11.1111V20H12.8889V12.8889H20V11.1111Z"></path>
                 </svg>
           </div>
         </div>
       </div>
-      {open && <Dialog open={open} onClose={()=>setopen(false)} >
-      {/* <MenuAddForm handleClose={handledialogactions}/> */}
-    </Dialog>}
+      {open && <Dialog open={open} onClose={()=>setopen(false)} classes={{paper:classes.paper}}>
+        <AddServer handleClose={handledialogactions}/>
+        </Dialog>
+      }
     </>
   )
 }
