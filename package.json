@@ -8,6 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"nodemon index.js\" \"npm start --prefix client\"",
     "postinstall": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+
   },
   "repository": {
     "type": "git",
@@ -22,8 +23,14 @@
   "homepage": "https://github.com/arihant-jain-09/discord-clone#readme",
   "dependencies": {
     "concurrently": "^6.4.0",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^6.0.13",
+    "npm": "^8.1.4",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-strategy": "^1.0.0",
     "socket.io": "^4.4.0"
   }
 }

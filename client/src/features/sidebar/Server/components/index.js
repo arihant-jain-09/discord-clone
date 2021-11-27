@@ -1,33 +1,28 @@
 import React, { useEffect, useState } from 'react'
-import { collection, query,orderBy,onSnapshot } from "firebase/firestore";
-// import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { firestore} from '../../../../firebase/firebase'
 import './styles/serverPage.scss'
 import SingleServer from './SingleServer';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentServer } from './serverSlice';
 import { Dialog } from '@material-ui/core';
-// import useFetchServers from '../../../../hooks/server/useFetchServers';
 const ServerPageIndex = () => {
   const [open,setopen]=useState(false);
   const history=useHistory();
   const [servers,setServers]=useState([]);
   const dispatch = useDispatch();
   const currentServer = useSelector(state => state.server.currentServer);
-    // useFetchServers();
     useEffect(() => {
-      const list_servers=[];
-      const serverRef = query(collection(firestore, "servers"),orderBy("createdAt", "asc"));
-      const unsubscribe = onSnapshot(serverRef, (snapshot) => {
-        snapshot.forEach((doc)=>{
-          list_servers.push({...doc.data(),id:doc.id});
-        })
-        setServers(list_servers);
-      })
+      // const list_servers=[];
+      // const serverRef = query(collection(firestore, "servers"),orderBy("createdAt", "asc"));
+      // const unsubscribe = onSnapshot(serverRef, (snapshot) => {
+      //   snapshot.forEach((doc)=>{
+      //     list_servers.push({...doc.data(),id:doc.id});
+      //   })
+      //   setServers(list_servers);
+      // })
 
       return () => {
-        unsubscribe();
+        // unsubscribe();
       }
     }, [])
 
