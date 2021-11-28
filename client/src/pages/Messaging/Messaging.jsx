@@ -1,12 +1,12 @@
 import React from 'react'
-import ChatHeader from '../../features/chat/header/components'
-import MessageBox from '../../features/chat/messageBox/components'
+import ChatHeader from '../../features/chat/components/header/components'
+import ChatBox from '../../features/chat/components/chatBox/components'
 import './Messaging.scss'
 const Messaging = () => {
   return (
     <>
       <ChatHeader/> 
-      <MessageBox/>
+      <ChatBox/>
     </>
   )
 }

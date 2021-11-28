@@ -26,6 +26,10 @@ module.exports=(app)=>{
             _admin:req.user
           })
           const message=new Message({
+            sender:{
+              img:'https://res.cloudinary.com/dv17tob3g/image/upload/v1638122697/discord-bot_wzk0le.png',
+              name:'Server'
+            },
             text:`Welcome to ${server_name}`,
             _channel:server.id,
           })

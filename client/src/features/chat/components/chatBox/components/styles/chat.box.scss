@@ -1,0 +1,19 @@
+.chatBox {
+  height: calc(100vh - 4.8rem);
+  grid-column: 1/11;
+  flex-direction: column-reverse;
+  overflow: auto;
+  display: flex;
+  padding-bottom: 1rem;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #2e3338;
+    background-clip: content-box;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #202225;
+    height: 1rem;
+  }
+}

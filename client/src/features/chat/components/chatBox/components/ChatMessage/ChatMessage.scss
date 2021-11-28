@@ -1,0 +1,56 @@
+@import '../../../../../../styles/theme.scss';
+.chatMessage {
+  margin-top: 1.7rem;
+  display: flex;
+  margin-bottom: auto;
+  &__img {
+    margin-left: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    img {
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+  &__content {
+    margin-left: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    &-header {
+      display: flex;
+      align-items: center;
+      padding-top: 0.4rem;
+      width: 100%;
+      position: relative;
+      &--name {
+        @include themed() {
+          color: t('header-primary');
+        }
+        font-weight: 600;
+        margin-right: 1rem;
+        font-size: 1.5rem;
+      }
+      &--date {
+        @include themed() {
+          color: t('text-muted');
+        }
+        font-weight: 500;
+        font-size: 1.25rem;
+        margin-right: auto;
+      }
+    }
+    &-message {
+      @include themed() {
+        color: t('text-normal');
+      }
+      font-size: 1.55rem;
+      letter-spacing: 0.02rem;
+      word-spacing: 0.02rem;
+      padding-top: 0.25rem;
+      padding-right: 1rem;
+      white-space: pre-wrap;
+      line-height: 2.2rem;
+    }
+  }
+}

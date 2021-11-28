@@ -1,0 +1,12 @@
+@import '../../../../styles/theme.scss';
+
+.chat {
+  flex: 0 1 67%;
+  @include themed() {
+    background-color: t('background-primary');
+  }
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
