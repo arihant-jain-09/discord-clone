@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './styles/channelPage.scss'
 import {ReactComponent as Down} from '../../../../assets/down.svg'
 import {ReactComponent as MicOff} from '../../../../assets/mic-off.svg'
@@ -7,44 +7,16 @@ import {ReactComponent as EarphoneOff} from '../../../../assets/earphone-off.svg
 import {ReactComponent as EarphoneOn} from '../../../../assets/earphone-on.svg'
 import {ReactComponent as Settings} from '../../../../assets/settings.svg'
 import { useHistory, useLocation } from 'react-router'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import SingleChannel from './SingleChannel'
 // import { setCurrentChannel } from '../channelSlice'
 const ChannelPageIndex = () => {
   const [micOn,setMicOn]=useState(false);
   const [earphoneOn,setEarphoneOn]=useState(false);
-  const [channels,setChannels]=useState([]);
   const location=useLocation();
   const history=useHistory();
   const currentServer=useSelector((state)=>state.server.currentServer);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    // const db=getFirestore();
-    // const getChannels=async()=>{
-    //   const channelList=[];
-    //   const queryRef = query(collection(db, "servers", currentServer.id, "channels"),orderBy("createdAt", "asc"));
-    //   const channelRef = await getDocs(queryRef);
-    //   channelRef.forEach((channel)=>{
-    //     channelList.push({...channel.data(),id:channel.id});
-    //   })
-    //   setChannels(channelList);
-    //   dispatch(setCurrentChannel({
-    //     id:channelList[0].id,
-    //     name:channelList[0].channel,
-    //     email:channelList[0].email,
-    //   }));
-    //   history.push(`/channels/${currentServer?.id}/${channelList[0].id}`);
-    // }
-    if(currentServer && currentServer.id){
-      // getChannels();
-    }
-    else if(currentServer.id==null){
-      setChannels([]);
-    }
-    return () => {
-    }
-  }, [currentServer,dispatch,history])
-
+  const channels=useSelector((state)=>state.channel.channels);
   const auth=useSelector((state)=>state.auth.user);
   return (
     <>
@@ -56,7 +28,7 @@ const ChannelPageIndex = () => {
             </div>
           </>:<>
             <div className="channelPage__header-name">
-                {currentServer?.name}
+                {currentServer?.server_name}
               </div>
               <div className="channelPage__header-down">
                 <Down/>
@@ -65,8 +37,8 @@ const ChannelPageIndex = () => {
           }
         </div>
         <div className="channelPage__body">
-          {currentServer?.id && channels?.map((channel)=>{
-            return <SingleChannel key={channel.id} channel={channel}/>
+          {currentServer?._id && channels?.map((channel)=>{
+            return <SingleChannel key={channel._id} channel={channel}/>
           })}
         </div>
         <div className="channelPage__footer">

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import './styles/serverPage.scss'
 import SingleServer from './SingleServer';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCurrentServer } from './serverSlice';
+import { fetchServers, setCurrentServer } from './serverSlice';
 import { Dialog, makeStyles } from '@material-ui/core';
 import AddServer from './server.add.form';
 
@@ -15,25 +15,14 @@ const ServerPageIndex = () => {
   const classes=useStyles();
   const [open,setopen]=useState(false);
   const history=useHistory();
-  const [servers,setServers]=useState([]);
   const dispatch = useDispatch();
   const currentServer = useSelector(state => state.server.currentServer);
     useEffect(() => {
-      // const list_servers=[];
-      // const serverRef = query(collection(firestore, "servers"),orderBy("createdAt", "asc"));
-      // const unsubscribe = onSnapshot(serverRef, (snapshot) => {
-      //   snapshot.forEach((doc)=>{
-      //     list_servers.push({...doc.data(),id:doc.id});
-      //   })
-      //   setServers(list_servers);
-      // })
-
-      return () => {
-        // unsubscribe();
-      }
-    }, [])
+      dispatch(fetchServers());
+    }, [dispatch])
 
     const handledialogactions=()=>{setopen(false)}
+  const servers=useSelector(state=>state.server.servers);
   return (
     <>
       <div className="serverPage">
@@ -50,8 +39,8 @@ const ServerPageIndex = () => {
             </div>
         </div>
         <div className="serverPage__map">
-          {servers?.map((server)=>{
-            return <SingleServer key={server.id} server={server}/>
+          {servers && servers?.map((server)=>{
+            return <SingleServer key={server._id} server={server}/>
           })}
           <div className="serverPage__map-addicon" onClick={()=>setopen(true)}>
                 <svg aria-hidden="false" width="24" height="24" viewBox="0 0 24 24">

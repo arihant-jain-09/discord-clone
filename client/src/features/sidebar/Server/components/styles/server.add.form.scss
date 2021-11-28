@@ -9,6 +9,12 @@
     margin-bottom: 1rem;
     padding: 0 1.75rem;
   }
+  form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   &__heading {
     font-size: 2.5rem;
     font-weight: 700;
@@ -19,6 +25,9 @@
   }
   &__add {
     margin-top: 1rem;
+    input {
+      display: none;
+    }
   }
   &__p {
     margin-top: 1rem;

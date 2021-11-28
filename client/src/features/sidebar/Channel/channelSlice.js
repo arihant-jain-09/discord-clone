@@ -1,12 +1,21 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 const initialState = {
   currentChannel: {
-    id:null,
+    _id:null,
     name:'',
-    email:'',
+    _message:null,
   },
+  channels:[]
 };
+export const fetchChannelByServer = createAsyncThunk(
+  "/api/servers/channels",
+  async(channels) =>{
+      const {data}=await axios.post('/api/servers/channels',{_channels:channels});
+      return data;
+    }
+);
 
 
 export const channelSlice = createSlice({
@@ -14,10 +23,19 @@ export const channelSlice = createSlice({
   initialState,
   reducers: {
     setCurrentChannel: (state,action) => {
-      state.currentChannel.id=action.payload.id;
+      state.currentChannel._id=action.payload._id;
       state.currentChannel.name=action.payload.name;
-      state.currentChannel.email=action.payload.email;
+      state.currentChannel._message=action.payload._message;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchChannelByServer.pending, (state) => {
+        // state.status = 'loading';
+      })
+      .addCase(fetchChannelByServer.fulfilled, (state, action) => {
+        state.channels=action.payload;
+      })      
   },
 });
 

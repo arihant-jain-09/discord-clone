@@ -9,15 +9,13 @@ import { BrowserRouter } from 'react-router-dom';
 import ThemeProvider from "./styles/Theme/ThemeProvider";
 
 ReactDOM.render(
-  <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <ThemeProvider>
           <App />
         </ThemeProvider>
       </BrowserRouter>
-    </Provider>
-  </React.StrictMode>,
+    </Provider>,
   document.getElementById('root')
 );
 

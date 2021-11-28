@@ -7,4 +7,4 @@ const messageSchema=new mongoose.Schema({
   _channel:{type:mongoose.Schema.Types.ObjectId,ref:'Channel'},
 })
 
-module.exports=messageSchema;
+mongoose.model('messages',messageSchema);
