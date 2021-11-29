@@ -1,0 +1,35 @@
+@import '../../../../../../styles/theme.scss';
+.chatmenu {
+  display: flex;
+  @include themed() {
+    background-color: t('background-primary');
+  }
+  padding: '.5rem';
+  position: relative;
+  &__image {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.4rem;
+  }
+  &__addreaction,
+  &__reply,
+  &__edit,
+  &__more {
+    margin: 0.1rem 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    &:hover {
+      @include themed() {
+        color: t('interactive-hover');
+        background-color: t('background-modifier-hover');
+      }
+    }
+  }
+  svg {
+    @include themed() {
+      color: t('interactive-normal');
+    }
+  }
+}

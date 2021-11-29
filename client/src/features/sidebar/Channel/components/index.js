@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './styles/channelPage.scss'
 import {ReactComponent as Down} from '../../../../assets/down.svg'
 import {ReactComponent as MicOff} from '../../../../assets/mic-off.svg'
@@ -7,8 +7,10 @@ import {ReactComponent as EarphoneOff} from '../../../../assets/earphone-off.svg
 import {ReactComponent as EarphoneOn} from '../../../../assets/earphone-on.svg'
 import {ReactComponent as Settings} from '../../../../assets/settings.svg'
 import { useHistory, useLocation } from 'react-router'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import SingleChannel from './SingleChannel'
+import {SocketIOmessageSet} from '../../../chat/chatSlice'
+import { io } from "socket.io-client";
 // import { setCurrentChannel } from '../channelSlice'
 const ChannelPageIndex = () => {
   const [micOn,setMicOn]=useState(false);
@@ -18,6 +20,17 @@ const ChannelPageIndex = () => {
   const currentServer=useSelector((state)=>state.server.currentServer);
   const channels=useSelector((state)=>state.channel.channels);
   const auth=useSelector((state)=>state.auth.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const socket = io('ws://localhost:5000');
+    socket.on('message-added', (messages) => {
+      dispatch(SocketIOmessageSet(messages))
+      console.log(messages);
+    })
+    return () => {
+      
+    }
+  }, [dispatch])
   return (
     <>
       <div className="channelPage">

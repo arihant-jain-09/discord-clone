@@ -1,10 +1,9 @@
-import React, { useEffect }  from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
 import { fetchMessagesByChannel } from '../../../chat/chatSlice';
-import {SocketIOmessageSet} from '../../../chat/chatSlice'
 import { setCurrentChannel } from '../channelSlice';
-import { io } from "socket.io-client";
+
 import './styles/single.channel.scss'
 const SingleChannel = ({channel}) => {
   // const dispatch = useDispatch();
@@ -13,21 +12,7 @@ const SingleChannel = ({channel}) => {
   const currentChannel=useSelector(state=>state.channel.currentChannel);
   const dispatch = useDispatch();
   console.log(channel);
-  useEffect(() => {
-    const socket = io('ws://localhost:5000');
-    socket.on('connnection', () => {
-      console.log('connected to server');
-    })
-
-    socket.on('message-added', (messages) => {
-      // setOrders(newOrders)
-      dispatch(SocketIOmessageSet(messages))
-      console.log(messages);
-    })
-    return () => {
-      
-    }
-  }, [dispatch])
+ 
   return (
     <>
       <div className='singleChannel'>

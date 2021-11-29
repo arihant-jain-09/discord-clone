@@ -1,0 +1,42 @@
+@import '../../../../../../styles/theme.scss';
+.chatedit {
+  padding: 1.1rem 1.6rem;
+  border-radius: 0.8rem;
+  margin-top: 0.5rem;
+  @include themed() {
+    color: t('text-normal');
+    background-color: t('channeltextarea-background');
+  }
+  &__span {
+    display: block;
+  }
+  &__inputarea {
+    display: block;
+    background-color: transparent;
+    outline: 0;
+    border: 0;
+    color: inherit;
+    font-family: 'Whitney-light', sans-serif;
+    font-size: 1.55rem;
+    overflow: hidden;
+    &::-webkit-resizer {
+      display: none;
+    }
+  }
+}
+.editinstruction {
+  &__p {
+    padding-left: 0.2rem;
+    font-size: 1.25rem;
+    @include themed() {
+      color: t('text-normal');
+    }
+  }
+  &__span {
+    text-decoration: underline;
+    @include themed() {
+      color: t('text-link');
+    }
+    cursor: pointer;
+  }
+}

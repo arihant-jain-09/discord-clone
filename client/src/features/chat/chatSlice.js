@@ -1,8 +1,9 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, current } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const initialState = {
-  messages:[]
+  messages:[],
+  edit:null
 };
 export const fetchMessagesByChannel = createAsyncThunk(
   "/api/servers/channels/messages",
@@ -22,6 +23,14 @@ export const AddMessage = createAsyncThunk(
     }
 );
 
+export const EditMessage = createAsyncThunk(
+  "/api/servers/channels/messages/edit",
+  async(message) =>{
+      const {data}=await axios.post('/api/servers/channels/messages/edit',{message});
+      return data;
+    }
+);
+
 
 export const chatSlice = createSlice({
   name: 'message',
@@ -30,6 +39,14 @@ export const chatSlice = createSlice({
     SocketIOmessageSet: (state,action) => {
       state.messages.push(action.payload);
     },
+    MsgToEdit:(state,action)=>{
+      state.edit=action.payload;
+    },
+    EditMsg:(state,action)=>{
+      const index=current(state.messages).findIndex((msg)=>msg._id===action.payload._id);
+      state.messages[index]=action.payload;
+      console.log(state.messages[index]);
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -41,5 +58,5 @@ export const chatSlice = createSlice({
       })      
   },
 });
-export const { SocketIOmessageSet } = chatSlice.actions;
+export const { SocketIOmessageSet,MsgToEdit,EditMsg } = chatSlice.actions;
 export default chatSlice.reducer;

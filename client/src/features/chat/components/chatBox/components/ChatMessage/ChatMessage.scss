@@ -41,9 +41,18 @@
         @include themed() {
           color: t('text-muted');
         }
-        font-weight: 500;
+        font-family: 'Whitney-medium', sans-serif;
         font-size: 1.25rem;
         margin-right: auto;
+      }
+      &--menu {
+        margin-right: 3%;
+        position: absolute;
+        top: -71%;
+        right: 1.5%;
+        @include themed() {
+          background-color: t('background-primary');
+        }
       }
     }
     &-message {
@@ -58,6 +67,13 @@
       padding-right: 1rem;
       white-space: pre-wrap;
       line-height: 2.2rem;
+      &--edited {
+        margin-left: 0.5rem;
+        font-size: 1.25rem;
+        @include themed() {
+          color: t('text-muted');
+        }
+      }
     }
   }
 }

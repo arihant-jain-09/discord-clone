@@ -33,4 +33,32 @@ module.exports=(app)=>{
         res.send(error)
       }
   })
+
+  //edit message
+  app.post('/api/servers/channels/messages/edit',async(req,res)=>{
+    console.log(req.body);
+    Message.updateOne({_id:req.body.message._id},{...req.body.message,edited:true}).then((response)=>{
+      console.log(response);
+      if(response.modifiedCount==1){
+        io.emit('message-updated',{...req.body.message,edited:true})
+      }
+    })
+    // try {
+    //   const message=new Message({
+    //     sender:{
+    //       _id:req.user.id,
+    //       name:req.user.displayName,
+    //       img:req.user.photo[0].value,
+    //     },
+    //     text:req.body.message,
+    //     _channel:req.body.channel._id
+    //   })
+    //   await message.save().then((response)=>{
+    //     io.emit('message-added', response)
+    //   })
+    //   res.status(200).send(message);
+    // } catch (error) {
+    //   res.send(error)
+    // }
+})
 }
