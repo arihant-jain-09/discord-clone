@@ -23,6 +23,7 @@
     @include themed() {
       background-color: t('background-primary');
     }
+    overflow-y: auto;
     grid-column: 4/-1;
     display: grid;
     grid-template-columns: repeat(10, minmax(min-content, 10rem)) 1fr;

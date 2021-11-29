@@ -1,19 +1,26 @@
+@import '../../../../../../styles/theme.scss';
 .chatBox {
-  height: calc(100vh - 4.8rem);
+  height: calc(100vh - 4.8rem - 7rem);
   grid-column: 1/11;
-  flex-direction: column-reverse;
+  flex-direction: column;
   overflow: auto;
   display: flex;
+  padding: 0 1rem;
   padding-bottom: 1rem;
-  &::-webkit-scrollbar {
-    width: 10px;
-  }
   &::-webkit-scrollbar-track {
-    background: #2e3338;
+    @include themed() {
+      background-color: t('background-secondary');
+    }
     background-clip: content-box;
   }
+
+  &::-webkit-scrollbar {
+    width: 1rem;
+  }
   &::-webkit-scrollbar-thumb {
-    background: #202225;
-    height: 1rem;
+    border-radius: 1rem;
+    @include themed() {
+      background-color: t('background-color-scrollbar');
+    }
   }
 }

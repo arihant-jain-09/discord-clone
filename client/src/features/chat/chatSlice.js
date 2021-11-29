@@ -6,8 +6,18 @@ const initialState = {
 };
 export const fetchMessagesByChannel = createAsyncThunk(
   "/api/servers/channels/messages",
-  async(msgId) =>{
-      const {data}=await axios.post('/api/servers/channels/messages',{_id:msgId});
+  async(channelId) =>{
+      const {data}=await axios.post('/api/servers/channels/messages',{_id:channelId});
+      return data;
+    }
+);
+
+export const AddMessage = createAsyncThunk(
+  "/api/servers/channels/messages/add",
+  async(message,{getState} ) =>{
+      const state = getState(); 
+      const currentChannel=state.channel.currentChannel;
+      const {data}=await axios.post('/api/servers/channels/messages/add',{message,channel:currentChannel});
       return data;
     }
 );
@@ -16,7 +26,11 @@ export const fetchMessagesByChannel = createAsyncThunk(
 export const chatSlice = createSlice({
   name: 'message',
   initialState,
-  reducers: {},
+  reducers: {
+    SocketIOmessageSet: (state,action) => {
+      state.messages.push(action.payload);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMessagesByChannel.pending, (state) => {
@@ -27,5 +41,5 @@ export const chatSlice = createSlice({
       })      
   },
 });
-
+export const { SocketIOmessageSet } = chatSlice.actions;
 export default chatSlice.reducer;

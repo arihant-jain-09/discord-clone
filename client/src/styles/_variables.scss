@@ -26,6 +26,8 @@ $background-modifier-selected-light: rgba(116, 127, 141, 0.24);
 $background-modifier-hover-light: rgba(116, 127, 141, 0.08);
 $channels-default-light: #6a7480;
 $deprecated-text-input-border: rgba(79, 84, 92, 0.3);
+$channeltextarea-background-light: #ebedef;
+$background-message-hover-light: rgba(6, 6, 7, 0.02);
 
 //scrollbar
 $background-color-scrollbar-light: darkgrey;
@@ -52,6 +54,8 @@ $background-modifier-hover-dark: rgba(79, 84, 92, 0.16);
 $text-muted-dark: #72767d;
 $text-normal-dark: #dcddde;
 $channels-default-dark: #8e9297;
+$channeltextarea-background-dark: #40444b;
+$background-message-hover-dark: rgba(4, 4, 5, 0.07);
 
 //light
 $text-light: hsl(254, 40%, 14%);

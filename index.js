@@ -1,5 +1,30 @@
 const express=require('express');
+const http=require('http');
+const cors=require('cors');
+const socketIO =require('socket.io');
 const app=express();
+const server = http.createServer(app);
+const io = socketIO(server, {
+    transports:['polling'],
+    cors:{
+      cors: {
+        origin: "http://localhost:3000"
+      }
+    }
+  })
+  io.on('connection', (socket) => {
+    console.log('A user is connected');
+  
+    socket.on('message', (message) => {
+      console.log(`message from ${socket.id} : ${message}`);
+    })
+  
+    socket.on('disconnect', () => {
+      console.log(`socket ${socket.id} disconnected`);
+    })
+  })
+  module.exports=io;
+  app.use(cors());
 app.use(express.urlencoded({limit: "30mb",extended:true}))
 app.use(express.json({limit: "30mb",extended:true}))
 const cookieSession=require('cookie-session');
@@ -31,4 +56,4 @@ if(process.env.NODE_ENV==='production'){
     })
 }
 const PORT=process.env.PORT || 5000
-app.listen(PORT);
+server.listen(PORT);
