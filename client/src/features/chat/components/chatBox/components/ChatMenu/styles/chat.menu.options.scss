@@ -1,0 +1,49 @@
+@import '../../../../../../../styles/theme.scss';
+.chatMenuOptions {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: -130%;
+  animation: moveleftoright 0.3s;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.16);
+  svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+  &__container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.6rem 0.8rem;
+    width: 18rem;
+    border-radius: 0.4rem;
+    @include themed() {
+      background-color: t('background-floating');
+      color: t('interactive-normal');
+    }
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    margin: 0.4rem 0;
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    &-label {
+      margin-right: auto;
+      font-size: 1.4rem;
+    }
+    &-deletelabel {
+      color: $color-danger;
+      margin-right: auto;
+      font-size: 1.4rem;
+    }
+  }
+}
+@keyframes moveleftoright {
+  0% {
+    transform: translateX(-13%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}

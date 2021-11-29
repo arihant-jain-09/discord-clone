@@ -1,5 +1,5 @@
-@import '../../../../../../styles/theme.scss';
-.chatMessage {
+@import '../../../../../../../styles/theme.scss';
+.chatSimple {
   margin-top: 1.7rem;
   display: flex;
   &:hover {
@@ -33,7 +33,6 @@
           color: t('header-primary');
         }
         font-family: 'Whitney-medium', sans-serif;
-        // font-weight: 600;
         margin-right: 1rem;
         font-size: 1.5rem;
       }

@@ -1,0 +1,39 @@
+@import '../../../../../../../styles/theme.scss';
+.chatPinned {
+  margin-top: 1.7rem;
+  display: flex;
+  &:hover {
+    @include themed() {
+      background-color: t('background-message');
+    }
+  }
+  &__img {
+    margin-left: 0.5rem;
+    width: 5.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &__content {
+    margin-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    &-text {
+      @include themed() {
+        color: t('header-primary');
+      }
+      font-family: 'Whitney-medium', sans-serif;
+      margin-right: 1rem;
+      font-size: 1.5rem;
+    }
+    &-date {
+      @include themed() {
+        color: t('text-muted');
+      }
+      font-family: 'Whitney-medium', sans-serif;
+      font-size: 1.25rem;
+      margin-right: auto;
+    }
+  }
+}

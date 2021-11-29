@@ -8,6 +8,7 @@ $brand: #7289da;
 $brand-experiment: hsl(235, calc(var(--saturation-factor, 1) * 85.6%), 64.7%);
 $background-modifier-accent: hsla(0, 0%, 100%, 0.06);
 $strikethrough: hsl(359, calc(var(--saturation-factor, 1) * 82.6%), 59.4%);
+$color-danger: hsl(359, calc(var(--saturation-factor, 1) * 82.6%), 59.4%);
 
 //light
 $background-tertiary-light: #e3e5e8;
@@ -28,6 +29,7 @@ $channels-default-light: #6a7480;
 $deprecated-text-input-border: rgba(79, 84, 92, 0.3);
 $channeltextarea-background-light: #ebedef;
 $background-message-hover-light: rgba(6, 6, 7, 0.02);
+$background-floating-light: #fff;
 
 //scrollbar
 $background-color-scrollbar-light: darkgrey;
@@ -56,6 +58,7 @@ $text-normal-dark: #dcddde;
 $channels-default-dark: #8e9297;
 $channeltextarea-background-dark: #40444b;
 $background-message-hover-dark: rgba(4, 4, 5, 0.07);
+$background-floating-dark: #18191c;
 
 //light
 $text-light: hsl(254, 40%, 14%);

@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import ChatMessage from './ChatMessage/ChatMessage';
+import ChatMessage from './ChatMessage';
 import { io } from "socket.io-client";
 import './styles/chat.box.scss';
-import { EditMsg, MsgToEdit } from '../../../chatSlice';
+import { DeleteMsg, EditMsg, MsgToEdit } from '../../../chatSlice';
 const ChatBox = () => {
   const messages=useSelector((state)=>state.message.messages);
   const dispatch = useDispatch();
@@ -14,6 +14,11 @@ const ChatBox = () => {
       console.log('message updated');
       dispatch(EditMsg(message));
       dispatch(MsgToEdit(null));
+    })
+
+    socket.on('message-deleted', (msgId) => {
+      console.log('message deleted');
+      dispatch(DeleteMsg(msgId));
     })
     return () => {
       

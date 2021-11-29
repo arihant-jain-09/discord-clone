@@ -28,6 +28,7 @@ $themes: (
     channels-default: $channels-default-light,
     channeltextarea-background: $channeltextarea-background-light,
     background-message: $background-message-hover-light,
+    background-floating: $background-floating-light,
   ),
   dark: (
     text: $text-dark,
@@ -55,6 +56,7 @@ $themes: (
     channels-default: $channels-default-dark,
     channeltextarea-background: $channeltextarea-background-dark,
     background-message: $background-message-hover-dark,
+    background-floating: $background-floating-dark,
   ),
 );
 
