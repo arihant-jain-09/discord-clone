@@ -20,7 +20,7 @@
       }
       border-radius: 0.5rem;
       @include themed() {
-        color: t('text-link');
+        color: t('interactive-hover');
       }
     }
   }

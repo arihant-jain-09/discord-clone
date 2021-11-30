@@ -3,7 +3,9 @@ import axios from 'axios';
 
 const initialState = {
   messages:[],
-  edit:null
+  messageFetchLoading:false,
+  edit:null,
+  hover:false
 };
 export const fetchMessagesByChannel = createAsyncThunk(
   "/api/servers/channels/messages",
@@ -84,10 +86,11 @@ export const chatSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchMessagesByChannel.pending, (state) => {
-        // state.status = 'loading';
+        state.messageFetchLoading = true;
       })
       .addCase(fetchMessagesByChannel.fulfilled, (state, action) => {
         state.messages=action.payload;
+        state.messageFetchLoading = false;
       })      
   },
 });

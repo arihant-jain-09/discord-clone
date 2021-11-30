@@ -4,8 +4,10 @@ import ChatMessage from './ChatMessage';
 import { io } from "socket.io-client";
 import './styles/chat.box.scss';
 import { PinMsg, DeleteMsg, EditMsg, MsgToEdit } from '../../../chatSlice';
+import ChatLoader from './ChatLoader/ChatLoader';
 const ChatBox = () => {
   const messages=useSelector((state)=>state.message.messages);
+  const messageFetchLoading=useSelector((state)=>state.message.messageFetchLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     // message-updated
@@ -29,12 +31,14 @@ const ChatBox = () => {
       
     }
   }, [dispatch])
+
   return (
     <>
-     <div className="chatBox">
-      {messages?.map((message,i)=>{
+    <div className="chatBox">
+    {messageFetchLoading ? <ChatLoader/>: messages?.map((message,i)=>{
         return <ChatMessage key={message._id} message={message}/>
-      })}
+      })
+     }
      </div> 
     </>
   )

@@ -7,7 +7,8 @@ const initialState = {
     name:'',
     _message:null,
   },
-  channels:[]
+  channels:[],
+  ChannelFetchLoading:false
 };
 export const fetchChannelByServer = createAsyncThunk(
   "/api/servers/channels",
@@ -31,10 +32,11 @@ export const channelSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchChannelByServer.pending, (state) => {
-        // state.status = 'loading';
+        state.ChannelFetchLoading = true;
       })
       .addCase(fetchChannelByServer.fulfilled, (state, action) => {
         state.channels=action.payload;
+        state.ChannelFetchLoading = false;
       })      
   },
 });

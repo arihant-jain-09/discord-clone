@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchServers, setCurrentServer } from './serverSlice';
 import { Dialog, makeStyles } from '@material-ui/core';
 import AddServer from './server.add.form';
+import ServerLoader from './server.loader';
 
 const useStyles = makeStyles(() => ({
   paper: { maxWidth: "44rem" },
@@ -23,6 +24,7 @@ const ServerPageIndex = () => {
 
     const handledialogactions=()=>{setopen(false)}
   const servers=useSelector(state=>state.server.servers);
+  const serverFetchLoading=useSelector(state=>state.server.serverFetchLoading);
   return (
     <>
       <div className="serverPage">
@@ -39,7 +41,7 @@ const ServerPageIndex = () => {
             </div>
         </div>
         <div className="serverPage__map">
-          {servers && servers?.map((server)=>{
+          {serverFetchLoading?<ServerLoader/>:servers && servers?.map((server)=>{
             return <SingleServer key={server._id} server={server}/>
           })}
           <div className="serverPage__map-addicon" onClick={()=>setopen(true)}>

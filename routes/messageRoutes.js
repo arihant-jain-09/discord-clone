@@ -55,12 +55,14 @@ module.exports=(app)=>{
   app.post('/api/servers/channels/messages/delete',async(req,res)=>{
     const {_id}=req.body;
     try {
-      Message.deleteOne({_id}).then((response)=>{
-        if(response.deletedCount==1){
-          io.emit('message-deleted',{_id})
-          res.status(200).send({message:'msg deleted'});
+      Message.findOneAndRemove({_id}).then((response)=>{
+        io.emit('message-deleted',{_id:response._id})
+        if(response.isPinned===true){
+          Message.findOneAndRemove({pinned:response._id}).then((result)=>{
+            io.emit('message-deleted',{_id:result._id})
+          })
         }
-        else res.status(400).send({message:'failed to delete'});
+        res.status(200).send({message:'msg deleted'});
       })
     } catch (error) {
       res.status(500).send(error);

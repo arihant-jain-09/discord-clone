@@ -8,6 +8,7 @@ const initialState = {
     home:true
   },
   servers:[],
+  serverFetchLoading:false
 };
 
 export const addServer = createAsyncThunk(
@@ -45,10 +46,11 @@ export const serverSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchServers.pending, (state) => {
-        // state.status = 'loading';
+        state.serverFetchLoading = true;
       })
       .addCase(fetchServers.fulfilled, (state, action) => {
         state.servers=action.payload;
+        state.serverFetchLoading = false;
       })      
   },
 });

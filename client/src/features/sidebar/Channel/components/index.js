@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import SingleChannel from './SingleChannel'
 import {SocketIOmessageSet} from '../../../chat/chatSlice'
 import { io } from "socket.io-client";
+import ChannelLoader from './channel.loader'
 // import { setCurrentChannel } from '../channelSlice'
 const ChannelPageIndex = () => {
   const [micOn,setMicOn]=useState(false);
@@ -19,6 +20,7 @@ const ChannelPageIndex = () => {
   const history=useHistory();
   const currentServer=useSelector((state)=>state.server.currentServer);
   const channels=useSelector((state)=>state.channel.channels);
+  const ChannelFetchLoading=useSelector((state)=>state.channel.ChannelFetchLoading);
   const auth=useSelector((state)=>state.auth.user);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -50,9 +52,10 @@ const ChannelPageIndex = () => {
           }
         </div>
         <div className="channelPage__body">
-          {currentServer?._id && channels?.map((channel)=>{
+          {ChannelFetchLoading ? <ChannelLoader/> : currentServer?._id && channels?.map((channel)=>{
             return <SingleChannel key={channel._id} channel={channel}/>
           })}
+
         </div>
         <div className="channelPage__footer">
           <div className="channelPage__footer-avatar">
