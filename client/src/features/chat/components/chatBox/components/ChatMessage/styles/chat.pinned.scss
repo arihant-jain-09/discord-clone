@@ -2,6 +2,7 @@
 .chatPinned {
   margin-top: 1.7rem;
   display: flex;
+  padding: 0.25rem 0;
   &:hover {
     @include themed() {
       background-color: t('background-message');
@@ -21,11 +22,20 @@
     width: 100%;
     &-text {
       @include themed() {
-        color: t('header-primary');
+        color: t('text-normal');
       }
-      font-family: 'Whitney-medium', sans-serif;
       margin-right: 1rem;
       font-size: 1.5rem;
+      span {
+        cursor: pointer;
+        font-family: 'Whitney-medium', sans-serif;
+        @include themed() {
+          color: t('header-primary');
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
     &-date {
       @include themed() {

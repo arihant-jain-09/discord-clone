@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import ChatMessage from './ChatMessage';
 import { io } from "socket.io-client";
 import './styles/chat.box.scss';
-import { DeleteMsg, EditMsg, MsgToEdit } from '../../../chatSlice';
+import { PinMsg, DeleteMsg, EditMsg, MsgToEdit } from '../../../chatSlice';
 const ChatBox = () => {
   const messages=useSelector((state)=>state.message.messages);
   const dispatch = useDispatch();
@@ -15,10 +15,15 @@ const ChatBox = () => {
       dispatch(EditMsg(message));
       dispatch(MsgToEdit(null));
     })
-
+    //message-deleted
     socket.on('message-deleted', (msgId) => {
       console.log('message deleted');
       dispatch(DeleteMsg(msgId));
+    })
+    // message-pinned
+    socket.on('message-pinned', (msgId) => {
+      console.log('message pinned');
+      dispatch(PinMsg(msgId));
     })
     return () => {
       
@@ -27,7 +32,7 @@ const ChatBox = () => {
   return (
     <>
      <div className="chatBox">
-      {messages?.map((message)=>{
+      {messages?.map((message,i)=>{
         return <ChatMessage key={message._id} message={message}/>
       })}
      </div> 

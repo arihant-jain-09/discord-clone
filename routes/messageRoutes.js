@@ -1,3 +1,4 @@
+const { response } = require('express');
 const mongoose=require('mongoose');
 const Message=mongoose.model('messages');
 const io=require('../index');
@@ -23,7 +24,8 @@ module.exports=(app)=>{
             img:req.user.photo[0].value,
           },
           text:req.body.message,
-          _channel:req.body.channel._id
+          _channel:req.body.channel._id,
+          isPinned:false,
         })
         await message.save().then((response)=>{
           io.emit('message-added', response)
@@ -65,24 +67,54 @@ module.exports=(app)=>{
     }
   })
 
+  //pin messages
   app.post('/api/servers/channels/messages/pin',async(req,res)=>{
     console.log(req.body);
-    const {msg_Id,channel_Id}=req.body;
+    const {msg_Id}=req.body;
     try {
       const message=new Message({
         sender:{
           _id:req.user.id,
+          name:req.user.displayName,
           img:'https://res.cloudinary.com/dv17tob3g/image/upload/v1638210021/1f57f1c100434d1ff6569a495ada213e_bvrgeg.svg'
         },
-        text: `${req.user.displayName} pinned a message to this channel.`,
         pinned: msg_Id,
-        _channel:channel_Id,
       });
       await message.save().then((response)=>{
-        console.log(response);
         io.emit('message-added', response)
+        // isPinned
+        try {
+          Message.findOneAndUpdate({_id:msg_Id},{isPinned:true},{new: true}).then((response)=>{
+            console.log(response);
+            io.emit('message-updated',response)
+            res.status(200).send({message:'msg edited'});
+          })
+        } catch (error) {
+          res.status(500).send(error);
+        }
+        // io.emit('message-pinned',msg_Id);
       })
-      res.status(200).send(message);
+    } catch (error) {
+      res.status(500).send(error);
+    }
+  })
+
+  //unpinMessages
+  app.post('/api/servers/channels/messages/unpin',async(req,res)=>{
+    const {msg_Id}=req.body;
+    try {
+      Message.findOneAndRemove({pinned:msg_Id}).then((response)=>{
+        console.log('findOneAndRemove');
+        io.emit('message-deleted',{_id:response._id})
+          try {
+            Message.findOneAndUpdate({_id:msg_Id},{isPinned:false},{new: true}).then((response)=>{
+              io.emit('message-updated',response)
+              res.status(200).send({message:'msg edited'});
+            })
+          } catch (error) {
+            res.status(500).send(error);
+          }
+      })
     } catch (error) {
       res.status(500).send(error);
     }

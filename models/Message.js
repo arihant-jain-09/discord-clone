@@ -9,6 +9,7 @@ const messageSchema=new mongoose.Schema({
   text:String,
   assets:[asset],
   edited:false,
+  isPinned:Boolean,
   pinned:{type:mongoose.Schema.Types.ObjectId},
   _channel:{type:mongoose.Schema.Types.ObjectId,ref:'Channel'},
 },{timestamps: true})

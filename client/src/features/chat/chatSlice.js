@@ -49,6 +49,14 @@ export const PinMessage = createAsyncThunk(
     }
 );
 
+export const UnpinMessage = createAsyncThunk(
+  "/api/servers/channels/messages/unpin",
+  async(msg_Id,) =>{
+      const {data}=await axios.post('/api/servers/channels/messages/unpin',{msg_Id:msg_Id});
+      return data;
+    }
+);
+
 
 export const chatSlice = createSlice({
   name: 'message',
@@ -67,7 +75,11 @@ export const chatSlice = createSlice({
     },
     DeleteMsg:(state,action)=>{
       state.messages=current(state.messages).filter((msg)=>msg._id!==action.payload._id);
-    }
+    },
+    PinMsg:(state,action)=>{
+      const index=current(state.messages).findIndex((msg)=>msg._id===action.payload);
+      state.messages[index]={...current(state.messages)[index],isPinned:true};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -79,5 +91,5 @@ export const chatSlice = createSlice({
       })      
   },
 });
-export const { SocketIOmessageSet,MsgToEdit,EditMsg,DeleteMsg } = chatSlice.actions;
+export const { SocketIOmessageSet,MsgToEdit,EditMsg,DeleteMsg,PinMsg } = chatSlice.actions;
 export default chatSlice.reducer;

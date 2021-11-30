@@ -76,3 +76,9 @@
     }
   }
 }
+
+.highlight {
+  @include themed() {
+    background-color: rgba(88, 101, 242, 0.2);
+  }
+}

@@ -9,7 +9,7 @@ const ChatSimple = ({message}) => {
   const edit=useSelector((state)=>state.message.edit);
   return (
     <>
-      <div className='chatSimple' onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
+      <div className='chatSimple' id={message._id}onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
         <div className="chatSimple__img">
           <img src={message.sender.img} alt={message.text.slice(0,1)}/>
         </div>
