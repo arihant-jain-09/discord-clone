@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './styles/server.add.form.scss';
 import { addServer } from './serverSlice';
 import { useDispatch } from 'react-redux';
+import imageCompression from 'browser-image-compression';
 const AddServer = ({handleClose}) => {
   const dispatch = useDispatch();
   const [uploadingImg, setUploadingImg] = useState(false);
@@ -28,19 +29,28 @@ const AddServer = ({handleClose}) => {
     const [file] = event.target.files;
     if (!file) return;
     setUploadingImg(true);
-    const uploadedUrl = await uploadImage(file);
-    setFormData({ ...formData, img: uploadedUrl });
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 100,
+      useWebWorker: true
+    }
+    try {
+      const compressedFile = await imageCompression(file, options);
+      const uploadedUrl = await uploadImage(compressedFile);
+      setFormData({ ...formData, img: uploadedUrl });
+    } catch (error) {
+      console.log(error);
+    }
     setUploadingImg(false);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log("called submit");
     // disable the form submit when uploading image
     if (uploadingImg) return;
-    console.log(formData);
     dispatch(addServer(formData));
     // upload `formData` to server
+    handleClose();
   };
 
   return (

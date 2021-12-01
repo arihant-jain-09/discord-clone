@@ -12,9 +12,9 @@ const initialState = {
 };
 
 export const addServer = createAsyncThunk(
-  "/api/servers",
+  "/api/servers/add",
   (formData) =>
-    axios.post('/api/servers',{
+    axios.post('/api/servers/add',{
       formData
     })
       .then((response) => response.data)
@@ -41,6 +41,9 @@ export const serverSlice = createSlice({
     },
     setServers:(state,action)=>{
       state.servers=action.payload
+    },
+    SocketIOserverSet:(state,action)=>{
+      state.servers.push(action.payload)
     }
   },
   extraReducers: (builder) => {
@@ -55,5 +58,5 @@ export const serverSlice = createSlice({
   },
 });
 
-export const { setCurrentServer,setServers } = serverSlice.actions;
+export const { setCurrentServer,setServers, SocketIOserverSet } = serverSlice.actions;
 export default serverSlice.reducer;

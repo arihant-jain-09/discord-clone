@@ -3,10 +3,11 @@ import { useHistory } from 'react-router';
 import './styles/serverPage.scss'
 import SingleServer from './SingleServer';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchServers, setCurrentServer } from './serverSlice';
+import { fetchServers, setCurrentServer, SocketIOserverSet } from './serverSlice';
 import { Dialog, makeStyles } from '@material-ui/core';
 import AddServer from './server.add.form';
 import ServerLoader from './server.loader';
+import { io } from 'socket.io-client';
 
 const useStyles = makeStyles(() => ({
   paper: { maxWidth: "44rem" },
@@ -19,7 +20,13 @@ const ServerPageIndex = () => {
   const dispatch = useDispatch();
   const currentServer = useSelector(state => state.server.currentServer);
     useEffect(() => {
-      dispatch(fetchServers());
+
+    dispatch(fetchServers());
+    const socket = io('ws://localhost:5000');
+    socket.on('server-added', (server) => {
+      dispatch(SocketIOserverSet(server));
+    })
+
     }, [dispatch])
 
     const handledialogactions=()=>{setopen(false)}

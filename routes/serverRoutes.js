@@ -2,9 +2,10 @@ const mongoose=require('mongoose');
 const Server=mongoose.model('servers');
 const Message=mongoose.model('messages');
 const Channel=mongoose.model('channels');
+const io=require('../index');
 module.exports=(app)=>{
     app.get('/api/servers',(req,res)=>{
-      Server.find().then((response)=>{
+      Server.find({}).then((response)=>{
         res.send(response);
       })
       .catch((err)=>{
@@ -12,7 +13,7 @@ module.exports=(app)=>{
       })
     })
 
-    app.post('/api/servers',async(req,res)=>{
+    app.post('/api/servers/add',async(req,res)=>{
       // console.log(req.body.formData);
       const {server_name,img}=req.body.formData;
       Server.find({server_name:server_name}).then(async(response)=>{
@@ -43,7 +44,8 @@ module.exports=(app)=>{
           await server.save();
           await channel.save();
           await message.save();
-          res.send({server,channel});
+          io.emit('server-added',server)
+          res.send({message:'server added'});
         }
       })
       
